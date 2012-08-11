@@ -7,12 +7,14 @@
 //
 
 #import "cvViewController.h"
+#import "cvGraphSelectionViewController.h"
 
 @interface cvViewController ()
 
 @end
 
 @implementation cvViewController
+@synthesize popoverController;
 @synthesize chartButton;
 
 - (void)viewDidLoad
@@ -34,8 +36,19 @@
 }
 
 - (IBAction)chartButtonAction:(id)sender {
+
+    
+    cvGraphSelectionViewController* content = [[cvGraphSelectionViewController alloc] initWithNibName:@"cvGraphSelectionViewController" bundle:nil];
+    self.popoverController = [[UIPopoverController alloc]
+                                     initWithContentViewController:content];
+
+    self.popoverController.delegate = self;
+
+    [self.popoverController presentPopoverFromBarButtonItem:sender
+                                   permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+
 #if 0
-    - (IBAction)openAllRhymes:(id)sender{
+    //
         UIButton *button = (UIButton*)sender;
         
         PopupTableView *tableViewController = [[PopupTableView alloc] initWithStyle:UITableViewStylePlain];
@@ -53,5 +66,21 @@
     self.contentSizeForViewInPopover = CGSizeMake(108,400);
 #endif
     
+}
+
+/* 
+ Implementing protocol UIPopoverControllerDelegate
+ */
+- (BOOL)popoverControllerShouldDismissPopover:(UIPopoverController *)popoverController
+{
+    return YES;
+}
+
+/* 
+ Implementing protocol UIPopoverControllerDelegate
+ */
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
+{
+    self.popoverController = nil;
 }
 @end

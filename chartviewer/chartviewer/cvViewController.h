@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface cvViewController : UIViewController
+@interface cvViewController : UIViewController <UIPopoverControllerDelegate>
+
+
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *chartButton;
+@property (strong, nonatomic) UIPopoverController *popoverController;
+
 - (IBAction)chartButtonAction:(id)sender;
 
 @end
