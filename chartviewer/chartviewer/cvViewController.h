@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface cvViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *chartButton;
+- (IBAction)chartButtonAction:(id)sender;
 
 @end

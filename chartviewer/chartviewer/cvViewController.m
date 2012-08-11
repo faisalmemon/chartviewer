@@ -13,6 +13,7 @@
 @end
 
 @implementation cvViewController
+@synthesize chartButton;
 
 - (void)viewDidLoad
 {
@@ -22,6 +23,7 @@
 
 - (void)viewDidUnload
 {
+    [self setChartButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -31,4 +33,25 @@
     return YES;
 }
 
+- (IBAction)chartButtonAction:(id)sender {
+#if 0
+    - (IBAction)openAllRhymes:(id)sender{
+        UIButton *button = (UIButton*)sender;
+        
+        PopupTableView *tableViewController = [[PopupTableView alloc] initWithStyle:UITableViewStylePlain];
+        
+        
+        popover = [[UIPopoverController alloc] initWithContentViewController:tableViewController];
+        [popover presentPopoverFromRect:CGRectMake(button.frame.size.width / 2, button.frame.size.height / 1, 1, 1) inView:button permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+        
+        [tableViewController release];
+    }
+    
+    Now you have created a tableview for popover in that tableviewcontroller write:
+        
+        self.clearsSelectionOnViewWillAppear = NO;
+    self.contentSizeForViewInPopover = CGSizeMake(108,400);
+#endif
+    
+}
 @end
