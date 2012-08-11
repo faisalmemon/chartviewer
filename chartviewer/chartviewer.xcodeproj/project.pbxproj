@@ -15,6 +15,8 @@
 		3A3DEFAA15D6A7C0001F7077 /* cvAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3DEFA915D6A7C0001F7077 /* cvAppDelegate.m */; };
 		3A3DEFAD15D6A7C0001F7077 /* cvViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3DEFAC15D6A7C0001F7077 /* cvViewController.m */; };
 		3A3DEFB015D6A7C0001F7077 /* cvViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A3DEFAE15D6A7C0001F7077 /* cvViewController.xib */; };
+		3A3DEFC815D6BAB1001F7077 /* cvGraphSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3DEFC615D6BAB1001F7077 /* cvGraphSelectionViewController.m */; };
+		3A3DEFC915D6BAB1001F7077 /* cvGraphSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A3DEFC715D6BAB1001F7077 /* cvGraphSelectionViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,9 @@
 		3A3DEFAB15D6A7C0001F7077 /* cvViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cvViewController.h; sourceTree = "<group>"; };
 		3A3DEFAC15D6A7C0001F7077 /* cvViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = cvViewController.m; sourceTree = "<group>"; };
 		3A3DEFAF15D6A7C0001F7077 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/cvViewController.xib; sourceTree = "<group>"; };
+		3A3DEFC515D6BAB1001F7077 /* cvGraphSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cvGraphSelectionViewController.h; sourceTree = "<group>"; };
+		3A3DEFC615D6BAB1001F7077 /* cvGraphSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cvGraphSelectionViewController.m; sourceTree = "<group>"; };
+		3A3DEFC715D6BAB1001F7077 /* cvGraphSelectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = cvGraphSelectionViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +87,9 @@
 				3A3DEFAB15D6A7C0001F7077 /* cvViewController.h */,
 				3A3DEFAC15D6A7C0001F7077 /* cvViewController.m */,
 				3A3DEFAE15D6A7C0001F7077 /* cvViewController.xib */,
+				3A3DEFC515D6BAB1001F7077 /* cvGraphSelectionViewController.h */,
+				3A3DEFC615D6BAB1001F7077 /* cvGraphSelectionViewController.m */,
+				3A3DEFC715D6BAB1001F7077 /* cvGraphSelectionViewController.xib */,
 				3A3DEFA015D6A7C0001F7077 /* Supporting Files */,
 			);
 			path = chartviewer;
@@ -152,6 +160,7 @@
 			files = (
 				3A3DEFA415D6A7C0001F7077 /* InfoPlist.strings in Resources */,
 				3A3DEFB015D6A7C0001F7077 /* cvViewController.xib in Resources */,
+				3A3DEFC915D6BAB1001F7077 /* cvGraphSelectionViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,6 +174,7 @@
 				3A3DEFA615D6A7C0001F7077 /* main.m in Sources */,
 				3A3DEFAA15D6A7C0001F7077 /* cvAppDelegate.m in Sources */,
 				3A3DEFAD15D6A7C0001F7077 /* cvViewController.m in Sources */,
+				3A3DEFC815D6BAB1001F7077 /* cvGraphSelectionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +292,7 @@
 				3A3DEFB515D6A7C0001F7077 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
