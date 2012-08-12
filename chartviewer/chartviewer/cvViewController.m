@@ -45,27 +45,7 @@
     self.popoverController.delegate = self;
 
     [self.popoverController presentPopoverFromBarButtonItem:sender
-                                   permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-
-#if 0
-    //
-        UIButton *button = (UIButton*)sender;
-        
-        PopupTableView *tableViewController = [[PopupTableView alloc] initWithStyle:UITableViewStylePlain];
-        
-        
-        popover = [[UIPopoverController alloc] initWithContentViewController:tableViewController];
-        [popover presentPopoverFromRect:CGRectMake(button.frame.size.width / 2, button.frame.size.height / 1, 1, 1) inView:button permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
-        
-        [tableViewController release];
-    }
-    
-    Now you have created a tableview for popover in that tableviewcontroller write:
-        
-        self.clearsSelectionOnViewWillAppear = NO;
-    self.contentSizeForViewInPopover = CGSizeMake(108,400);
-#endif
-    
+                                   permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];    
 }
 
 /* 

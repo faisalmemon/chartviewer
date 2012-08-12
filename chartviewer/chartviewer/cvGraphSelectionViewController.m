@@ -7,6 +7,7 @@
 //
 
 #import "cvGraphSelectionViewController.h"
+#import "cvConstants.h"
 
 @interface cvGraphSelectionViewController ()
 
@@ -18,7 +19,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        self.contentSizeForViewInPopover = CGSizeMake(cvChartPopOverWidth, cvChartPopOverHeight);
     }
     return self;
 }
