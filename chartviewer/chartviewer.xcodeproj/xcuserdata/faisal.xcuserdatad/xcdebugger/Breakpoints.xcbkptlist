@@ -4,7 +4,7 @@
    version = "1.0">
    <FileBreakpoints>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "chartviewer/cvGraphSelectionViewController.m"
@@ -47,11 +47,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "chartviewer/cvViewController.m"
-         timestampString = "366478006.345229"
+         timestampString = "366479059.419065"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "56"
-         endingLineNumber = "56"
+         startingLineNumber = "64"
+         endingLineNumber = "64"
          landmarkName = "-popoverControllerShouldDismissPopover:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -60,11 +60,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "chartviewer/cvViewController.m"
-         timestampString = "366478006.345229"
+         timestampString = "366479059.419065"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "64"
-         endingLineNumber = "64"
+         startingLineNumber = "72"
+         endingLineNumber = "72"
          landmarkName = "-popoverControllerDidDismissPopover:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -92,6 +92,32 @@
          startingLineNumber = "48"
          endingLineNumber = "48"
          landmarkName = "-selectedGraphType:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "chartviewer/cvViewController.m"
+         timestampString = "366479059.419065"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "49"
+         endingLineNumber = "49"
+         landmarkName = "-chartButtonAction:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "chartviewer/cvViewController.m"
+         timestampString = "366479028.539743"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "45"
+         endingLineNumber = "45"
+         landmarkName = "-chartButtonAction:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

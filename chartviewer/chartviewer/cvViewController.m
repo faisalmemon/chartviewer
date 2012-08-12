@@ -37,7 +37,15 @@
 
 - (IBAction)chartButtonAction:(id)sender {
 
-    
+    if (nil != self.popoverController) {
+        /*
+         We have pressed the chart button whilst the chart popover is already on the screen.
+         Creating another popover is the wrong action.  We should dismiss the current popover instead.
+         */
+        [self.popoverController dismissPopoverAnimated:YES];
+        self.popoverController = nil;
+        return;
+    }
     cvGraphSelectionViewController* content = [[cvGraphSelectionViewController alloc] initWithNibName:@"cvGraphSelectionViewController" bundle:nil];
     self.popoverController = [[UIPopoverController alloc]
                                      initWithContentViewController:content];
