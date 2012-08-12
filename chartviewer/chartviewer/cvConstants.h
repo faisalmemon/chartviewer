@@ -10,8 +10,13 @@
 #define chartviewer_cvConstants_h
 
 enum cvConstants_t {
-    cvChartPopOverWidth         = 360,
-    cvChartPopOverHeight        = 544,
+    /* Derived from cvGraphSelectionViewController.xib */
+    
+    cvChartPopOverWidth             = 360,
+    cvChartPopOverHeight            = 544,
+    cvSegmentedControlGraphChart    = 0,
+    cvSegmentedControlPieChart      = 1,
+    cvSegmentedControlBarChart      = 2,
 };
 
 #endif

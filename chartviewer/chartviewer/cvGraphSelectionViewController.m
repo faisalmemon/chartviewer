@@ -14,6 +14,7 @@
 @end
 
 @implementation cvGraphSelectionViewController
+@synthesize selectedChartType;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,7 +28,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    self.selectedChartType = cvSegmentedControlGraphChart;
 }
 
 - (void)viewDidUnload
@@ -42,4 +43,23 @@
 	return YES;
 }
 
+- (IBAction)selectedGraphType:(id)sender {
+    int selectedSegment = ((UISegmentedControl *)sender).selectedSegmentIndex;
+    switch (selectedSegment)
+    {
+        case cvSegmentedControlGraphChart:
+        case cvSegmentedControlPieChart:
+        case cvSegmentedControlBarChart:
+        {
+            self.selectedChartType = selectedSegment;
+            break;
+        }
+        default:
+        {
+            self.selectedChartType = cvSegmentedControlGraphChart;
+            break;
+        }
+    }
+
+}
 @end
