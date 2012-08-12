@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface cvGraphSelectionViewController : UIViewController
+@interface cvGraphSelectionViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> 
 - (IBAction)selectedGraphType:(id)sender;
 @property (nonatomic) int selectedChartType;
 
