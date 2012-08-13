@@ -24,36 +24,74 @@ static inline double radians(double degrees) { return degrees * PI / 180; }
 }
 
 - (void)drawGraphInContext:(CGContextRef)context withBounds:(CGRect)bounds {
-    CGFloat value, temp;
-    
-    // Save any previous graphics state settings before setting the color and line width for the current draw.
     CGContextSaveGState(context);
-	CGContextSetLineWidth(context, 1.0);
+
     
-	// Draw the intermediate lines
-	CGContextSetGrayStrokeColor(context, 0.6, 1.0);
-	CGContextBeginPath(context);
-	for (value = -5 + 1.0; value <= 5 - 1.0; value += 1.0) {
-        
-		if (value == 0.0) {
-			continue;
-		}
-		temp = 0.5 + roundf(bounds.origin.y + bounds.size.height / 2 + value / (2 * 5) * bounds.size.height);
-		CGContextMoveToPoint(context, bounds.origin.x, temp);
-		CGContextAddLineToPoint(context, bounds.origin.x + bounds.size.width, temp);
-	}
-	CGContextStrokePath(context);
-	
-	// Draw the center line
-	CGContextSetGrayStrokeColor(context, 0.25, 1.0);
-	CGContextBeginPath(context);
-	temp = 0.5 + roundf(bounds.origin.y + bounds.size.height / 2);
-	CGContextMoveToPoint(context, bounds.origin.x, temp);
-	CGContextAddLineToPoint(context, bounds.origin.x + bounds.size.width, temp);
-	CGContextStrokePath(context);
+    CGContextTranslateCTM(context, 30, 70);
+    CGRect insetRect;
+    insetRect = bounds;
+    insetRect.size.height -= 70;
+    insetRect.size.width  -= 30;
     
-    // Restore previous graphics state.
+    insetRect.size.height -= 40;
+    insetRect.size.width  -= 30;
+    [self drawAxes:context withBounds:insetRect];
+    
     CGContextRestoreGState(context);
+}
+
+- (void)drawAxes:(CGContextRef)context withBounds:(CGRect)bounds {
+    
+    /* Simple positive quadrant axes filling given bounds */
+    int nYaxisIntervals = 10;
+    int nXaxisIntervals = 10;
+    CGFloat widthYaxisInterval = 5;
+    CGFloat heightXaxisInterval = 5;
+    CGFloat paceAlongYaxis = (bounds.size.height - heightXaxisInterval) / nYaxisIntervals;
+    CGFloat paceAlongXaxis = (bounds.size.width - widthYaxisInterval) / nXaxisIntervals;
+    
+    CGPoint* YaxisPoints;
+    YaxisPoints = malloc(nYaxisIntervals * sizeof (CGPoint) * 2);
+    
+    CGPoint* XaxisPoints;
+    XaxisPoints = malloc(nXaxisIntervals * sizeof (CGPoint) * 2);
+    
+    if (XaxisPoints == NULL || YaxisPoints == NULL) {
+        return;
+    }
+    
+    CGContextSaveGState(context);
+	CGContextSetLineWidth(context, 3.0);
+    
+	CGContextSetGrayStrokeColor(context, 0.0, 1.0);
+    
+    for (int i = 0; i < nYaxisIntervals; i++) {
+        YaxisPoints[i*2].x = 0;
+        YaxisPoints[i*2].y = bounds.size.height - heightXaxisInterval - i * paceAlongYaxis;
+        YaxisPoints[i*2+1].x = widthYaxisInterval;
+        YaxisPoints[i*2+1].y = YaxisPoints[i*2].y;
+    }
+    
+    for (int i = 0; i < nXaxisIntervals; i++) {
+        XaxisPoints[i*2].x = widthYaxisInterval + i * paceAlongXaxis;
+        XaxisPoints[i*2].y = bounds.size.height;
+        XaxisPoints[i*2+1].x = XaxisPoints[i*2].x;
+        XaxisPoints[i*2+1].y = bounds.size.height - heightXaxisInterval;
+    }
+
+    CGContextStrokeLineSegments(context, YaxisPoints, nYaxisIntervals * 2);
+    CGContextStrokeLineSegments(context, XaxisPoints, nXaxisIntervals * 2);
+    
+	CGContextBeginPath(context);
+    CGContextMoveToPoint(context, bounds.size.width, bounds.size.height - heightXaxisInterval);
+    CGContextAddLineToPoint(context, widthYaxisInterval, bounds.size.height - heightXaxisInterval);
+    CGContextAddLineToPoint(context, widthYaxisInterval, 0);
+    CGContextStrokePath(context);
+
+    CGContextRestoreGState(context);
+    
+    free(YaxisPoints);
+    free(XaxisPoints);
 }
 
 

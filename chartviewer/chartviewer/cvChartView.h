@@ -10,4 +10,6 @@
 
 @interface cvChartView : UIView
 
+- (void)drawAxes:(CGContextRef)context withBounds:(CGRect)bounds;
+
 @end
