@@ -18,7 +18,6 @@ static inline double radians(double degrees) { return degrees * PI / 180; }
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
     }
     return self;
 }
@@ -118,9 +117,12 @@ static inline double radians(double degrees) { return degrees * PI / 180; }
 }
 
 
-- (void)drawRect:(CGRect)clip {
+- (void)drawRect:(CGRect)clip
+{
     
 	CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextRotateCTM(context, angleToSupportOrientation);
 	CGRect bounds = CGRectMake(0, 0, [self bounds].size.width, [self bounds].size.height);
 	
 	// create the graph
@@ -129,42 +131,24 @@ static inline double radians(double degrees) { return degrees * PI / 180; }
     CGContextSetAllowsAntialiasing(context, true);
 }
 
-#if 0
-- (void)drawRect:(CGRect)rect
+
+- (void)adjustToOrientation:(UIInterfaceOrientation)toOrientation
 {
-    
-    // Create an oval shape to draw.
-    UIBezierPath* aPath = [UIBezierPath bezierPathWithOvalInRect:
-                           CGRectMake(0, 0, 200, 100)];
-    
-    // Set the render colors
-    [[UIColor blackColor] setStroke];
-    [[UIColor redColor] setFill];
-    
-    CGContextRef aRef = UIGraphicsGetCurrentContext();
-    [self drawGraphYLabel:aRef :CGRectMake(0,0, 30, 300)];
-    
-    // If you have content to draw after the shape,
-    // save the current state before changing the transform
-    //CGContextSaveGState(aRef);
-    
-    // Adjust the view's origin temporarily. The oval is
-    // now drawn relative to the new origin point.
-    CGContextTranslateCTM(aRef, 50, 50);
-    
-    // Adjust the drawing options as needed.
-    aPath.lineWidth = 5;
-    
-    // Fill the path before stroking it so that the fill
-    // color does not obscure the stroked line.
-    [aPath fill];
-    [aPath stroke];
-    
-    // Restore the graphics state before drawing any other content.
-    //CGContextRestoreGState(aRef);
-    
+    switch (toOrientation) {
+        default:
+        case UIInterfaceOrientationPortrait:
+            angleToSupportOrientation = 0;
+            break;
+        case UIInterfaceOrientationPortraitUpsideDown:
+            angleToSupportOrientation = radians(180);
+        case UIInterfaceOrientationLandscapeLeft:
+            angleToSupportOrientation = radians(90);
+        case UIInterfaceOrientationLandscapeRight:
+            angleToSupportOrientation = radians(-90);
+            break;
+    }
+    return;
 }
-#endif
 
 
 @end

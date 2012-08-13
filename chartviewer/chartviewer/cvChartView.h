@@ -8,8 +8,24 @@
 
 #import <UIKit/UIKit.h>
 
-@interface cvChartView : UIView
+@interface cvChartView : UIView {
+    CGFloat angleToSupportOrientation;
+}
 
+/*
+ Notes on behaviour:
+ 
+ 1.0 Orientation Change
+ 
+ When the device is rotated, we need the drawRect method to be called so we can draw the graph in the new
+ orientation.  This is why we have a handle to this object in cvViewController.  It is handled in two phases,
+ I)  We are notified in advance of the rotation, with adjustToOrientation.
+ II) We are told to redraw via a setNeedsDisplay.
+ 
+ In phase I, we update our data model for the new orientation.  In phase II, we update the presentation of this model.
+ 
+ */
 - (void)drawAxes:(CGContextRef)context withBounds:(CGRect)bounds;
+- (void)adjustToOrientation:(UIInterfaceOrientation)toOrientation;
 
 @end

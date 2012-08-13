@@ -15,17 +15,25 @@
 
 @implementation cvViewController
 @synthesize popoverController;
+@synthesize chartViewHandle;
 @synthesize chartButton;
+@synthesize orientation;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    
+    if (nil == chartViewHandle) {
+        NSLog (@"The view to custom draw the graph did not load so we cannot tweak its properties");
+    } else {
+        chartViewHandle.contentMode = UIViewContentModeRedraw;
+    }
 }
 
 - (void)viewDidUnload
 {
     [self setChartButton:nil];
+    [self setChartViewHandle:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -33,6 +41,26 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return YES;
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+                                duration:(NSTimeInterval)duration {
+	   orientation = toInterfaceOrientation;
+    if (nil != chartViewHandle) {
+        [chartViewHandle adjustToOrientation:orientation];
+    }
+
+}
+
+- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    if (nil == chartViewHandle) {
+        NSLog (@"The view to custom draw the graph did not load so we cannot redraw it");
+    } else {
+        [chartViewHandle setNeedsDisplay];
+    }
+
+    return;
 }
 
 - (IBAction)chartButtonAction:(id)sender {

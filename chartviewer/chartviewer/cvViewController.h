@@ -7,12 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "cvChartView.h"
 
 @interface cvViewController : UIViewController <UIPopoverControllerDelegate>
+{
+}
 
-
+@property (weak, nonatomic) IBOutlet cvChartView *chartViewHandle;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *chartButton;
 @property (strong, nonatomic) UIPopoverController *popoverController;
+@property (nonatomic) UIInterfaceOrientation orientation;
 
 - (IBAction)chartButtonAction:(id)sender;
 
