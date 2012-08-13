@@ -56,7 +56,7 @@ static inline double radians(double degrees) { return degrees * PI / 180; }
     XaxisPoints = malloc(nXaxisIntervals * sizeof (CGPoint) * 2);
     
     if (XaxisPoints == NULL || YaxisPoints == NULL) {
-        return;
+        goto cleanup_and_exit;
     }
     
     CGContextSaveGState(context);
@@ -89,8 +89,12 @@ static inline double radians(double degrees) { return degrees * PI / 180; }
 
     CGContextRestoreGState(context);
     
-    free(YaxisPoints);
-    free(XaxisPoints);
+cleanup_and_exit:
+    if (YaxisPoints)
+        free(YaxisPoints);
+    if (XaxisPoints)
+        free(XaxisPoints);
+    return;
 }
 
 

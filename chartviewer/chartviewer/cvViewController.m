@@ -21,13 +21,7 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    
-    if (nil == chartViewHandle) {
-        NSLog (@"The view to custom draw the graph did not load so we cannot tweak its properties");
-    } else {
-        chartViewHandle.contentMode = UIViewContentModeRedraw;
-    }
+    [super viewDidLoad];    
 }
 
 - (void)viewDidUnload
