@@ -105,9 +105,6 @@ cleanup_and_exit:
     return;
 }
 
-
-
-
 - (void)drawRect:(CGRect)clip
 {
     CGRect frame = [self frame];
@@ -119,60 +116,16 @@ cleanup_and_exit:
     CGContextSaveGState(context);
 
     CGContextSetAllowsAntialiasing(context, true);
-    
-    CGContextRotateCTM(context, angleToSupportOrientation);
-    CGContextTranslateCTM(context, translateX, translateY);
-    CGContextScaleCTM(context, scaleX, scaleY);
-    
+        
 	[self drawGraphInContext:context withBounds:bounds];
 	
     CGContextRestoreGState(context);
-
 }
 
 
 - (void)adjustToOrientation:(UIInterfaceOrientation)toOrientation
 {
-    static CGFloat widthHeightRatio = 0;
-    static CGFloat heightWidthRatio = 0;
-    if (0 == widthHeightRatio) {
-        widthHeightRatio = [self bounds].size.width / [self bounds].size.height; // height never zero
-        heightWidthRatio = 1/widthHeightRatio;
-    }
-    
     currentOrientation = toOrientation;
-    
-    switch (currentOrientation) {
-        default:
-        case UIInterfaceOrientationPortrait:
-            angleToSupportOrientation = radians(0);
-            translateX = 0;
-            translateY = 0;
-            scaleX = 1;
-            scaleY = 1;
-            break;
-        case UIInterfaceOrientationPortraitUpsideDown:
-            angleToSupportOrientation = radians(0);
-            translateX = 0;
-            translateY = 0;
-            scaleX = 1;
-            scaleY = 1;
-            break;
-        case UIInterfaceOrientationLandscapeLeft:
-            angleToSupportOrientation = radians(0);
-            translateX = 0;
-            translateY = 0;
-            scaleX = 1;
-            scaleY = 1;
-            break;
-        case UIInterfaceOrientationLandscapeRight:
-            angleToSupportOrientation = radians(0);
-            translateX = 0;
-            translateY = 0;
-            scaleX = 1;
-            scaleY = 1;
-            break;
-    }
     return;
 }
 
