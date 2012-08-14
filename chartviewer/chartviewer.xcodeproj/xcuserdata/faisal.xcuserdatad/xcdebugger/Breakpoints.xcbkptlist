@@ -138,11 +138,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "chartviewer/cvChartView.m"
-         timestampString = "366569069.001917"
+         timestampString = "366648121.240806"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "26"
-         endingLineNumber = "26"
+         startingLineNumber = "59"
+         endingLineNumber = "59"
          landmarkName = "-drawGraphInContext:withBounds:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -151,11 +151,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "chartviewer/cvChartView.m"
-         timestampString = "366638506.529956"
+         timestampString = "366648121.240806"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "116"
-         endingLineNumber = "116"
+         startingLineNumber = "150"
+         endingLineNumber = "150"
          landmarkName = "-drawRect:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -177,11 +177,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "chartviewer/cvChartView.m"
-         timestampString = "366638506.529956"
+         timestampString = "366648121.240806"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "129"
-         endingLineNumber = "129"
+         startingLineNumber = "163"
+         endingLineNumber = "163"
          landmarkName = "-adjustToOrientation:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -190,11 +190,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "chartviewer/cvChartView.m"
-         timestampString = "366631989.537985"
+         timestampString = "366648121.240806"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "45"
-         endingLineNumber = "45"
+         startingLineNumber = "79"
+         endingLineNumber = "79"
          landmarkName = "-drawAxes:withBounds:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -203,11 +203,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "chartviewer/cvChartView.m"
-         timestampString = "366632707.45754"
+         timestampString = "366648121.240806"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "81"
-         endingLineNumber = "81"
+         startingLineNumber = "115"
+         endingLineNumber = "115"
          landmarkName = "-drawAxes:withBounds:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -216,11 +216,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "chartviewer/cvChartView.m"
-         timestampString = "366635259.281985"
+         timestampString = "366648121.240806"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "95"
-         endingLineNumber = "95"
+         startingLineNumber = "129"
+         endingLineNumber = "129"
          landmarkName = "-drawAxes:withBounds:"
          landmarkType = "5">
       </FileBreakpoint>

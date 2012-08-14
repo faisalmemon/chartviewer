@@ -22,10 +22,25 @@ static inline double radians(double degrees) { return degrees * PI / 180; }
     return self;
 }
 
+-(void) drawTitleInContext:(CGContextRef)context withBounds:(CGRect)bounds withTitle:(NSString *)title
+{
+    CGContextSaveGState(context);
+
+    CGRect titleBoundingRect;
+    titleBoundingRect.origin.x = 0;
+    titleBoundingRect.origin.y = 0;
+    titleBoundingRect.size.width = bounds.size.width;
+    titleBoundingRect.size.height = 40;
+    [title drawInRect:titleBoundingRect withFont: [UIFont fontWithName:@"Helvetica-Bold" size:30 ] lineBreakMode:UILineBreakModeWordWrap alignment:UITextAlignmentCenter];
+
+    CGContextRestoreGState(context);
+}
+
 - (void)drawGraphInContext:(CGContextRef)context withBounds:(CGRect)bounds {
     CGContextSaveGState(context);
 
-    
+    [self drawTitleInContext:context withBounds:bounds withTitle:@"Title of graph"];
+
     CGContextTranslateCTM(context, 30, 70);
     CGRect insetRect;
     insetRect = bounds;
