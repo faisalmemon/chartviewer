@@ -21,7 +21,12 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];    
+    [super viewDidLoad];
+    if (nil != chartViewHandle) {
+        [chartViewHandle adjustToOrientation:UIInterfaceOrientationPortrait];
+    }
+
+
 }
 
 - (void)viewDidUnload

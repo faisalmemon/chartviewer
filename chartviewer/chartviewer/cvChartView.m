@@ -40,9 +40,10 @@ static inline double radians(double degrees) { return degrees * PI / 180; }
 }
 
 - (void)drawAxes:(CGContextRef)context withBounds:(CGRect)bounds {
-    
+    NSLog(@"drawAxes: bounds is width %f height %f for origin %f %f", bounds.size.width, bounds.size.height, bounds.origin.x, bounds.origin.y);
+
     /* Simple positive quadrant axes filling given bounds */
-    int nYaxisIntervals = 10;
+    int nYaxisIntervals = 100;
     int nXaxisIntervals = 10;
     CGFloat widthYaxisInterval = 5;
     CGFloat heightXaxisInterval = 5;
@@ -87,6 +88,13 @@ static inline double radians(double degrees) { return degrees * PI / 180; }
     CGContextAddLineToPoint(context, widthYaxisInterval, 0);
     CGContextStrokePath(context);
 
+    CGContextBeginPath(context);
+    CGContextMoveToPoint(context, 50, 50);
+    CGFloat targetWidth = bounds.size.width - 10;
+    CGFloat targetHeight = bounds.size.height - 10;
+    CGContextAddLineToPoint(context, targetWidth, targetHeight);
+    CGContextStrokePath(context);
+    
     CGContextRestoreGState(context);
     
 cleanup_and_exit:
@@ -98,6 +106,77 @@ cleanup_and_exit:
 }
 
 
+
+
+- (void)drawRect:(CGRect)clip
+{
+    CGRect frame = [self frame];
+    CGRect bounds = [self bounds];
+    NSLog(@"drawRect:: frame %f %f %f %f ", frame.size.width, frame.size.height, frame.origin.x, frame.origin.y);
+    NSLog(@"drawRect:: bounds %f %f %f %f ", bounds.size.width, bounds.size.height, bounds.origin.x, bounds.origin.y);
+
+	CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSaveGState(context);
+
+    CGContextSetAllowsAntialiasing(context, true);
+    
+    CGContextRotateCTM(context, angleToSupportOrientation);
+    CGContextTranslateCTM(context, translateX, translateY);
+    CGContextScaleCTM(context, scaleX, scaleY);
+    
+	[self drawGraphInContext:context withBounds:bounds];
+	
+    CGContextRestoreGState(context);
+
+}
+
+
+- (void)adjustToOrientation:(UIInterfaceOrientation)toOrientation
+{
+    static CGFloat widthHeightRatio = 0;
+    static CGFloat heightWidthRatio = 0;
+    if (0 == widthHeightRatio) {
+        widthHeightRatio = [self bounds].size.width / [self bounds].size.height; // height never zero
+        heightWidthRatio = 1/widthHeightRatio;
+    }
+    
+    currentOrientation = toOrientation;
+    
+    switch (currentOrientation) {
+        default:
+        case UIInterfaceOrientationPortrait:
+            angleToSupportOrientation = radians(0);
+            translateX = 0;
+            translateY = 0;
+            scaleX = 1;
+            scaleY = 1;
+            break;
+        case UIInterfaceOrientationPortraitUpsideDown:
+            angleToSupportOrientation = radians(0);
+            translateX = 0;
+            translateY = 0;
+            scaleX = 1;
+            scaleY = 1;
+            break;
+        case UIInterfaceOrientationLandscapeLeft:
+            angleToSupportOrientation = radians(0);
+            translateX = 0;
+            translateY = 0;
+            scaleX = 1;
+            scaleY = 1;
+            break;
+        case UIInterfaceOrientationLandscapeRight:
+            angleToSupportOrientation = radians(0);
+            translateX = 0;
+            translateY = 0;
+            scaleX = 1;
+            scaleY = 1;
+            break;
+    }
+    return;
+}
+
+
 - (void)drawGraphYLabel:(CGContextRef)myContext :(CGRect)contextRect
 {
     CGFloat w, h;
@@ -105,12 +184,12 @@ cleanup_and_exit:
     h = contextRect.size.height;
     
     CGAffineTransform myTextTransform;
-    CGContextSelectFont (myContext, 
+    CGContextSelectFont (myContext,
                          "Helvetica-Bold",
                          h/10,
                          kCGEncodingMacRoman);
-    CGContextSetCharacterSpacing (myContext, 10); 
-    CGContextSetTextDrawingMode (myContext, kCGTextFillStroke); 
+    CGContextSetCharacterSpacing (myContext, 10);
+    CGContextSetTextDrawingMode (myContext, kCGTextFillStroke);
     
     //CGContextSetRGBFillColor (myContext, 0, 1, 0, .5);
     //CGContextSetRGBStrokeColor (myContext, 0, 0, 1, 1);
@@ -119,40 +198,4 @@ cleanup_and_exit:
     CGContextShowTextAtPoint (myContext, 40, 0, "Confidence", 9);
     
 }
-
-
-- (void)drawRect:(CGRect)clip
-{
-    
-	CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    CGContextRotateCTM(context, angleToSupportOrientation);
-	CGRect bounds = CGRectMake(0, 0, [self bounds].size.width, [self bounds].size.height);
-	
-	// create the graph
-	[self drawGraphInContext:context withBounds:bounds];
-	
-    CGContextSetAllowsAntialiasing(context, true);
-}
-
-
-- (void)adjustToOrientation:(UIInterfaceOrientation)toOrientation
-{
-    switch (toOrientation) {
-        default:
-        case UIInterfaceOrientationPortrait:
-            angleToSupportOrientation = 0;
-            break;
-        case UIInterfaceOrientationPortraitUpsideDown:
-            angleToSupportOrientation = radians(180);
-        case UIInterfaceOrientationLandscapeLeft:
-            angleToSupportOrientation = radians(90);
-        case UIInterfaceOrientationLandscapeRight:
-            angleToSupportOrientation = radians(-90);
-            break;
-    }
-    return;
-}
-
-
 @end

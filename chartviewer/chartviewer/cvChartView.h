@@ -9,7 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface cvChartView : UIView {
+    UIInterfaceOrientation currentOrientation;
     CGFloat angleToSupportOrientation;
+    CGFloat translateX;
+    CGFloat translateY;
+    CGFloat scaleX;
+    CGFloat scaleY;
 }
 
 /*
