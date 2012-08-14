@@ -47,8 +47,8 @@
 		3A3DF00B15DA9DBF001F7077 /* cvChartData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cvChartData.m; sourceTree = "<group>"; };
 		3A3DF00D15DA9F5B001F7077 /* cvGraphChartData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cvGraphChartData.h; sourceTree = "<group>"; };
 		3A3DF00E15DA9F5B001F7077 /* cvGraphChartData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cvGraphChartData.m; sourceTree = "<group>"; };
-		3A3DF01015DAA0D5001F7077 /* cvGraphChartDataPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cvGraphChartDataPoint.h; sourceTree = "<group>"; };
 		3A3DF01115DAA0D5001F7077 /* cvGraphChartDataPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cvGraphChartDataPoint.m; sourceTree = "<group>"; };
+		3A3DF03715DAA2B7001F7077 /* cvGraphChartDataPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cvGraphChartDataPoint.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,7 +109,7 @@
 				3A3DEFA015D6A7C0001F7077 /* Supporting Files */,
 				3A3DF00A15DA9DBF001F7077 /* cvChartData.h */,
 				3A3DF00D15DA9F5B001F7077 /* cvGraphChartData.h */,
-				3A3DF01015DAA0D5001F7077 /* cvGraphChartDataPoint.h */,
+				3A3DF03715DAA2B7001F7077 /* cvGraphChartDataPoint.h */,
 				3A3DF01115DAA0D5001F7077 /* cvGraphChartDataPoint.m */,
 				3A3DF00E15DA9F5B001F7077 /* cvGraphChartData.m */,
 				3A3DF00B15DA9DBF001F7077 /* cvChartData.m */,
