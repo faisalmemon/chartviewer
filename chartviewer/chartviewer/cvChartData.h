@@ -12,6 +12,6 @@
     NSString *_title;
 }
 
-@property (strong, nonatomic) NSString *title;
+@property (copy, nonatomic) NSString *title;
 
 @end

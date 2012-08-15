@@ -9,8 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @interface cvGraphChartDataPoint : NSObject {
-    double x_value;
-    double y_value;
+    double _x_value;
+    double _y_value;
 }
 
+@property double x_value;
+@property double y_value;
 @end
