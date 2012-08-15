@@ -21,6 +21,7 @@
 		3A3DF00C15DA9DC0001F7077 /* cvChartData.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3DF00B15DA9DBF001F7077 /* cvChartData.m */; };
 		3A3DF00F15DA9F5B001F7077 /* cvGraphChartData.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3DF00E15DA9F5B001F7077 /* cvGraphChartData.m */; };
 		3A3DF01215DAA0D6001F7077 /* cvGraphChartDataPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3DF01115DAA0D5001F7077 /* cvGraphChartDataPoint.m */; };
+		3AA779B015DBF7CB002A6FD5 /* cvModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA779AF15DBF7CB002A6FD5 /* cvModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,8 @@
 		3A3DF00E15DA9F5B001F7077 /* cvGraphChartData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cvGraphChartData.m; sourceTree = "<group>"; };
 		3A3DF01115DAA0D5001F7077 /* cvGraphChartDataPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cvGraphChartDataPoint.m; sourceTree = "<group>"; };
 		3A3DF03715DAA2B7001F7077 /* cvGraphChartDataPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cvGraphChartDataPoint.h; sourceTree = "<group>"; };
+		3AA779AE15DBF7CB002A6FD5 /* cvModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cvModel.h; sourceTree = "<group>"; };
+		3AA779AF15DBF7CB002A6FD5 /* cvModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cvModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +100,8 @@
 			children = (
 				3A3DEFA815D6A7C0001F7077 /* cvAppDelegate.h */,
 				3A3DEFA915D6A7C0001F7077 /* cvAppDelegate.m */,
+				3AA779AE15DBF7CB002A6FD5 /* cvModel.h */,
+				3AA779AF15DBF7CB002A6FD5 /* cvModel.m */,
 				3A3DEFAB15D6A7C0001F7077 /* cvViewController.h */,
 				3A3DEFAC15D6A7C0001F7077 /* cvViewController.m */,
 				3A3DEFAE15D6A7C0001F7077 /* cvViewController.xib */,
@@ -201,6 +206,7 @@
 				3A3DF00C15DA9DC0001F7077 /* cvChartData.m in Sources */,
 				3A3DF00F15DA9F5B001F7077 /* cvGraphChartData.m in Sources */,
 				3A3DF01215DAA0D6001F7077 /* cvGraphChartDataPoint.m in Sources */,
+				3AA779B015DBF7CB002A6FD5 /* cvModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

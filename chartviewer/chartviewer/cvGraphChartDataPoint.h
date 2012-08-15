@@ -6,13 +6,11 @@
 //  Copyright (c) 2012 Faisal Memon. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 
-@interface cvGraphChartDataPoint : NSObject {
-    double _x_value;
-    double _y_value;
-}
+struct cvGraphChartDataPoint_struct {
+    double x;
+    double y;
+};
 
-@property double x_value;
-@property double y_value;
-@end
+typedef struct cvGraphChartDataPoint_struct cvGraphChartDataPoint;
+

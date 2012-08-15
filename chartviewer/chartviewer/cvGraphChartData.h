@@ -14,17 +14,21 @@ struct graphChartDataLimits_struct {
 };
 typedef struct graphChartDataLimits_struct graphChartDataLimits;
 
+
+
 @interface cvGraphChartData : cvChartData {
     NSString *_xLabel;
     NSString *_yLabel;
-    NSArray *_graphDataPoints;
+    const cvGraphChartDataPoint *_graphDataPoints;
+    int _nDataPoints;
     // using notation m=most, l=least, thus lx is the least x value
     double mx,my,lx,ly;
 }
 
 @property (copy, nonatomic) NSString *xLabel;
 @property (copy, nonatomic) NSString *yLabel;
-@property (copy, nonatomic) NSArray *graphDataPoints;
+
+-(id)initWithString:(NSString *)string;
 
 -(graphChartDataLimits)getLimits;
 

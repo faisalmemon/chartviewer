@@ -10,8 +10,7 @@
 
 @implementation cvGraphChartData
 
-@synthesize xLabel=_xLabel, yLabel=_yLabel, graphDataPoints=_graphDataPoints;
-
+@synthesize xLabel=_xLabel, yLabel=_yLabel;
 - (id)init {
     self = [super init];
     if (self) {
@@ -28,29 +27,34 @@
     return self;
 }
 
+-(void)setGraphChartWithData:(const cvGraphChartDataPoint[]) data containingDataPoints:(size_t) size
+{
+    _graphDataPoints = data;
+    _nDataPoints = size;
+}
 
 -(graphChartDataLimits)getLimits
 {
     graphChartDataLimits limits;
     limits.lx=limits.ly=limits.mx=limits.my=0;
     bool firstTime = YES;
-    for (cvGraphChartDataPoint *object in _graphDataPoints) {
+    for (int i = 0; i < _nDataPoints; i++) {
         if (firstTime) {
             firstTime = NO;
-            limits.lx = object.x_value;
+            limits.lx = _graphDataPoints[0].x;
             limits.mx = limits.lx;
-            limits.ly = object.y_value;
+            limits.ly = _graphDataPoints[0].y;
             limits.my = limits.ly;
             continue;
         } else {
-            if (object.x_value < limits.lx)
-                limits.lx = object.x_value;
-            if (object.y_value < limits.ly)
-                limits.ly = object.y_value;
-            if (object.x_value > limits.mx)
-                limits.mx = object.x_value;
-            if (object.y_value > limits.my)
-                limits.my = object.y_value;
+            if (_graphDataPoints[i].x < limits.lx)
+                limits.lx = _graphDataPoints[i].x;
+            if (_graphDataPoints[i].y < limits.ly)
+                limits.ly = _graphDataPoints[i].y;
+            if (_graphDataPoints[i].x > limits.mx)
+                limits.mx = _graphDataPoints[i].x;
+            if (_graphDataPoints[i].y > limits.my)
+                limits.my = _graphDataPoints[i].y;
         }
         
     }

@@ -8,7 +8,4 @@
 
 #import "cvGraphChartDataPoint.h"
 
-@implementation cvGraphChartDataPoint
-
-@synthesize x_value=_x_value, y_value=_y_value;
-@end
+// Empty file
