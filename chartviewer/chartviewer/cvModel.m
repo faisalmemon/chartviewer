@@ -29,7 +29,7 @@ const cvGraphChartDataPoint kSampleGraph0[] = {-3,-3, -2,2, 0,3, 1,6};
 {
     // Add hardcoded data since we have no UI or web service for adding new graphs
     
-    cvGraphChartData *graph1 = [[cvGraphChartData alloc] initWithString:@"My first graph" ];
+    cvGraphChart *graph1 = [[cvGraphChart alloc] initWithString:@"My first graph" ];
     
     graphCharts = [NSArray arrayWithObjects:graph1, nil ];
 }

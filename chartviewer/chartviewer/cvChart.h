@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface cvChartData : NSObject {
+@interface cvChart : NSObject {
     NSString *_title;
 }
 

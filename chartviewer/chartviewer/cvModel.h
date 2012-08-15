@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "cvGraphChartData.h"
+#import "cvGraphChart.h"
 
 @interface cvModel : NSObject {
     NSArray *graphCharts;

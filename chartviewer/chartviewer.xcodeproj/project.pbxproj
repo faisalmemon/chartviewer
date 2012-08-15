@@ -18,8 +18,8 @@
 		3A3DEFC815D6BAB1001F7077 /* cvGraphSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3DEFC615D6BAB1001F7077 /* cvGraphSelectionViewController.m */; };
 		3A3DEFC915D6BAB1001F7077 /* cvGraphSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A3DEFC715D6BAB1001F7077 /* cvGraphSelectionViewController.xib */; };
 		3A3DEFF515D81CC8001F7077 /* cvChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3DEFF415D81CC8001F7077 /* cvChartView.m */; };
-		3A3DF00C15DA9DC0001F7077 /* cvChartData.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3DF00B15DA9DBF001F7077 /* cvChartData.m */; };
-		3A3DF00F15DA9F5B001F7077 /* cvGraphChartData.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3DF00E15DA9F5B001F7077 /* cvGraphChartData.m */; };
+		3A3DF00C15DA9DC0001F7077 /* cvChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3DF00B15DA9DBF001F7077 /* cvChart.m */; };
+		3A3DF00F15DA9F5B001F7077 /* cvGraphChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3DF00E15DA9F5B001F7077 /* cvGraphChart.m */; };
 		3A3DF01215DAA0D6001F7077 /* cvGraphChartDataPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3DF01115DAA0D5001F7077 /* cvGraphChartDataPoint.m */; };
 		3AA779B015DBF7CB002A6FD5 /* cvModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA779AF15DBF7CB002A6FD5 /* cvModel.m */; };
 /* End PBXBuildFile section */
@@ -44,10 +44,10 @@
 		3A3DEFCF15D7FC4C001F7077 /* cvConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cvConstants.h; sourceTree = "<group>"; };
 		3A3DEFF315D81CC8001F7077 /* cvChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cvChartView.h; sourceTree = "<group>"; };
 		3A3DEFF415D81CC8001F7077 /* cvChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cvChartView.m; sourceTree = "<group>"; };
-		3A3DF00A15DA9DBF001F7077 /* cvChartData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cvChartData.h; sourceTree = "<group>"; };
-		3A3DF00B15DA9DBF001F7077 /* cvChartData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cvChartData.m; sourceTree = "<group>"; };
-		3A3DF00D15DA9F5B001F7077 /* cvGraphChartData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cvGraphChartData.h; sourceTree = "<group>"; };
-		3A3DF00E15DA9F5B001F7077 /* cvGraphChartData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cvGraphChartData.m; sourceTree = "<group>"; };
+		3A3DF00A15DA9DBF001F7077 /* cvChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cvChart.h; sourceTree = "<group>"; };
+		3A3DF00B15DA9DBF001F7077 /* cvChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cvChart.m; sourceTree = "<group>"; };
+		3A3DF00D15DA9F5B001F7077 /* cvGraphChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cvGraphChart.h; sourceTree = "<group>"; };
+		3A3DF00E15DA9F5B001F7077 /* cvGraphChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cvGraphChart.m; sourceTree = "<group>"; };
 		3A3DF01115DAA0D5001F7077 /* cvGraphChartDataPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cvGraphChartDataPoint.m; sourceTree = "<group>"; };
 		3A3DF03715DAA2B7001F7077 /* cvGraphChartDataPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cvGraphChartDataPoint.h; sourceTree = "<group>"; };
 		3AA779AE15DBF7CB002A6FD5 /* cvModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cvModel.h; sourceTree = "<group>"; };
@@ -112,10 +112,10 @@
 				3A3DEFC715D6BAB1001F7077 /* cvGraphSelectionViewController.xib */,
 				3A3DEFCF15D7FC4C001F7077 /* cvConstants.h */,
 				3A3DEFA015D6A7C0001F7077 /* Supporting Files */,
-				3A3DF00A15DA9DBF001F7077 /* cvChartData.h */,
-				3A3DF00B15DA9DBF001F7077 /* cvChartData.m */,
-				3A3DF00D15DA9F5B001F7077 /* cvGraphChartData.h */,
-				3A3DF00E15DA9F5B001F7077 /* cvGraphChartData.m */,
+				3A3DF00A15DA9DBF001F7077 /* cvChart.h */,
+				3A3DF00B15DA9DBF001F7077 /* cvChart.m */,
+				3A3DF00D15DA9F5B001F7077 /* cvGraphChart.h */,
+				3A3DF00E15DA9F5B001F7077 /* cvGraphChart.m */,
 				3A3DF03715DAA2B7001F7077 /* cvGraphChartDataPoint.h */,
 				3A3DF01115DAA0D5001F7077 /* cvGraphChartDataPoint.m */,
 			);
@@ -203,8 +203,8 @@
 				3A3DEFAD15D6A7C0001F7077 /* cvViewController.m in Sources */,
 				3A3DEFC815D6BAB1001F7077 /* cvGraphSelectionViewController.m in Sources */,
 				3A3DEFF515D81CC8001F7077 /* cvChartView.m in Sources */,
-				3A3DF00C15DA9DC0001F7077 /* cvChartData.m in Sources */,
-				3A3DF00F15DA9F5B001F7077 /* cvGraphChartData.m in Sources */,
+				3A3DF00C15DA9DC0001F7077 /* cvChart.m in Sources */,
+				3A3DF00F15DA9F5B001F7077 /* cvGraphChart.m in Sources */,
 				3A3DF01215DAA0D6001F7077 /* cvGraphChartDataPoint.m in Sources */,
 				3AA779B015DBF7CB002A6FD5 /* cvModel.m in Sources */,
 			);

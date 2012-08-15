@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Faisal Memon. All rights reserved.
 //
 
-#import "cvGraphChartData.h"
+#import "cvGraphChart.h"
 
-@implementation cvGraphChartData
+@implementation cvGraphChart
 
 @synthesize xLabel=_xLabel, yLabel=_yLabel;
 - (id)init {

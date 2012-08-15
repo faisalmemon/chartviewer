@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Faisal Memon. All rights reserved.
 //
 
-#import "cvChartData.h"
+#import "cvChart.h"
 #import "cvGraphChartDataPoint.h"
 
 struct graphChartDataLimits_struct {
@@ -16,7 +16,7 @@ typedef struct graphChartDataLimits_struct graphChartDataLimits;
 
 
 
-@interface cvGraphChartData : cvChartData {
+@interface cvGraphChart : cvChart {
     NSString *_xLabel;
     NSString *_yLabel;
     const cvGraphChartDataPoint *_graphDataPoints;

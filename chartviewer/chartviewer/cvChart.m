@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Faisal Memon. All rights reserved.
 //
 
-#import "cvChartData.h"
+#import "cvChart.h"
 
-@implementation cvChartData
+@implementation cvChart
 
 @synthesize title=_title;
 
