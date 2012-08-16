@@ -16,6 +16,16 @@
 @implementation cvGraphSelectionViewController
 @synthesize selectedChartType;
 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withChartSelectionHandler:(id<cvChartSelectionProtocol>)target
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        self.contentSizeForViewInPopover = CGSizeMake(cvChartPopOverWidth, cvChartPopOverHeight);
+        self->chartSelectionHandler = target;
+    }
+    return self;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -52,12 +62,12 @@
         case cvSegmentedControlPieChart:
         case cvSegmentedControlBarChart:
         {
-            self.selectedChartType = selectedSegment;
+            [chartSelectionHandler cvChartTypeWasSelected:selectedSegment];
             break;
         }
         default:
         {
-            self.selectedChartType = cvSegmentedControlGraphChart;
+            [chartSelectionHandler cvChartTypeWasSelected:cvSegmentedControlGraphChart];
             break;
         }
     }
@@ -71,12 +81,11 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
    
-    return [model getNumberOfChartsWithType:selectedChartType];
+    return [model getNumberOfChartsWithType:[chartSelectionHandler cvSelectedChartType]];
 }
 
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    // The header for the section is the region name -- get this from the region at the section index.
     return nil;
 }
 
@@ -87,14 +96,16 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:MyIdentifier] ;
     }
-    cvChart *chart = [[model getChartsWithType:selectedChartType] objectAtIndex:indexPath.row];    
+    cvChart *chart = [[model getChartsWithType:[chartSelectionHandler cvSelectedChartType]] objectAtIndex:indexPath.row];    
     cell.textLabel.text = [chart title];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-        
+    cvChart *chart = [[model getChartsWithType:[chartSelectionHandler cvSelectedChartType]] objectAtIndex:indexPath.row];
+
+    [chartSelectionHandler cvChartWasSelected:chart];
 }
 
 

@@ -52,6 +52,7 @@
 		3AA779AF15DBF7CB002A6FD5 /* cvModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cvModel.m; sourceTree = "<group>"; };
 		3AA779B215DC0966002A6FD5 /* cvChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cvChart.m; sourceTree = "<group>"; };
 		3AA779B415DC0979002A6FD5 /* cvGraphChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cvGraphChart.h; sourceTree = "<group>"; };
+		3AA779B515DD9EC6002A6FD5 /* cvChartSelectionProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cvChartSelectionProtocol.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +110,7 @@
 				3A3DEFF415D81CC8001F7077 /* cvChartView.m */,
 				3A3DEFC515D6BAB1001F7077 /* cvGraphSelectionViewController.h */,
 				3A3DEFC615D6BAB1001F7077 /* cvGraphSelectionViewController.m */,
+				3AA779B515DD9EC6002A6FD5 /* cvChartSelectionProtocol.h */,
 				3A3DEFC715D6BAB1001F7077 /* cvGraphSelectionViewController.xib */,
 				3A3DEFCF15D7FC4C001F7077 /* cvConstants.h */,
 				3A3DEFA015D6A7C0001F7077 /* Supporting Files */,

@@ -73,7 +73,7 @@
         self.popoverController = nil;
         return;
     }
-    cvGraphSelectionViewController* content = [[cvGraphSelectionViewController alloc] initWithNibName:@"cvGraphSelectionViewController" bundle:nil];
+    cvGraphSelectionViewController* content = [[cvGraphSelectionViewController alloc] initWithNibName:@"cvGraphSelectionViewController" bundle:nil withChartSelectionHandler:self];
     self.popoverController = [[UIPopoverController alloc]
                                      initWithContentViewController:content];
 
@@ -91,11 +91,42 @@
     return YES;
 }
 
+
 /* 
  Implementing protocol UIPopoverControllerDelegate
  */
 - (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
 {
     self.popoverController = nil;
+}
+
+/*
+ Implementing protocol cvChartSelectionProtocol
+ */
+-(void)cvChartWasNotSelected
+{
+    self->chartSelected = NO;
+}
+/*
+ Implementing protocol cvChartSelectionProtocol
+ */
+-(void)cvChartWasSelected:(cvChart *)item
+{
+    self->chartSelected = YES;
+    self->chart = item;
+}
+/*
+ Implementing protocol cvChartSelectionProtocol
+ */
+-(void)cvChartTypeWasSelected:(int)chartType
+{
+    self->selectedChartType = chartType;
+}
+/*
+ Implementing protocol cvChartSelectionProtocol
+ */
+-(int)cvSelectedChartType
+{
+    return self->selectedChartType;
 }
 @end

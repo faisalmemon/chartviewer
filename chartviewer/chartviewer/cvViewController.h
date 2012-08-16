@@ -8,9 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "cvChartView.h"
+#import "cvChartSelectionProtocol.h"
 
-@interface cvViewController : UIViewController <UIPopoverControllerDelegate>
+@interface cvViewController : UIViewController <UIPopoverControllerDelegate, cvChartSelectionProtocol>
 {
+    /* For the cvChartSelectionProtocol */
+    int selectedChartType;
+    BOOL chartSelected;
+    cvChart* chart;
 }
 
 @property (weak, nonatomic) IBOutlet cvChartView *chartViewHandle;
