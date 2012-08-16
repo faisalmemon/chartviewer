@@ -29,6 +29,7 @@
 {
     [super viewDidLoad];
     self.selectedChartType = cvSegmentedControlGraphChart;
+    self->model = [cvModel sharedInstance];
 }
 
 - (void)viewDidUnload
@@ -63,13 +64,14 @@
 
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Number of rows is the number of time zones in the region for the specified section.
-    return 1;
+   
+    return [model getNumberOfChartsWithType:selectedChartType];
 }
 
 
@@ -85,9 +87,8 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:MyIdentifier] ;
     }
-    //Region *region = [regions objectAtIndex:indexPath.section];
-    //TimeZoneWrapper *timeZoneWrapper = [region.timeZoneWrappers objectAtIndex:indexPath.row];
-    cell.textLabel.text = @"SimpleGraph";
+    cvChart *chart = [[model getChartsWithType:selectedChartType] objectAtIndex:indexPath.row];    
+    cell.textLabel.text = [chart title];
     return cell;
 }
 

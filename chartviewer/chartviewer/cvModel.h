@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "cvConstants.h"
 #import "cvGraphChart.h"
 
 @interface cvModel : NSObject {
@@ -17,5 +18,8 @@
 + (id)sharedInstance;
 
 -(void)loadData;
+
+-(int)getNumberOfChartsWithType:(int)chartType;
+-(NSArray *)getChartsWithType:(int)chartType;
 
 @end

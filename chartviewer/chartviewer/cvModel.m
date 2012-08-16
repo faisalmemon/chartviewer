@@ -40,5 +40,20 @@ const cvGraphChartDataPoint kSampleGraph2[] = {-3,-3, -2,-2, 0,0};
     graphCharts = [NSArray arrayWithObjects:graph1, graph2, nil ];
 }
 
+-(int)getNumberOfChartsWithType:(int)chartType
+{
+    if (chartType == cvSegmentedControlGraphChart) {
+        return [graphCharts count];
+    }
+    return 0;
+}
+
+-(NSArray *)getChartsWithType:(int)chartType
+{
+    if (chartType == cvSegmentedControlGraphChart) {
+        return graphCharts;
+    }
+    return nil;
+}
 
 @end
