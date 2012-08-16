@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "cvChart.h"
+#import "cvChartSelectionProtocol.h"
 
 @interface cvChartView : UIView {
     /*
@@ -16,10 +17,11 @@
      */
     UIInterfaceOrientation currentOrientation;
     
-    cvChart* _currentChart;
+    /*
+     Details about the currently selected chart are delegated via a protocol.
+     */
+    id<cvChartSelectionProtocol> chartSelectionHandler;
 }
-
-@property (weak, nonatomic) cvChart* currentChart;
 
 /*
  Notes on behaviour:
@@ -36,5 +38,5 @@
  */
 - (void)drawAxes:(CGContextRef)context withBounds:(CGRect)bounds;
 - (void)adjustToOrientation:(UIInterfaceOrientation)toOrientation;
-
+- (void)setChartSelectionHandler:(id<cvChartSelectionProtocol>)target;
 @end

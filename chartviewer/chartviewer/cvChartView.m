@@ -10,7 +10,6 @@
 #import "cvConstants.h"
 
 @implementation cvChartView
-@synthesize currentChart;
 
 static inline double radians(double degrees) { return degrees * PI / 180; }
 
@@ -163,5 +162,10 @@ cleanup_and_exit:
     //CGContextSetTextMatrix (myContext, myTextTransform);
     CGContextShowTextAtPoint (myContext, 40, 0, "Confidence", 9);
     
+}
+
+- (void)setChartSelectionHandler:(id<cvChartSelectionProtocol>)target
+{
+    self->chartSelectionHandler = target;
 }
 @end
