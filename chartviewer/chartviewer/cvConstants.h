@@ -9,6 +9,9 @@
 #ifndef chartviewer_cvConstants_h
 #define chartviewer_cvConstants_h
 
+
+#define PI 3.14159265358979323846
+
 enum cvConstants_t {
     /* Derived from cvGraphSelectionViewController.xib */
     
@@ -17,6 +20,8 @@ enum cvConstants_t {
     cvSegmentedControlGraphChart    = 0,
     cvSegmentedControlPieChart      = 1,
     cvSegmentedControlBarChart      = 2,
+    cvChartTitleFontSize            = 30,
+    cvChartInsetToAllowTitle        = cvChartTitleFontSize + 10,
 };
 
 #endif

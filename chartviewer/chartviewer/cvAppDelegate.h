@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "cvModel.h"
 
 @class cvViewController;
 
-@interface cvAppDelegate : UIResponder <UIApplicationDelegate>
+@interface cvAppDelegate : UIResponder <UIApplicationDelegate> {
+    cvModel *model;
+}
 
 @property (strong, nonatomic) UIWindow *window;
 

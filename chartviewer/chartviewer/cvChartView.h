@@ -7,14 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "cvChart.h"
 
 @interface cvChartView : UIView {
     /*
      We save the current orientation but strictly speaking, the view framework automatically adjusts our
      frame and bounds so it is not needed.  However, it could be useful so kept for the moment.
      */
-    UIInterfaceOrientation currentOrientation; // iOS handles the orientation so no actual need for this
+    UIInterfaceOrientation currentOrientation;
+    
+    cvChart* _currentChart;
 }
+
+@property (weak, nonatomic) cvChart* currentChart;
 
 /*
  Notes on behaviour:

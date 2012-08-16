@@ -29,6 +29,7 @@ typedef struct graphChartDataLimits_struct graphChartDataLimits;
 @property (copy, nonatomic) NSString *yLabel;
 
 -(id)initWithString:(NSString *)string;
+-(void)setGraphChartWithData:(const cvGraphChartDataPoint[]) data containingDataPoints:(size_t) size;
 
 -(graphChartDataLimits)getLimits;
 
