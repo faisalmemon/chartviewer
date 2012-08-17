@@ -61,4 +61,10 @@
     return limits;
 }
 
+-(void) drawChartBodyInContext:(CGContextRef)context withBounds:(CGRect)bounds
+{
+    NSLog(@"great.  cvGraphChart drawChartBodyInContext called ");
+    return;
+}
+
 @end

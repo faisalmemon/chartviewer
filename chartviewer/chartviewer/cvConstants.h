@@ -22,6 +22,7 @@ enum cvConstants_t {
     cvSegmentedControlBarChart      = 2,
     cvChartTitleFontSize            = 30,
     cvChartInsetToAllowTitle        = cvChartTitleFontSize + 10,
+    cvChartInsetToAllowGraphLabels  = 30
 };
 
 #endif

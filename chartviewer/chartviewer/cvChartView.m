@@ -8,6 +8,7 @@
 
 #import "cvChartView.h"
 #import "cvConstants.h"
+#import "cvChart.h"
 
 @implementation cvChartView
 
@@ -21,20 +22,6 @@ static inline double radians(double degrees) { return degrees * PI / 180; }
     return self;
 }
 
--(void) drawTitleInContext:(CGContextRef)context withBounds:(CGRect)bounds withTitle:(NSString *)title
-{
-    CGContextSaveGState(context);
-
-    CGRect titleBoundingRect;
-    titleBoundingRect.origin.x = 0;
-    titleBoundingRect.origin.y = 0;
-    titleBoundingRect.size.width = bounds.size.width;
-    titleBoundingRect.size.height = cvChartInsetToAllowTitle;
-    [title drawInRect:titleBoundingRect withFont: [UIFont fontWithName:@"Helvetica-Bold" size:cvChartTitleFontSize ] lineBreakMode:UILineBreakModeWordWrap alignment:UITextAlignmentCenter];
-
-    CGContextRestoreGState(context);
-}
-
 - (void)drawGraphInContext:(CGContextRef)context withBounds:(CGRect)bounds {
     CGContextSaveGState(context);
 
@@ -45,15 +32,9 @@ static inline double radians(double degrees) { return degrees * PI / 180; }
         return;
     }
     cvChart* selectedChart = [chartSelectionHandler cvGetSelectedChart];
-    NSString *chartTitle = [selectedChart title];
-    [self drawTitleInContext:context withBounds:bounds withTitle:chartTitle];
-    CGContextTranslateCTM(context, 0, cvChartInsetToAllowTitle);
-    CGRect insetRect;
-    insetRect = bounds;
-    insetRect.size.height -= cvChartInsetToAllowTitle;
+    [selectedChart drawTitleInContext:context withBounds:&bounds updatingBounds:YES updatingContext:YES];
 
-    
-    [self drawAxes:context withBounds:insetRect];
+    [self drawAxes:context withBounds:bounds];
     
     CGContextRestoreGState(context);
 }
