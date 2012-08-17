@@ -135,12 +135,31 @@
     double start_x = _scale_x * MIN(0,_limits.lx);
     double end_x = _scale_x * MAX(0,_limits.mx);
     double pace_x = (end_x - start_x) / cvChartGraphIntervals;
+    
     CGContextBeginPath(context);
     for (double x_interval = start_x; x_interval < end_x; x_interval += pace_x) {
         CGContextMoveToPoint(context, x_interval, -cvChartGraphMarkerLength);
         CGContextAddLineToPoint(context, x_interval, 0);
     }
     CGContextStrokePath(context);
+   
+    CGContextSaveGState(context);
+    CGContextSetFillColorWithColor(context, [UIColor greenColor].CGColor);
+    for (double x_interval = start_x; x_interval < end_x; x_interval += pace_x) {
+        if (ABS(x_interval) < cvChartInsetToAllowGraphLabels) {
+            continue; // don't label near the origin because it is by definition 0
+        }
+        NSString *intervalAsString = [NSString stringWithFormat:@"%f", x_interval];
+        CGRect labelArea;
+        labelArea.origin.x = x_interval - cvChartInsetToAllowGraphLabels/2;
+        labelArea.origin.y = - cvChartGraphMarkerLength - cvChartInsetToAllowGraphLabels;
+        labelArea.size.width = cvChartInsetToAllowGraphLabels;
+        labelArea.size.height = cvChartInsetToAllowGraphLabels;
+        CGContextFillRect(context, labelArea);
+        //[intervalAsString drawInRect:labelArea withFont: [UIFont fontWithName:@"Helvetica-Bold" size:1 ] lineBreakMode:UILineBreakModeWordWrap alignment:UITextAlignmentLeft];
+    }
+    CGContextRestoreGState(context);
+    
     double start_y = _scale_y * MIN(0,_limits.ly);
     double end_y = _scale_y * MAX(0,_limits.my);
     double pace_y = (end_y - start_y) / cvChartGraphIntervals;
@@ -150,6 +169,24 @@
         CGContextAddLineToPoint(context, 0, y_interval);
     }
     CGContextStrokePath(context);
+    
+    CGContextSaveGState(context);
+    CGContextSetFillColorWithColor(context, [UIColor blueColor].CGColor);
+    for (double y_interval = start_y; y_interval < end_y; y_interval += pace_y) {
+        if (ABS(y_interval) < cvChartInsetToAllowGraphLabels) {
+            continue; // don't label near the origin because it is by definition 0
+        }
+        NSString *intervalAsString = [NSString stringWithFormat:@"%f", y_interval];
+        CGRect labelArea;
+        labelArea.origin.x = 0 - cvChartGraphMarkerLength - cvChartInsetToAllowGraphLabels;
+        labelArea.origin.y = y_interval - cvChartInsetToAllowGraphLabels/2;
+        labelArea.size.width = cvChartInsetToAllowGraphLabels;
+        labelArea.size.height = cvChartInsetToAllowGraphLabels;
+        CGContextFillRect(context, labelArea);
+        //[intervalAsString drawInRect:labelArea withFont: [UIFont fontWithName:@"Helvetica-Bold" size:1 ] lineBreakMode:UILineBreakModeWordWrap alignment:UITextAlignmentLeft];
+    }
+    CGContextRestoreGState(context);
+
 }
 
 -(void)drawGraphPointsWithContext:(CGContextRef)context
