@@ -194,6 +194,15 @@ WithTip:(CGPoint)tip InDirection:(CGFloat)direction
     CGContextRestoreGState(context);
 
 }
+
+-(void)drawXIntervalWithContext:(CGContextRef)context AtX:(int)x
+{
+    CGContextBeginPath(context);
+    CGContextMoveToPoint(context, x, -cvChartGraphMarkerLength);
+    CGContextAddLineToPoint(context, x, 0);
+    CGContextStrokePath(context);
+}
+
 -(void)drawAxesWithContext:(CGContextRef)context
 {
     CGContextBeginPath(context);
@@ -203,30 +212,33 @@ WithTip:(CGPoint)tip InDirection:(CGFloat)direction
     CGContextAddLineToPoint(context,    0,                              _scale_y * MAX(0,_limits.my));
     CGContextStrokePath(context);
     
-    double start_x = _scale_x * MIN(0,_limits.lx);
-    double end_x = _scale_x * MAX(0,_limits.mx);
-    double pace_x = (end_x - start_x) / cvChartGraphIntervals;
-    
-    CGContextBeginPath(context);
-    for (double x_interval = start_x; x_interval < end_x + pace_x/2; x_interval += pace_x) {
-        CGContextMoveToPoint(context, x_interval, -cvChartGraphMarkerLength);
-        CGContextAddLineToPoint(context, x_interval, 0);
-    }
-    CGContextStrokePath(context);
-
-    for (double x_interval = start_x; x_interval < end_x + pace_x/2; x_interval += pace_x) {
-        if (ABS(x_interval) < cvChartInsetToAllowGraphLabels) {
-            continue; // don't label near the origin because it is by definition 0
-        }
-        NSString *intervalAsString = [NSString stringWithFormat:self->_xIntervalFormat, x_interval/_scale_x];
+    CGFloat angle = radians(90); // writing x labels upwards
+    for (double x_interval = -_stepper_x; x_interval >= MIN(0,_limits.lx); x_interval -= _stepper_x)
+    {
+        double x_onscreen = x_interval * _scale_x;
+        [self drawXIntervalWithContext:context AtX:x_onscreen];
+        NSString *intervalAsString = [NSString stringWithFormat:self->_xIntervalFormat, x_interval];
         CGPoint tip;
-        tip.x = x_interval;
+        tip.x = x_onscreen;
         tip.y = -cvChartGraphMarkerLength;
-        CGFloat angle = radians(90);
         [self drawGraphLabelWithContext:context WithText:intervalAsString
                                 WithTip:tip InDirection:angle];
     }
     
+    for (double x_interval = _stepper_x; x_interval <= MAX(0,_limits.mx); x_interval += _stepper_x)
+    {
+        double x_onscreen = x_interval * _scale_x;
+        [self drawXIntervalWithContext:context AtX:x_onscreen];
+        NSString *intervalAsString = [NSString stringWithFormat:self->_xIntervalFormat, x_interval];
+        CGPoint tip;
+        tip.x = x_onscreen;
+        tip.y = -cvChartGraphMarkerLength;
+        [self drawGraphLabelWithContext:context WithText:intervalAsString
+                                WithTip:tip InDirection:angle];
+    }
+
+
+        
     double start_y = _scale_y * MIN(0,_limits.ly);
     double end_y = _scale_y * MAX(0,_limits.my);
     double pace_y = (end_y - start_y) / cvChartGraphIntervals;
