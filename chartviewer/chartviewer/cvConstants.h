@@ -24,6 +24,8 @@ enum cvConstants_t {
     cvChartInsetToAllowTitle        = cvChartTitleFontSize + 10,
     cvChartInsetToAllowGraphLabels  = 30,
     cvChartGraphDataPointSize       = 4,  // this is up and left 4 points, then filling a 16x16 square
+    cvChartGraphIntervals           = 10, // number of interval marking points on either axis
+    cvChartGraphMarkerLength        = cvChartInsetToAllowGraphLabels / 5,
 };
 
 #endif

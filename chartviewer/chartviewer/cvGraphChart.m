@@ -131,6 +131,25 @@
     CGContextMoveToPoint(context,       0,                              _scale_y * MIN(0,_limits.ly));
     CGContextAddLineToPoint(context,    0,                              _scale_y * MAX(0,_limits.my));
     CGContextStrokePath(context);
+    
+    double start_x = _scale_x * MIN(0,_limits.lx);
+    double end_x = _scale_x * MAX(0,_limits.mx);
+    double pace_x = (end_x - start_x) / cvChartGraphIntervals;
+    CGContextBeginPath(context);
+    for (double x_interval = start_x; x_interval < end_x; x_interval += pace_x) {
+        CGContextMoveToPoint(context, x_interval, -cvChartGraphMarkerLength);
+        CGContextAddLineToPoint(context, x_interval, 0);
+    }
+    CGContextStrokePath(context);
+    double start_y = _scale_y * MIN(0,_limits.ly);
+    double end_y = _scale_y * MAX(0,_limits.my);
+    double pace_y = (end_y - start_y) / cvChartGraphIntervals;
+    CGContextBeginPath(context);
+    for (double y_interval = start_y; y_interval < end_y; y_interval += pace_y) {
+        CGContextMoveToPoint(context, -cvChartGraphMarkerLength, y_interval);
+        CGContextAddLineToPoint(context, 0, y_interval);
+    }
+    CGContextStrokePath(context);
 }
 
 -(void)drawGraphPointsWithContext:(CGContextRef)context
