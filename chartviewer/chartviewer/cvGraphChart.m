@@ -135,6 +135,19 @@
 
 -(void)drawGraphPointsWithContext:(CGContextRef)context
 {
+    CGContextSaveGState(context);
+    CGContextSetFillColorWithColor(context, [UIColor redColor].CGColor);
+    CGContextBeginPath(context);
+    for (int i = 0; i < _nDataPoints; i++) {
+        CGRect dataRect;
+        dataRect.origin.x = _scale_x * _graphDataPoints[i].x - cvChartGraphDataPointSize;
+        dataRect.origin.y = _scale_y * _graphDataPoints[i].y - cvChartGraphDataPointSize;
+        dataRect.size.height = 2 * cvChartGraphDataPointSize;
+        dataRect.size.width  = 2 * cvChartGraphDataPointSize;
+        CGContextFillRect(context, dataRect);
+    }
+    CGContextRestoreGState(context);
+
     CGContextBeginPath(context);
     CGContextMoveToPoint(context,   _scale_x * _graphDataPoints[0].x, _scale_y * _graphDataPoints[0].y);
     for (int i = 1; i < _nDataPoints; i++) {
