@@ -33,8 +33,7 @@ static inline double radians(double degrees) { return degrees * PI / 180; }
     }
     cvChart* selectedChart = [chartSelectionHandler cvGetSelectedChart];
     [selectedChart drawTitleInContext:context withBounds:&bounds updatingBounds:YES updatingContext:YES];
-
-    [self drawAxes:context withBounds:bounds];
+    [selectedChart drawChartBodyInContext:context withBounds:bounds];
     
     CGContextRestoreGState(context);
 }

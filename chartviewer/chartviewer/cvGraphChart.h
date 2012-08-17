@@ -10,7 +10,7 @@
 #import "cvGraphChartDataPoint.h"
 
 struct graphChartDataLimits_struct {
-    double mx, my, lx, ly;
+    double mx, my, lx, ly;    // using notation m=most, l=least, thus lx is the least x value
 };
 typedef struct graphChartDataLimits_struct graphChartDataLimits;
 
@@ -21,16 +21,19 @@ typedef struct graphChartDataLimits_struct graphChartDataLimits;
     NSString *_yLabel;
     const cvGraphChartDataPoint *_graphDataPoints;
     int _nDataPoints;
-    // using notation m=most, l=least, thus lx is the least x value
-    double mx,my,lx,ly;
+    graphChartDataLimits _limits;
+    double _scale_x;
+    double _scale_y;
 }
 
 @property (copy, nonatomic) NSString *xLabel;
 @property (copy, nonatomic) NSString *yLabel;
+@property (readonly) graphChartDataLimits limits;
+@property (readonly) double scale_x;
+@property (readonly) double scale_y;
+
 
 -(id)initWithString:(NSString *)string;
 -(void)setGraphChartWithData:(const cvGraphChartDataPoint[]) data containingDataPoints:(size_t) size;
-
--(graphChartDataLimits)getLimits;
 
 @end
