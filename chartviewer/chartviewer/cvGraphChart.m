@@ -238,12 +238,12 @@ WithTip:(CGPoint)tip InDirection:(CGFloat)direction
             continue; // don't label near the origin because it is by definition 0
         }
         NSString *intervalAsString = [NSString stringWithFormat:self->_yIntervalFormat, y_interval/_scale_y];
-        CGRect labelArea;
-        labelArea.origin.x = 0 - cvChartGraphMarkerLength - cvChartInsetToAllowGraphLabels;
-        labelArea.origin.y = y_interval - cvChartInsetToAllowGraphLabels/2;
-        labelArea.size.width = cvChartInsetToAllowGraphLabels;
-        labelArea.size.height = cvChartInsetToAllowGraphLabels;
-        //[self drawGraphLabelWithContext:context WithText:intervalAsString WithBounds:labelArea];
+        CGPoint tip;
+        tip.x = -cvChartGraphMarkerLength;
+        tip.y = y_interval;
+        CGFloat angle = radians(0);
+        [self drawGraphLabelWithContext:context WithText:intervalAsString
+                                WithTip:tip InDirection:angle];
     }
 
 }
