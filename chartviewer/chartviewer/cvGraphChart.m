@@ -179,8 +179,6 @@ WithTip:(CGPoint)tip InDirection:(CGFloat)direction
     CGContextSetTextDrawingMode(context, kCGTextInvisible); //  kCGTextInvisible
     CGContextShowText (context, text.UTF8String, strlen(text.UTF8String));
     CGPoint actualEndPoint = CGContextGetTextPosition(context);
-    NSLog(@"x act des is %f %f", actualEndPoint.x, desiredEndPoint.x);
-    NSLog(@"y act des is %f %f", actualEndPoint.y, desiredEndPoint.y);
     CGFloat widthOfText = actualEndPoint.x - desiredEndPoint.x;
     CGContextMoveToPoint(context, 0, 0);
     
@@ -202,6 +200,15 @@ WithTip:(CGPoint)tip InDirection:(CGFloat)direction
     CGContextAddLineToPoint(context, x, 0);
     CGContextStrokePath(context);
 }
+
+-(void)drawYIntervalWithContext:(CGContextRef)context AtY:(int)y
+{
+    CGContextBeginPath(context);
+    CGContextMoveToPoint(context, -cvChartGraphMarkerLength, y);
+    CGContextAddLineToPoint(context, 0, y);
+    CGContextStrokePath(context);
+}
+
 
 -(void)drawAxesWithContext:(CGContextRef)context
 {
@@ -237,31 +244,30 @@ WithTip:(CGPoint)tip InDirection:(CGFloat)direction
                                 WithTip:tip InDirection:angle];
     }
 
-
-        
-    double start_y = _scale_y * MIN(0,_limits.ly);
-    double end_y = _scale_y * MAX(0,_limits.my);
-    double pace_y = (end_y - start_y) / cvChartGraphIntervals;
-    CGContextBeginPath(context);
-    for (double y_interval = start_y; y_interval < end_y + pace_y/2; y_interval += pace_y) {
-        CGContextMoveToPoint(context, -cvChartGraphMarkerLength, y_interval);
-        CGContextAddLineToPoint(context, 0, y_interval);
-    }
-    CGContextStrokePath(context);
-    
-    for (double y_interval = start_y; y_interval < end_y + pace_y/2; y_interval += pace_y) {
-        if (ABS(y_interval) < cvChartInsetToAllowGraphLabels) {
-            continue; // don't label near the origin because it is by definition 0
-        }
-        NSString *intervalAsString = [NSString stringWithFormat:self->_yIntervalFormat, y_interval/_scale_y];
+    angle = radians(0); // writing y labels rightwards
+    for (double y_interval = -_stepper_y; y_interval >= MIN(0,_limits.ly); y_interval -= _stepper_y)
+    {
+        double y_onscreen = y_interval * _scale_y;
+        [self drawYIntervalWithContext:context AtY:y_onscreen];
+        NSString *intervalAsString = [NSString stringWithFormat:self->_yIntervalFormat, y_interval];
         CGPoint tip;
         tip.x = -cvChartGraphMarkerLength;
-        tip.y = y_interval;
-        CGFloat angle = radians(0);
+        tip.y = y_onscreen;
         [self drawGraphLabelWithContext:context WithText:intervalAsString
                                 WithTip:tip InDirection:angle];
     }
-
+    
+    for (double y_interval = _stepper_y; y_interval <= MAX(0,_limits.my); y_interval += _stepper_y)
+    {
+        double y_onscreen = y_interval * _scale_y;
+        [self drawYIntervalWithContext:context AtY:y_onscreen];
+        NSString *intervalAsString = [NSString stringWithFormat:self->_yIntervalFormat, y_interval];
+        CGPoint tip;
+        tip.x = -cvChartGraphMarkerLength;
+        tip.y = y_onscreen;
+        [self drawGraphLabelWithContext:context WithText:intervalAsString
+                                WithTip:tip InDirection:angle];
+    }
 }
 
 -(void)drawGraphPointsWithContext:(CGContextRef)context
