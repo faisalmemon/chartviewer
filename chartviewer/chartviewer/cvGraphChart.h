@@ -19,6 +19,8 @@ typedef struct graphChartDataLimits_struct graphChartDataLimits;
 @interface cvGraphChart : cvChart {
     NSString *_xLabel;
     NSString *_yLabel;
+    NSString *_xIntervalFormat;
+    NSString *_yIntervalFormat;
     const cvGraphChartDataPoint *_graphDataPoints;
     int _nDataPoints;
     graphChartDataLimits _limits;
@@ -29,6 +31,9 @@ typedef struct graphChartDataLimits_struct graphChartDataLimits;
 
 @property (copy, nonatomic) NSString *xLabel;
 @property (copy, nonatomic) NSString *yLabel;
+@property (copy, nonatomic) NSString *xIntervalFormat;
+@property (copy, nonatomic) NSString *yIntervalFormat;
+
 @property (readonly) graphChartDataLimits limits;
 @property (readonly) double scale_x;
 @property (readonly) double scale_y;

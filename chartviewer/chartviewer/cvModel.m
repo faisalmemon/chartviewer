@@ -35,8 +35,12 @@ const cvGraphChartDataPoint kSampleGraph2[] = {-3,-3, -2,-1, 0,0};
     
     cvGraphChart *graph1 = [[cvGraphChart alloc] initWithString:@"My first graph" ];
     [graph1 setGraphChartWithData:kSampleGraph1 containingDataPoints:sizeof(kSampleGraph1) / sizeof(cvGraphChartDataPoint)];
+    [graph1 setXIntervalFormat:@"%2.2f"];
+    [graph1 setYIntervalFormat:@"%2.2f"];
     cvGraphChart *graph2 = [[cvGraphChart alloc] initWithString:@"Bottom left" ];
     [graph2 setGraphChartWithData:kSampleGraph2 containingDataPoints:sizeof(kSampleGraph2) / sizeof(cvGraphChartDataPoint)];
+    [graph2 setXIntervalFormat:@"%2.2f"];
+    [graph2 setYIntervalFormat:@"%2.2f"];
     graphCharts = [NSArray arrayWithObjects:graph1, graph2, nil ];
 }
 
