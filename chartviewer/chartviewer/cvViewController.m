@@ -24,6 +24,7 @@
     [super viewDidLoad];
     if (nil != chartViewHandle) {
         [chartViewHandle adjustToOrientation:UIInterfaceOrientationPortrait];
+        [chartViewHandle setChartSelectionHandler:self];
     }
 
 
@@ -114,6 +115,7 @@
 {
     self->chartSelected = YES;
     self->chart = item;
+    [chartViewHandle setNeedsDisplay];
 }
 /*
  Implementing protocol cvChartSelectionProtocol
@@ -129,4 +131,19 @@
 {
     return self->selectedChartType;
 }
+
+-(BOOL)cvIsAnyChartSelected
+{
+    return self->chartSelected;
+}
+
+-(cvChart*)cvGetSelectedChart
+{
+    if (self->chartSelected) {
+        return self->chart;
+    } else {
+        return nil;
+    }
+}
+
 @end

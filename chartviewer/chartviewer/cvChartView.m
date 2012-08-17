@@ -38,8 +38,15 @@ static inline double radians(double degrees) { return degrees * PI / 180; }
 - (void)drawGraphInContext:(CGContextRef)context withBounds:(CGRect)bounds {
     CGContextSaveGState(context);
 
-    [self drawTitleInContext:context withBounds:bounds withTitle:@"Title of graph"];
-
+    if (self->chartSelectionHandler == nil) {
+        return;
+    }
+    if (![chartSelectionHandler cvIsAnyChartSelected]) {
+        return;
+    }
+    cvChart* selectedChart = [chartSelectionHandler cvGetSelectedChart];
+    NSString *chartTitle = [selectedChart title];
+    [self drawTitleInContext:context withBounds:bounds withTitle:chartTitle];
     CGContextTranslateCTM(context, 0, cvChartInsetToAllowTitle);
     CGRect insetRect;
     insetRect = bounds;

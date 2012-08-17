@@ -14,6 +14,8 @@
 -(void)cvChartWasNotSelected;
 -(void)cvChartWasSelected:(cvChart *)item;
 -(void)cvChartTypeWasSelected:(int)chartType;
+-(BOOL)cvIsAnyChartSelected;
+-(cvChart*)cvGetSelectedChart;
 -(int)cvSelectedChartType;
 
 @end
