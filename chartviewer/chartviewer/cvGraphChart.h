@@ -27,6 +27,8 @@ typedef struct graphChartDataLimits_struct graphChartDataLimits;
     BOOL readyToDraw;
     double _stepper_x;
     double _stepper_y;
+    double _offsetXLabel;
+    double _offsetYLabel;
     
     /* These are derived values for when a graph is presented on the screen */
     double _scale_x;
@@ -45,6 +47,6 @@ typedef struct graphChartDataLimits_struct graphChartDataLimits;
 
 -(id)initWithString:(NSString *)string;
 -(void)setGraphChartWithData:(const cvGraphChartDataPoint[]) data containingDataPoints:(size_t) size
-          WithIntervalStepsX:(double)steps_x WithIntervalStepsY:(double)steps_y;
+          WithIntervalStepsX:(double)steps_x WithIntervalStepsY:(double)steps_y WithXLabel:(NSString*)label_x WithXLabelAlignedTo:(double)offset_x_label WithYLabel:(NSString*)label_y WithYLabelAlignedTo:(double)offset_y_label;
 
 @end
