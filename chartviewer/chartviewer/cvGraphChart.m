@@ -119,8 +119,10 @@
 -(void)drawAxesWithContext:(CGContextRef)context
 {
     CGContextBeginPath(context);
-    CGContextMoveToPoint(context, _scale_x *MIN(0,_limits.lx), 0);
-    CGContextAddLineToPoint(context, _scale_x * MAX(0,_limits.mx), 0);
+    CGContextMoveToPoint(context,       _scale_x * MIN(0,_limits.lx),   0);
+    CGContextAddLineToPoint(context,    _scale_x * MAX(0,_limits.mx),   0);
+    CGContextMoveToPoint(context,       0,                              _scale_y * MIN(0,_limits.ly));
+    CGContextAddLineToPoint(context,    0,                              _scale_y * MAX(0,_limits.my));
     CGContextStrokePath(context);
     
     //CGContextAddLineToPoint(context, widthYaxisInterval, bounds.size.height - heightXaxisInterval);
@@ -130,7 +132,6 @@
 
 -(void) drawChartBodyInContext:(CGContextRef)context withBounds:(CGRect)bounds
 {
-    NSLog(@"great.  cvGraphChart drawChartBodyInContext called ");
     [self insetWithBorder:cvChartInsetToAllowGraphLabels withBounds:&bounds withContext:context];
     [self transformToDomainCoordsWithBounds:bounds withContext:context];
     [self drawAxesWithContext:context];
