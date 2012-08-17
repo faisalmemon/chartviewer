@@ -16,6 +16,7 @@
     self = [super init];
     if (self) {
         self.title = @"";
+        self->readyToDraw = NO;
     }
     return self;
 }
@@ -24,6 +25,7 @@
     self = [super init];
     if (self) {
         self.title = string;
+        self->readyToDraw = NO;
     }
     return self;
 }
@@ -33,6 +35,11 @@
     _graphDataPoints = data;
     _nDataPoints = size;
     [self calculateLimits];
+    if (data != nil && size>0) {
+        self->readyToDraw = YES;
+    } else {
+        self->readyToDraw = NO;
+    }
 }
 
 -(void)calculateLimits
@@ -124,17 +131,27 @@
     CGContextMoveToPoint(context,       0,                              _scale_y * MIN(0,_limits.ly));
     CGContextAddLineToPoint(context,    0,                              _scale_y * MAX(0,_limits.my));
     CGContextStrokePath(context);
-    
-    //CGContextAddLineToPoint(context, widthYaxisInterval, bounds.size.height - heightXaxisInterval);
-    //CGContextAddLineToPoint(context, widthYaxisInterval, 0);
-    //CGContextStrokePath(context);
+}
+
+-(void)drawGraphPointsWithContext:(CGContextRef)context
+{
+    CGContextBeginPath(context);
+    CGContextMoveToPoint(context,   _scale_x * _graphDataPoints[0].x, _scale_y * _graphDataPoints[0].y);
+    for (int i = 1; i < _nDataPoints; i++) {
+        CGContextAddLineToPoint(context, _scale_x * _graphDataPoints[i].x, _scale_y * _graphDataPoints[i].y);
+    }
+    CGContextStrokePath(context);
 }
 
 -(void) drawChartBodyInContext:(CGContextRef)context withBounds:(CGRect)bounds
 {
+    if (!self->readyToDraw) {
+        return;
+    }
     [self insetWithBorder:cvChartInsetToAllowGraphLabels withBounds:&bounds withContext:context];
     [self transformToDomainCoordsWithBounds:bounds withContext:context];
     [self drawAxesWithContext:context];
+    [self drawGraphPointsWithContext:context];
     return;
 }
 

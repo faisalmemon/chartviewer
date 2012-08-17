@@ -24,6 +24,7 @@ typedef struct graphChartDataLimits_struct graphChartDataLimits;
     graphChartDataLimits _limits;
     double _scale_x;
     double _scale_y;
+    BOOL readyToDraw;
 }
 
 @property (copy, nonatomic) NSString *xLabel;

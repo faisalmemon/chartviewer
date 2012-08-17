@@ -11,7 +11,7 @@
 @implementation cvModel
 
 const cvGraphChartDataPoint kSampleGraph1[] = {-3,-3, -2,2, 0,3, 1,6};
-const cvGraphChartDataPoint kSampleGraph2[] = {-3,-3, -2,-2, 0,0};
+const cvGraphChartDataPoint kSampleGraph2[] = {-3,-3, -2,-1, 0,0};
 
 
 + (id)sharedInstance
