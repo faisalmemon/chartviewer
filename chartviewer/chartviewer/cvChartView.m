@@ -12,7 +12,6 @@
 
 @implementation cvChartView
 
-static inline double radians(double degrees) { return degrees * PI / 180; }
 
 - (id)initWithFrame:(CGRect)frame
 {

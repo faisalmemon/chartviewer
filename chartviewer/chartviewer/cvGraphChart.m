@@ -147,6 +147,49 @@
     CGContextRestoreGState(context);
 }
 
+-(void)drawGraphLabelWithContext:(CGContextRef)context WithText:(NSString*)text
+WithTip:(CGPoint)tip InDirection:(CGFloat)direction
+{
+    CGContextSaveGState(context);
+    CGContextSelectFont (context,
+                         "Helvetica",
+                         0.5,
+                         kCGEncodingMacRoman);
+    CGContextSetCharacterSpacing (context, 0.1);
+    CGContextSetFillColorWithColor(context, [UIColor blackColor].CGColor);
+    
+    /*
+     The tip point is the start of the interval marker line that would eventually touch
+     one of the axes
+     */
+    CGContextTranslateCTM(context, tip.x, tip.y);
+    CGContextMoveToPoint(context, 0, 0);
+    
+    /*
+     We are now at the place where we want the label to end, oriented in the proper
+     direction.  We do an invisible write of the label, find the delta in position
+     and then do visible writing from the -delta position to end up at the correct
+     end point.
+     */
+    CGPoint desiredEndPoint = CGContextGetTextPosition(context);
+    CGContextSetTextDrawingMode(context, kCGTextInvisible); //  kCGTextInvisible
+    CGContextShowText (context, text.UTF8String, strlen(text.UTF8String));
+    CGPoint actualEndPoint = CGContextGetTextPosition(context);
+    NSLog(@"x act des is %f %f", actualEndPoint.x, desiredEndPoint.x);
+    NSLog(@"y act des is %f %f", actualEndPoint.y, desiredEndPoint.y);
+    CGFloat widthOfText = actualEndPoint.x - desiredEndPoint.x;
+    CGContextMoveToPoint(context, 0, 0);
+    
+    CGContextRotateCTM(context, direction);
+    CGContextTranslateCTM(context, -widthOfText, 0);
+    CGContextScaleCTM(context, 1, -1); // for text system, to avoid mirror-effect writing    
+    
+    CGContextSetTextDrawingMode (context, kCGTextFillStroke);
+    CGContextShowTextAtPoint (context, 0, 0, text.UTF8String, strlen(text.UTF8String));
+
+    CGContextRestoreGState(context);
+
+}
 -(void)drawAxesWithContext:(CGContextRef)context
 {
     CGContextBeginPath(context);
@@ -172,12 +215,12 @@
             continue; // don't label near the origin because it is by definition 0
         }
         NSString *intervalAsString = [NSString stringWithFormat:self->_xIntervalFormat, x_interval/_scale_x];
-        CGRect labelArea;
-        labelArea.origin.x = x_interval - cvChartInsetToAllowGraphLabels/2;
-        labelArea.origin.y = - cvChartGraphMarkerLength - cvChartInsetToAllowGraphLabels;
-        labelArea.size.width = cvChartInsetToAllowGraphLabels;
-        labelArea.size.height = cvChartInsetToAllowGraphLabels;
-        [self drawGraphLabelWithContext:context WithText:intervalAsString WithBounds:labelArea];
+        CGPoint tip;
+        tip.x = x_interval;
+        tip.y = -cvChartGraphMarkerLength;
+        CGFloat angle = radians(90);
+        [self drawGraphLabelWithContext:context WithText:intervalAsString
+                                WithTip:tip InDirection:angle];
     }
     
     double start_y = _scale_y * MIN(0,_limits.ly);
@@ -200,7 +243,7 @@
         labelArea.origin.y = y_interval - cvChartInsetToAllowGraphLabels/2;
         labelArea.size.width = cvChartInsetToAllowGraphLabels;
         labelArea.size.height = cvChartInsetToAllowGraphLabels;
-        [self drawGraphLabelWithContext:context WithText:intervalAsString WithBounds:labelArea];
+        //[self drawGraphLabelWithContext:context WithText:intervalAsString WithBounds:labelArea];
     }
 
 }

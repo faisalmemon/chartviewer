@@ -29,4 +29,6 @@ enum cvConstants_t {
     cvChartGraphMarkerLength        = cvChartInsetToAllowGraphLabels / 5,
 };
 
+static inline double radians(double degrees) { return degrees * PI / 180; }
+
 #endif
