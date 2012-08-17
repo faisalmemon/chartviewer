@@ -35,14 +35,18 @@
 }
 
 -(void)setGraphChartWithData:(const cvGraphChartDataPoint[]) data containingDataPoints:(size_t) size
+          WithIntervalStepsX:(double)steps_x WithIntervalStepsY:(double)steps_y
 {
     _graphDataPoints = data;
     _nDataPoints = size;
+    _stepper_x = steps_x;
+    _stepper_y = steps_y;
+    
     [self calculateLimits];
     if (data != nil && size>0) {
-        self->readyToDraw = YES;
+        readyToDraw = YES;
     } else {
-        self->readyToDraw = NO;
+        readyToDraw = NO;
     }
 }
 

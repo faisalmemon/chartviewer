@@ -24,9 +24,13 @@ typedef struct graphChartDataLimits_struct graphChartDataLimits;
     const cvGraphChartDataPoint *_graphDataPoints;
     int _nDataPoints;
     graphChartDataLimits _limits;
+    BOOL readyToDraw;
+    double _stepper_x;
+    double _stepper_y;
+    
+    /* These are derived values for when a graph is presented on the screen */
     double _scale_x;
     double _scale_y;
-    BOOL readyToDraw;
 }
 
 @property (copy, nonatomic) NSString *xLabel;
@@ -40,6 +44,7 @@ typedef struct graphChartDataLimits_struct graphChartDataLimits;
 
 
 -(id)initWithString:(NSString *)string;
--(void)setGraphChartWithData:(const cvGraphChartDataPoint[]) data containingDataPoints:(size_t) size;
+-(void)setGraphChartWithData:(const cvGraphChartDataPoint[]) data containingDataPoints:(size_t) size
+          WithIntervalStepsX:(double)steps_x WithIntervalStepsY:(double)steps_y;
 
 @end
