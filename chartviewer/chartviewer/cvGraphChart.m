@@ -149,7 +149,7 @@ WithIntervalStepsX:(double)steps_x WithIntervalStepsY:(double)steps_y
     CGContextRestoreGState(context);
 }
 
--(void)drawGraphLabelWithContext:(CGContextRef)context WithText:(NSString*)text
+-(void)drawGraphIntervalLabelWithContext:(CGContextRef)context WithText:(NSString*)text
 WithTip:(CGPoint)tip InDirection:(CGFloat)direction
 {
     CGContextSaveGState(context);
@@ -239,7 +239,7 @@ WithTip:(CGPoint)tip InDirection:(CGFloat)direction
         CGPoint tip;
         tip.x = x_onscreen;
         tip.y = -cvChartGraphMarkerLength;
-        [self drawGraphLabelWithContext:context WithText:intervalAsString
+        [self drawGraphIntervalLabelWithContext:context WithText:intervalAsString
                                 WithTip:tip InDirection:angle];
     }
     
@@ -251,7 +251,7 @@ WithTip:(CGPoint)tip InDirection:(CGFloat)direction
         CGPoint tip;
         tip.x = x_onscreen;
         tip.y = -cvChartGraphMarkerLength;
-        [self drawGraphLabelWithContext:context WithText:intervalAsString
+        [self drawGraphIntervalLabelWithContext:context WithText:intervalAsString
                                 WithTip:tip InDirection:angle];
     }
 
@@ -264,7 +264,7 @@ WithTip:(CGPoint)tip InDirection:(CGFloat)direction
         CGPoint tip;
         tip.x = -cvChartGraphMarkerLength;
         tip.y = y_onscreen;
-        [self drawGraphLabelWithContext:context WithText:intervalAsString
+        [self drawGraphIntervalLabelWithContext:context WithText:intervalAsString
                                 WithTip:tip InDirection:angle];
     }
     
@@ -276,7 +276,7 @@ WithTip:(CGPoint)tip InDirection:(CGFloat)direction
         CGPoint tip;
         tip.x = -cvChartGraphMarkerLength;
         tip.y = y_onscreen;
-        [self drawGraphLabelWithContext:context WithText:intervalAsString
+        [self drawGraphIntervalLabelWithContext:context WithText:intervalAsString
                                 WithTip:tip InDirection:angle];
     }
 }

@@ -189,19 +189,6 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "chartviewer/cvGraphChart.m"
-         timestampString = "366994584.19363"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "176"
-         endingLineNumber = "176"
-         landmarkName = "-drawGraphLabelWithContext:WithText:WithTip:InDirection:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "chartviewer/cvChartView.m"
          timestampString = "366994734.583371"
          startingColumnNumber = "9223372036854775807"
