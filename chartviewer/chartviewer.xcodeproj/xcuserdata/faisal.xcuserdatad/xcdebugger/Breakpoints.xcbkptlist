@@ -177,11 +177,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "chartviewer/cvGraphChart.m"
-         timestampString = "366994584.19363"
+         timestampString = "366996445.508209"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "312"
-         endingLineNumber = "312"
+         startingLineNumber = "315"
+         endingLineNumber = "315"
          landmarkName = "-drawChartBodyInContext:withBounds:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -197,6 +197,19 @@
          endingLineNumber = "13"
          landmarkName = "@implementation cvChartView"
          landmarkType = "3">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "chartviewer/cvGraphChart.m"
+         timestampString = "366996190.103291"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "32"
+         endingLineNumber = "32"
+         landmarkName = "-addLabelAt:InDirection:WithText:"
+         landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

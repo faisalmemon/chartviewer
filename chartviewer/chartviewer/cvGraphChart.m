@@ -131,6 +131,9 @@ WithIntervalStepsX:(double)steps_x WithIntervalStepsY:(double)steps_y
     _scale_y = scale_y;
 }
 
+/*
+ User supplies labels to be drawn, typically the axis labels.  These are supplied in domain coords.  Direction is in radians from the x axis anticlockwise.
+ */
 -(void)drawAxisLabelWithContext:(CGContextRef)context WithText:(NSString*) text FromPoint:(CGPoint)from InDirection:(CGFloat)direction
 {
     CGContextSaveGState(context);
@@ -140,12 +143,12 @@ WithIntervalStepsX:(double)steps_x WithIntervalStepsY:(double)steps_y
                          kCGEncodingMacRoman);
     CGContextSetCharacterSpacing (context, 0.2);
     CGContextSetFillColorWithColor(context, [UIColor blackColor].CGColor);
-    CGContextTranslateCTM(context, from.x, from.y);
+    CGContextTranslateCTM(context, _scale_x * from.x, _scale_y * from.y);
     CGContextMoveToPoint(context, 0, 0);
     CGContextRotateCTM(context, direction);
     CGContextScaleCTM(context, 1, -1); // for text system, to avoid mirror-effect writing
     CGContextSetTextDrawingMode (context, kCGTextFillStroke);
-    //CGContextShowTextAtPoint (context, 0, 0, text.UTF8String, strlen(text.UTF8String));
+    CGContextShowTextAtPoint (context, 0, 0, text.UTF8String, strlen(text.UTF8String));
     CGContextRestoreGState(context);
 }
 
