@@ -115,6 +115,9 @@
 {
     self->chartSelected = YES;
     self->chart = item;
+    if ([self.popoverController isPopoverVisible]) {
+        [self.popoverController dismissPopoverAnimated:YES];
+    }
     [chartViewHandle setNeedsDisplay];
 }
 /*
