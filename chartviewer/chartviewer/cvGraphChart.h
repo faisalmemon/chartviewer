@@ -8,29 +8,27 @@
 
 #import "cvChart.h"
 #import "cvGraphChartDataPoint.h"
+#import "cvGraphChartLabel.h"
 
 struct graphChartDataLimits_struct {
     double mx, my, lx, ly;    // using notation m=most, l=least, thus lx is the least x value
 };
 typedef struct graphChartDataLimits_struct graphChartDataLimits;
 
-
-
 @interface cvGraphChart : cvChart {
-    NSString *_xLabel;
-    NSString *_yLabel;
     NSString *_xIntervalFormat;
     NSString *_yIntervalFormat;
     const cvGraphChartDataPoint *_graphDataPoints;
     int _nDataPoints;
-    graphChartDataLimits _limits;
     BOOL readyToDraw;
     double _stepper_x;
     double _stepper_y;
-    double _offsetXLabel;
-    double _offsetYLabel;
+    NSMutableArray *labels;
     
-    /* These are derived values for when a graph is presented on the screen */
+    /* Derived values from data points */
+    graphChartDataLimits _limits;
+
+    /* Derived values for when a graph is presented on the screen */
     double _scale_x;
     double _scale_y;
 }
@@ -47,6 +45,8 @@ typedef struct graphChartDataLimits_struct graphChartDataLimits;
 
 -(id)initWithString:(NSString *)string;
 -(void)setGraphChartWithData:(const cvGraphChartDataPoint[]) data containingDataPoints:(size_t) size
-          WithIntervalStepsX:(double)steps_x WithIntervalStepsY:(double)steps_y WithXLabel:(NSString*)label_x WithXLabelAlignedTo:(double)offset_x_label WithYLabel:(NSString*)label_y WithYLabelAlignedTo:(double)offset_y_label;
+          WithIntervalStepsX:(double)steps_x WithIntervalStepsY:(double)steps_y;
+
+-(void)addLabelAt:(CGPoint)point InDirection:(double)direction WithText:(NSString*)text;
 
 @end

@@ -22,6 +22,7 @@
 		3A3DF01215DAA0D6001F7077 /* cvGraphChartDataPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3DF01115DAA0D5001F7077 /* cvGraphChartDataPoint.m */; };
 		3AA779B015DBF7CB002A6FD5 /* cvModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA779AF15DBF7CB002A6FD5 /* cvModel.m */; };
 		3AA779B315DC0966002A6FD5 /* cvChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA779B215DC0966002A6FD5 /* cvChart.m */; };
+		3AA779BA15DFD9D1002A6FD5 /* cvGraphChartLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA779B915DFD9D1002A6FD5 /* cvGraphChartLabel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,8 @@
 		3AA779B215DC0966002A6FD5 /* cvChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cvChart.m; sourceTree = "<group>"; };
 		3AA779B415DC0979002A6FD5 /* cvGraphChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cvGraphChart.h; sourceTree = "<group>"; };
 		3AA779B515DD9EC6002A6FD5 /* cvChartSelectionProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cvChartSelectionProtocol.h; sourceTree = "<group>"; };
+		3AA779B815DFD9D1002A6FD5 /* cvGraphChartLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cvGraphChartLabel.h; sourceTree = "<group>"; };
+		3AA779B915DFD9D1002A6FD5 /* cvGraphChartLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cvGraphChartLabel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +121,8 @@
 				3AA779B215DC0966002A6FD5 /* cvChart.m */,
 				3AA779B415DC0979002A6FD5 /* cvGraphChart.h */,
 				3A3DF00E15DA9F5B001F7077 /* cvGraphChart.m */,
+				3AA779B815DFD9D1002A6FD5 /* cvGraphChartLabel.h */,
+				3AA779B915DFD9D1002A6FD5 /* cvGraphChartLabel.m */,
 				3A3DF03715DAA2B7001F7077 /* cvGraphChartDataPoint.h */,
 				3A3DF01115DAA0D5001F7077 /* cvGraphChartDataPoint.m */,
 			);
@@ -209,6 +214,7 @@
 				3A3DF01215DAA0D6001F7077 /* cvGraphChartDataPoint.m in Sources */,
 				3AA779B015DBF7CB002A6FD5 /* cvModel.m in Sources */,
 				3AA779B315DC0966002A6FD5 /* cvChart.m in Sources */,
+				3AA779BA15DFD9D1002A6FD5 /* cvGraphChartLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

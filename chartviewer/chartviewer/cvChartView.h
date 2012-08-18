@@ -36,7 +36,6 @@
  In phase I, we update our data model for the new orientation.  In phase II, we update the presentation of this model.
  
  */
-- (void)drawAxes:(CGContextRef)context withBounds:(CGRect)bounds;
 - (void)adjustToOrientation:(UIInterfaceOrientation)toOrientation;
 - (void)setChartSelectionHandler:(id<cvChartSelectionProtocol>)target;
 @end

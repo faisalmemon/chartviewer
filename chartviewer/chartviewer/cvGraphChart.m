@@ -11,43 +11,39 @@
 
 @implementation cvGraphChart
 
-@synthesize xLabel=_xLabel, yLabel=_yLabel, limits=_limits, scale_x=_scale_x, scale_y=_scale_y,
+@synthesize limits=_limits, scale_x=_scale_x, scale_y=_scale_y,
                 xIntervalFormat=_xIntervalFormat, yIntervalFormat=_yIntervalFormat;
-
-- (id)init {
-    self = [super init];
-    if (self) {
-        self.title = @"";
-        self->readyToDraw = NO;
-        self->_xIntervalFormat = @"%3f";
-        self->_yIntervalFormat = @"%3f";
-    }
-    return self;
-}
 
 -(id)initWithString:(NSString *)string {
     self = [super init];
     if (self) {
         self.title = string;
         self->readyToDraw = NO;
+        self->_xIntervalFormat = @"%3f";
+        self->_yIntervalFormat = @"%3f";
+        self->labels = [[NSMutableArray alloc] init];
+
     }
     return self;
 }
 
+-(void)addLabelAt:(CGPoint)point InDirection:(double)direction WithText:(NSString*)text
+{
+    cvGraphChartLabel *label;
+    label = [[cvGraphChartLabel alloc] initWithText:text At:point InDirection:direction];
+    [self->labels addObject:label];
+    
+}
 -(void)setGraphChartWithData:(const cvGraphChartDataPoint[]) data containingDataPoints:(size_t) size
-WithIntervalStepsX:(double)steps_x WithIntervalStepsY:(double)steps_y WithXLabel:(NSString*)label_x WithXLabelAlignedTo:(double)offset_x_label WithYLabel:(NSString*)label_y WithYLabelAlignedTo:(double)offset_y_label
+WithIntervalStepsX:(double)steps_x WithIntervalStepsY:(double)steps_y
 {
     _graphDataPoints = data;
     _nDataPoints = size;
     _stepper_x = steps_x;
     _stepper_y = steps_y;
-    _xLabel = label_x;
-    _yLabel = label_y;
-    _offsetXLabel = offset_x_label;
-    _offsetYLabel = offset_y_label;
     
     [self calculateLimits];
-    if (data != nil && size>0 && _xLabel != nil && _yLabel != nil) {
+    if (data != nil && size>0) {
         readyToDraw = YES;
     } else {
         readyToDraw = NO;
@@ -135,26 +131,6 @@ WithIntervalStepsX:(double)steps_x WithIntervalStepsY:(double)steps_y WithXLabel
     _scale_y = scale_y;
 }
 
--(void)drawGraphLabelWithContext:(CGContextRef)context WithText:(NSString*)text WithBounds:(CGRect)bounds
-{
-    CGContextSaveGState(context);
-    CGContextTranslateCTM(context, bounds.origin.x, bounds.origin.y);
-    CGContextTranslateCTM(context, cvChartGraphMarkerLength, cvChartGraphMarkerLength);
-    CGContextScaleCTM(context, 1, -1);
-    
-    CGContextSelectFont (context,
-                         "Helvetica",
-                         0.5,
-                         kCGEncodingMacRoman);
-    CGContextSetCharacterSpacing (context, 0.1);
-    CGContextSetTextDrawingMode (context, kCGTextFillStroke);
-    CGContextSetFillColorWithColor(context, [UIColor blackColor].CGColor);
-
-    CGContextShowTextAtPoint (context, 0, 0, text.UTF8String, strlen(text.UTF8String));
-
-    CGContextRestoreGState(context);
-}
-
 -(void)drawAxisLabelWithContext:(CGContextRef)context WithText:(NSString*) text FromPoint:(CGPoint)from InDirection:(CGFloat)direction
 {
     CGContextSaveGState(context);
@@ -169,7 +145,7 @@ WithIntervalStepsX:(double)steps_x WithIntervalStepsY:(double)steps_y WithXLabel
     CGContextRotateCTM(context, direction);
     CGContextScaleCTM(context, 1, -1); // for text system, to avoid mirror-effect writing
     CGContextSetTextDrawingMode (context, kCGTextFillStroke);
-    CGContextShowTextAtPoint (context, 0, 0, text.UTF8String, strlen(text.UTF8String));
+    //CGContextShowTextAtPoint (context, 0, 0, text.UTF8String, strlen(text.UTF8String));
     CGContextRestoreGState(context);
 }
 
@@ -232,6 +208,13 @@ WithTip:(CGPoint)tip InDirection:(CGFloat)direction
 }
 
 
+-(void)drawAxisLabelsWithContext:(CGContextRef)context
+{
+    for (cvGraphChartLabel *label in self->labels) {
+        [self drawAxisLabelWithContext:context WithText:label.text FromPoint:label.point InDirection:label.direction];
+    }
+}
+
 -(void)drawAxesWithContext:(CGContextRef)context
 {
     CGContextBeginPath(context);
@@ -243,12 +226,9 @@ WithTip:(CGPoint)tip InDirection:(CGFloat)direction
     CGPoint xAxisLabelPos;
     xAxisLabelPos.x = cvChartInsetToAllowGraphLabels;
     xAxisLabelPos.y = - cvChartInsetToAllowGraphLabels;
-    [self drawAxisLabelWithContext:context WithText:_xLabel FromPoint:xAxisLabelPos InDirection:radians(0)];
     CGPoint yAxisLabelPos;
     yAxisLabelPos.x = -cvChartInsetToAllowGraphLabels;
     yAxisLabelPos.y = cvChartInsetToAllowGraphLabels;
-    [self drawAxisLabelWithContext:context WithText:_yLabel FromPoint:yAxisLabelPos InDirection:radians(90)];
-
     
     CGFloat angle = radians(90); // writing x labels upwards
     for (double x_interval = -_stepper_x; x_interval >= MIN(0,_limits.lx); x_interval -= _stepper_x)
@@ -332,8 +312,8 @@ WithTip:(CGPoint)tip InDirection:(CGFloat)direction
     [self insetWithBorder:cvChartInsetToAllowGraphLabels withBounds:&bounds withContext:context];
     [self transformToDomainCoordsWithBounds:bounds withContext:context];
     [self drawAxesWithContext:context];
+    [self drawAxisLabelsWithContext:context];
     [self drawGraphPointsWithContext:context];
     return;
 }
-
 @end
