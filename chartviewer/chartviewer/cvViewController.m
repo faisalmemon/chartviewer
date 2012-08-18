@@ -8,6 +8,7 @@
 
 #import "cvViewController.h"
 #import "cvGraphSelectionViewController.h"
+#import "cvConstants.h"
 
 @interface cvViewController ()
 
@@ -18,6 +19,7 @@
 @synthesize chartViewHandle;
 @synthesize chartButton;
 @synthesize orientation;
+@synthesize scrollView;
 
 - (void)viewDidLoad
 {
@@ -25,6 +27,13 @@
     if (nil != chartViewHandle) {
         [chartViewHandle adjustToOrientation:UIInterfaceOrientationPortrait];
         [chartViewHandle setChartSelectionHandler:self];
+        
+        // Setup pinch and zoom
+        self.scrollView.minimumZoomScale=cvMinMagnification;
+        self.scrollView.maximumZoomScale=cvMaxMagnification;
+        self.chartViewHandle.frame = scrollView.bounds;
+        scrollView.contentSize = CGSizeMake(cvScrollAreaX, cvScrollAreaY);
+        self.scrollView.delegate=self;
     }
 
 
@@ -135,11 +144,17 @@
     return self->selectedChartType;
 }
 
+/*
+ Implementing protocol cvChartSelectionProtocol
+ */
 -(BOOL)cvIsAnyChartSelected
 {
     return self->chartSelected;
 }
 
+/*
+ Implementing protocol cvChartSelectionProtocol
+ */
 -(cvChart*)cvGetSelectedChart
 {
     if (self->chartSelected) {
@@ -147,6 +162,14 @@
     } else {
         return nil;
     }
+}
+
+/*
+ Implementing protocol UIScrollViewDelegate
+ */
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+    return self.chartViewHandle;
 }
 
 @end

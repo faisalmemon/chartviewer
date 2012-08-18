@@ -10,7 +10,7 @@
 #import "cvChartView.h"
 #import "cvChartSelectionProtocol.h"
 
-@interface cvViewController : UIViewController <UIPopoverControllerDelegate, cvChartSelectionProtocol>
+@interface cvViewController : UIViewController <UIPopoverControllerDelegate, cvChartSelectionProtocol, UIScrollViewDelegate>
 {
     /* For the cvChartSelectionProtocol */
     int selectedChartType;
@@ -19,6 +19,8 @@
 }
 
 @property (weak, nonatomic) IBOutlet cvChartView *chartViewHandle;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *chartButton;
 @property (strong, nonatomic) UIPopoverController *popoverController;
 @property (nonatomic) UIInterfaceOrientation orientation;
