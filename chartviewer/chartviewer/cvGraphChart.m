@@ -11,8 +11,7 @@
 
 @implementation cvGraphChart
 
-@synthesize limits=_limits, scale_x=_scale_x, scale_y=_scale_y,
-                xIntervalFormat=_xIntervalFormat, yIntervalFormat=_yIntervalFormat;
+@synthesize limits=_limits, scale_x=_scale_x, scale_y=_scale_y;
 
 -(id)initWithString:(NSString *)string {
     self = [super init];
@@ -21,6 +20,8 @@
         self->readyToDraw = NO;
         self->_xIntervalFormat = @"%3f";
         self->_yIntervalFormat = @"%3f";
+        self->_stepper_x = 1;
+        self->_stepper_y = 1;
         self->labels = [[NSMutableArray alloc] init];
 
     }
@@ -34,13 +35,24 @@
     [self->labels addObject:label];
     
 }
+
+-(void)addIntervalsEvery:(double)periodicity AlongAxis:(cvAxis)axis WithFormat:(NSString*)format_string
+{
+    if (axis == cvAlongX) {
+        self->_stepper_x = periodicity;
+        [self setXIntervalFormat:format_string];
+    } else if (axis == cvAlongY) {
+        self->_stepper_y = periodicity;
+        [self setYIntervalFormat:format_string];
+    } else {
+        NSLog(@"Ignoring unknown axis %d", axis);
+    }
+}
+
 -(void)setGraphChartWithData:(const cvGraphChartDataPoint[]) data containingDataPoints:(size_t) size
-WithIntervalStepsX:(double)steps_x WithIntervalStepsY:(double)steps_y
 {
     _graphDataPoints = data;
     _nDataPoints = size;
-    _stepper_x = steps_x;
-    _stepper_y = steps_y;
     
     [self calculateLimits];
     if (data != nil && size>0) {

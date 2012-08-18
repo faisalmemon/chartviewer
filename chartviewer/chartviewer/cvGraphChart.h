@@ -15,6 +15,13 @@ struct graphChartDataLimits_struct {
 };
 typedef struct graphChartDataLimits_struct graphChartDataLimits;
 
+enum cvAxis {
+    cvAlongX,
+    cvAlongY,
+};
+
+typedef enum cvAxis cvAxis;
+
 @interface cvGraphChart : cvChart {
     NSString *_xIntervalFormat;
     NSString *_yIntervalFormat;
@@ -33,8 +40,6 @@ typedef struct graphChartDataLimits_struct graphChartDataLimits;
     double _scale_y;
 }
 
-@property (copy, nonatomic) NSString *xLabel;
-@property (copy, nonatomic) NSString *yLabel;
 @property (copy, nonatomic) NSString *xIntervalFormat;
 @property (copy, nonatomic) NSString *yIntervalFormat;
 
@@ -44,9 +49,8 @@ typedef struct graphChartDataLimits_struct graphChartDataLimits;
 
 
 -(id)initWithString:(NSString *)string;
--(void)setGraphChartWithData:(const cvGraphChartDataPoint[]) data containingDataPoints:(size_t) size
-          WithIntervalStepsX:(double)steps_x WithIntervalStepsY:(double)steps_y;
-
+-(void)setGraphChartWithData:(const cvGraphChartDataPoint[]) data containingDataPoints:(size_t) size;
 -(void)addLabelAt:(CGPoint)point InDirection:(double)direction WithText:(NSString*)text;
+-(void)addIntervalsEvery:(double)periodicity AlongAxis:(cvAxis)axis WithFormat:(NSString*)format_string;
 
 @end

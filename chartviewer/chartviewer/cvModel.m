@@ -34,18 +34,18 @@ const cvGraphChartDataPoint kSampleGraph2[] = {-3,-3, -2,-1, 0,0};
     // Add hardcoded data since we have no UI or web service for adding new graphs
     
     cvGraphChart *graph1 = [[cvGraphChart alloc] initWithString:@"My first graph" ];
-    [graph1 setGraphChartWithData:kSampleGraph1 containingDataPoints:sizeof(kSampleGraph1) / sizeof(cvGraphChartDataPoint) WithIntervalStepsX:1 WithIntervalStepsY:1];
-    [graph1 setXIntervalFormat:@"%2.2f"];
-    [graph1 setYIntervalFormat:@"%2.2f"];
+    [graph1 setGraphChartWithData:kSampleGraph1 containingDataPoints:sizeof(kSampleGraph1) / sizeof(cvGraphChartDataPoint)];
+    [graph1 addIntervalsEvery:1 AlongAxis:cvAlongX WithFormat:@"%2.2f"];
+    [graph1 addIntervalsEvery:1 AlongAxis:cvAlongY WithFormat:@"%2.2f"];
     CGPoint graph1xLabelAt = { -2, -1 };
     CGPoint graph1yLabelAt = { -0.5, 2 };
     [graph1 addLabelAt:graph1xLabelAt InDirection:0 WithText:@"X axis"];
     [graph1 addLabelAt:graph1yLabelAt InDirection:radians(90) WithText:@"Y axis"];
 
     cvGraphChart *graph2 = [[cvGraphChart alloc] initWithString:@"Bottom left" ];
-    [graph2 setGraphChartWithData:kSampleGraph2 containingDataPoints:sizeof(kSampleGraph2) / sizeof(cvGraphChartDataPoint) WithIntervalStepsX:1 WithIntervalStepsY:1];
-    [graph2 setXIntervalFormat:@"%2.2f"];
-    [graph2 setYIntervalFormat:@"%2.2f"];
+    [graph2 setGraphChartWithData:kSampleGraph2 containingDataPoints:sizeof(kSampleGraph2) / sizeof(cvGraphChartDataPoint)];
+    [graph2 addIntervalsEvery:1 AlongAxis:cvAlongX WithFormat:@"%2.2f"];
+    [graph2 addIntervalsEvery:1 AlongAxis:cvAlongY WithFormat:@"%2.2f"];
     CGPoint graph2xLabelAt = { -1.75, -0.25 };
     CGPoint graph2yLabelAt = { -0.5, -2 };
     [graph2 addLabelAt:graph2xLabelAt InDirection:0 WithText:@"X axis"];
