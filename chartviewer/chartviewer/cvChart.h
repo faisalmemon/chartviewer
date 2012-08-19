@@ -14,6 +14,8 @@
 
 @property (copy, nonatomic) NSString *title;
 
+-(id)initWithTitle:(NSString *)string;
+
 -(void) drawTitleInContext:(CGContextRef)context withBounds:(CGRect*)bounds updatingBounds:(BOOL)updateBounds updatingContext:(BOOL)updateContext;
 -(void) drawChartBodyInContext:(CGContextRef)context withBounds:(CGRect)bounds;
 

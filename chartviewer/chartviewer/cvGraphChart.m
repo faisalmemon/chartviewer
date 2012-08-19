@@ -13,7 +13,7 @@
 
 @synthesize limits=_limits, scale_x=_scale_x, scale_y=_scale_y;
 
--(id)initWithString:(NSString *)string {
+-(id)initWithTitle:(NSString *)string {
     self = [super init];
     if (self) {
         self.title = string;

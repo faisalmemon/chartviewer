@@ -23,6 +23,8 @@
 		3AA779B015DBF7CB002A6FD5 /* cvModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA779AF15DBF7CB002A6FD5 /* cvModel.m */; };
 		3AA779B315DC0966002A6FD5 /* cvChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA779B215DC0966002A6FD5 /* cvChart.m */; };
 		3AA779BA15DFD9D1002A6FD5 /* cvGraphChartLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA779B915DFD9D1002A6FD5 /* cvGraphChartLabel.m */; };
+		3AA779BD15E1063F002A6FD5 /* cvPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA779BC15E1063F002A6FD5 /* cvPieChart.m */; };
+		3AA779C015E106FE002A6FD5 /* cvPieChartDataPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA779BF15E106FD002A6FD5 /* cvPieChartDataPoint.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +58,10 @@
 		3AA779B515DD9EC6002A6FD5 /* cvChartSelectionProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cvChartSelectionProtocol.h; sourceTree = "<group>"; };
 		3AA779B815DFD9D1002A6FD5 /* cvGraphChartLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cvGraphChartLabel.h; sourceTree = "<group>"; };
 		3AA779B915DFD9D1002A6FD5 /* cvGraphChartLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cvGraphChartLabel.m; sourceTree = "<group>"; };
+		3AA779BB15E1063F002A6FD5 /* cvPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cvPieChart.h; sourceTree = "<group>"; };
+		3AA779BC15E1063F002A6FD5 /* cvPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cvPieChart.m; sourceTree = "<group>"; };
+		3AA779BE15E106FD002A6FD5 /* cvPieChartDataPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cvPieChartDataPoint.h; sourceTree = "<group>"; };
+		3AA779BF15E106FD002A6FD5 /* cvPieChartDataPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cvPieChartDataPoint.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +125,10 @@
 				3A3DEFA015D6A7C0001F7077 /* Supporting Files */,
 				3A3DF00A15DA9DBF001F7077 /* cvChart.h */,
 				3AA779B215DC0966002A6FD5 /* cvChart.m */,
+				3AA779BB15E1063F002A6FD5 /* cvPieChart.h */,
+				3AA779BC15E1063F002A6FD5 /* cvPieChart.m */,
+				3AA779BE15E106FD002A6FD5 /* cvPieChartDataPoint.h */,
+				3AA779BF15E106FD002A6FD5 /* cvPieChartDataPoint.m */,
 				3AA779B415DC0979002A6FD5 /* cvGraphChart.h */,
 				3A3DF00E15DA9F5B001F7077 /* cvGraphChart.m */,
 				3AA779B815DFD9D1002A6FD5 /* cvGraphChartLabel.h */,
@@ -215,6 +225,8 @@
 				3AA779B015DBF7CB002A6FD5 /* cvModel.m in Sources */,
 				3AA779B315DC0966002A6FD5 /* cvChart.m in Sources */,
 				3AA779BA15DFD9D1002A6FD5 /* cvGraphChartLabel.m in Sources */,
+				3AA779BD15E1063F002A6FD5 /* cvPieChart.m in Sources */,
+				3AA779C015E106FE002A6FD5 /* cvPieChartDataPoint.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

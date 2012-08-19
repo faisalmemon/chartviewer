@@ -48,7 +48,7 @@ typedef enum cvAxis cvAxis;
 @property (readonly) double scale_y;
 
 
--(id)initWithString:(NSString *)string;
+-(id)initWithTitle:(NSString *)string;
 -(void)setGraphChartWithData:(const cvGraphChartDataPoint[]) data containingDataPoints:(size_t) size;
 -(void)addLabelAt:(CGPoint)point InDirection:(double)direction WithText:(NSString*)text;
 -(void)addIntervalsEvery:(double)periodicity AlongAxis:(cvAxis)axis WithFormat:(NSString*)format_string;

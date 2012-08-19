@@ -21,7 +21,7 @@
     return self;
 }
 
--(id)initWithString:(NSString *)string {
+-(id)initWithTitle:(NSString *)string {
     self = [super init];
     if (self) {
         self.title = string;

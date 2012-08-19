@@ -9,9 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "cvConstants.h"
 #import "cvGraphChart.h"
+#import "cvPieChart.h"
 
 @interface cvModel : NSObject {
     NSArray *graphCharts;
+    NSArray *pieCharts;
 }
 
 // Returns the 'singleton' instance of this class
