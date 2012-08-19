@@ -11,6 +11,7 @@
 
 @interface cvPieChart : cvChart {
     NSMutableArray *_pieChartData;
+    double _totalWeight;
 }
 
 -(id)initWithData:(NSMutableArray *)pieChartData WithTitle:(NSString*)title;
