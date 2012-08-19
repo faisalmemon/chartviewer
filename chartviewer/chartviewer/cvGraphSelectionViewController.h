@@ -15,9 +15,11 @@
     id <cvChartSelectionProtocol>       chartSelectionHandler;
 
 }
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+- (IBAction)selectedGraphType:(id)sender;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withChartSelectionHandler:(id<cvChartSelectionProtocol>)target;
 
-- (IBAction)selectedGraphType:(id)sender;
 @property (nonatomic) int selectedChartType;
 
 @end

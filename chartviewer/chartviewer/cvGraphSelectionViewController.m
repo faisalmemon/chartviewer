@@ -14,6 +14,7 @@
 @end
 
 @implementation cvGraphSelectionViewController
+@synthesize tableView;
 @synthesize selectedChartType;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withChartSelectionHandler:(id<cvChartSelectionProtocol>)target
@@ -35,6 +36,7 @@
 
 - (void)viewDidUnload
 {
+    [self setTableView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -54,11 +56,13 @@
         case cvSegmentedControlBarChart:
         {
             [chartSelectionHandler cvChartTypeWasSelected:selectedSegment];
+            [tableView reloadData];
             break;
         }
         default:
         {
             [chartSelectionHandler cvChartTypeWasSelected:cvSegmentedControlGraphChart];
+            [tableView reloadData];
             break;
         }
     }

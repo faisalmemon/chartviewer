@@ -79,6 +79,8 @@ const cvGraphChartDataPoint kSampleGraph2[] = {-3,-3, -2,-1, 0,0};
 {
     if (chartType == cvSegmentedControlGraphChart) {
         return [graphCharts count];
+    } else if (chartType == cvSegmentedControlPieChart) {
+        return [pieCharts count];
     }
     return 0;
 }
@@ -87,6 +89,8 @@ const cvGraphChartDataPoint kSampleGraph2[] = {-3,-3, -2,-1, 0,0};
 {
     if (chartType == cvSegmentedControlGraphChart) {
         return graphCharts;
+    } else if (chartType == cvSegmentedControlPieChart) {
+        return pieCharts;
     }
     return nil;
 }
