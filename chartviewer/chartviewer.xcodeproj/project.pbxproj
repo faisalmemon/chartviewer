@@ -25,6 +25,7 @@
 		3AA779BA15DFD9D1002A6FD5 /* cvGraphChartLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA779B915DFD9D1002A6FD5 /* cvGraphChartLabel.m */; };
 		3AA779BD15E1063F002A6FD5 /* cvPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA779BC15E1063F002A6FD5 /* cvPieChart.m */; };
 		3AA779C015E106FE002A6FD5 /* cvPieChartDataPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA779BF15E106FD002A6FD5 /* cvPieChartDataPoint.m */; };
+		3AA779C215E18639002A6FD5 /* cvConstants.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AA779C115E18639002A6FD5 /* cvConstants.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		3AA779BC15E1063F002A6FD5 /* cvPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cvPieChart.m; sourceTree = "<group>"; };
 		3AA779BE15E106FD002A6FD5 /* cvPieChartDataPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cvPieChartDataPoint.h; sourceTree = "<group>"; };
 		3AA779BF15E106FD002A6FD5 /* cvPieChartDataPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cvPieChartDataPoint.m; sourceTree = "<group>"; };
+		3AA779C115E18639002A6FD5 /* cvConstants.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cvConstants.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 				3AA779B515DD9EC6002A6FD5 /* cvChartSelectionProtocol.h */,
 				3A3DEFC715D6BAB1001F7077 /* cvGraphSelectionViewController.xib */,
 				3A3DEFCF15D7FC4C001F7077 /* cvConstants.h */,
+				3AA779C115E18639002A6FD5 /* cvConstants.c */,
 				3A3DEFA015D6A7C0001F7077 /* Supporting Files */,
 				3A3DF00A15DA9DBF001F7077 /* cvChart.h */,
 				3AA779B215DC0966002A6FD5 /* cvChart.m */,
@@ -227,6 +230,7 @@
 				3AA779BA15DFD9D1002A6FD5 /* cvGraphChartLabel.m in Sources */,
 				3AA779BD15E1063F002A6FD5 /* cvPieChart.m in Sources */,
 				3AA779C015E106FE002A6FD5 /* cvPieChartDataPoint.m in Sources */,
+				3AA779C215E18639002A6FD5 /* cvConstants.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

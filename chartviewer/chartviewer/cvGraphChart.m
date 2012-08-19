@@ -146,64 +146,34 @@
 /*
  User supplies labels to be drawn, typically the axis labels.  These are supplied in domain coords.  Direction is in radians from the x axis anticlockwise.
  */
--(void)drawAxisLabelWithContext:(CGContextRef)context WithText:(NSString*) text FromPoint:(CGPoint)from InDirection:(CGFloat)direction
+-(void)drawAxisLabelWithContext:(CGContextRef)context
+                       WithText:(NSString*) text
+                      FromPoint:(CGPoint)from
+                    InDirection:(CGFloat)direction
 {
-    CGContextSaveGState(context);
-    CGContextSelectFont (context,
-                         "Helvetica",
-                         1,
-                         kCGEncodingMacRoman);
-    CGContextSetCharacterSpacing (context, 0.2);
-    CGContextSetFillColorWithColor(context, [UIColor blackColor].CGColor);
-    CGContextTranslateCTM(context, _scale_x * from.x, _scale_y * from.y);
-    CGContextMoveToPoint(context, 0, 0);
-    CGContextRotateCTM(context, direction);
-    CGContextScaleCTM(context, 1, -1); // for text system, to avoid mirror-effect writing
-    CGContextSetTextDrawingMode (context, kCGTextFillStroke);
-    CGContextShowTextAtPoint (context, 0, 0, text.UTF8String, strlen(text.UTF8String));
-    CGContextRestoreGState(context);
+    CGPoint scaledPoint = {from.x * _scale_x, from.y * _scale_y};
+    
+    [self drawLabelWithContext:context
+                      WithText:text
+                  WithFontName:cvChartLabelFont
+                  WithFontSize:cvChartLabelFontSize
+          WithCharacterSpacing:cvChartLabelFontSpacing
+                     FromPoint:scaledPoint
+                   InDirection:direction];
 }
 
--(void)drawGraphIntervalLabelWithContext:(CGContextRef)context WithText:(NSString*)text
-WithTip:(CGPoint)tip InDirection:(CGFloat)direction
+-(void)drawGraphIntervalLabelWithContext:(CGContextRef)context
+                                WithText:(NSString*)text
+                                 WithTip:(CGPoint)tip
+                             InDirection:(CGFloat)direction
 {
-    CGContextSaveGState(context);
-    CGContextSelectFont (context,
-                         "Helvetica",
-                         0.5,
-                         kCGEncodingMacRoman);
-    CGContextSetCharacterSpacing (context, 0.1);
-    CGContextSetFillColorWithColor(context, [UIColor blackColor].CGColor);
-    
-    /*
-     The tip point is the start of the interval marker line that would eventually touch
-     one of the axes
-     */
-    CGContextTranslateCTM(context, tip.x, tip.y);
-    CGContextMoveToPoint(context, 0, 0);
-    
-    /*
-     We are now at the place where we want the label to end, oriented in the proper
-     direction.  We do an invisible write of the label, find the delta in position
-     and then do visible writing from the -delta position to end up at the correct
-     end point.
-     */
-    CGPoint desiredEndPoint = CGContextGetTextPosition(context);
-    CGContextSetTextDrawingMode(context, kCGTextInvisible); //  kCGTextInvisible
-    CGContextShowText (context, text.UTF8String, strlen(text.UTF8String));
-    CGPoint actualEndPoint = CGContextGetTextPosition(context);
-    CGFloat widthOfText = actualEndPoint.x - desiredEndPoint.x;
-    CGContextMoveToPoint(context, 0, 0);
-    
-    CGContextRotateCTM(context, direction);
-    CGContextTranslateCTM(context, -widthOfText, 0);
-    CGContextScaleCTM(context, 1, -1); // for text system, to avoid mirror-effect writing    
-    
-    CGContextSetTextDrawingMode (context, kCGTextFillStroke);
-    CGContextShowTextAtPoint (context, 0, 0, text.UTF8String, strlen(text.UTF8String));
-
-    CGContextRestoreGState(context);
-
+    [self drawLabelWithContext:context
+                      WithText:text
+                  WithFontName:cvChartIntervalLabelFont
+                  WithFontSize:cvChartIntervalLabelFontSize
+          WithCharacterSpacing:cvChartIntervalLabelFontSpacing
+                      EndPoint:tip
+                   InDirection:direction];
 }
 
 -(void)drawXIntervalWithContext:(CGContextRef)context AtX:(int)x

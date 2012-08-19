@@ -22,7 +22,6 @@ enum cvConstants_t {
     cvSegmentedControlPieChart      = 1,
     cvSegmentedControlBarChart      = 2,
     cvChartTitleFontSize            = 30,
-    cvChartLabelFontSize            = 10,
     cvChartInsetToAllowTitle        = cvChartTitleFontSize + 10,
     cvChartInsetToAllowGraphLabels  = 30,
     cvChartGraphDataPointSize       = 4,  // this is up and left 4 points, then filling a 16x16 square
@@ -37,5 +36,12 @@ enum cvConstants_t {
 };
 
 static inline double radians(double degrees) { return degrees * PI / 180; }
+extern const char * cvChartLabelFont;
+extern const double cvChartLabelFontSize;
+extern const double cvChartLabelFontSpacing;
+extern const char * cvChartIntervalLabelFont;
+extern const double cvChartIntervalLabelFontSize;
+extern const double cvChartIntervalLabelFontSpacing;
+
 
 #endif
