@@ -59,7 +59,7 @@
     CGContextSetRGBFillColor(context, red, green, blue, alpha);
 }
 
--(void)drawPieChartInContext:(CGContextRef)context At:(CGPoint)center WithSize:(double)radius
+-(void)drawPieChartSegmentsInContext:(CGContextRef)context At:(CGPoint)center WithSize:(double)radius
 {
     CGContextSaveGState(context);
     
@@ -81,6 +81,52 @@
     }
     
     CGContextRestoreGState(context);
+}
+
+-(void)drawPieChartLabelsInContext:(CGContextRef)context At:(CGPoint)center WithSize:(double)radius
+{
+    CGContextSaveGState(context);
+    const double labelDistance = radius + cvChartInsetToAllowGraphLabels;
+    /* Change to cartesian co-ords centered on the center of the pie chart, y goes up, x goes right */
+    CGContextTranslateCTM(context, center.x, center.y);
+    CGContextScaleCTM(context, 1, -1);
+    double lastAngleOfSlice = 0;
+    for (cvPieChartDataPoint *data in _pieChartData) {
+        double newAngleForSlice = lastAngleOfSlice + [self angleFromWeight:[data weight]];
+        double midAngle = 0.5 * [self angleFromWeight:[data weight]] + lastAngleOfSlice;
+        CGPoint justOutsideCircle = {
+            cos(midAngle) * labelDistance,
+            sin(midAngle) * labelDistance
+        };
+        NSString *labelWithPercent = [NSString stringWithFormat:@"%@ %3.0f %%", [data label], 100 * [data weight]/_totalWeight];
+        /* Put right side segment labels rightwards, and left side segments shifted leftwards; FromPoint vs EndPoint */
+        if (midAngle > PI * 0.5 && midAngle < PI * 1.5) {
+            [self drawLabelWithContext:context
+                              WithText:labelWithPercent
+                          WithFontName:cvChartIntervalLabelFont
+                          WithFontSize:cvChartIntervalLabelFontSize
+                  WithCharacterSpacing:cvChartIntervalLabelFontSpacing
+                              EndPoint:justOutsideCircle
+                           InDirection:0];
+        } else {
+            [self drawLabelWithContext:context
+                              WithText:labelWithPercent
+                          WithFontName:cvChartIntervalLabelFont
+                          WithFontSize:cvChartIntervalLabelFontSize
+                  WithCharacterSpacing:cvChartIntervalLabelFontSpacing
+                             FromPoint:justOutsideCircle
+                           InDirection:0];
+        }
+        lastAngleOfSlice = newAngleForSlice;
+    }
+    CGContextRestoreGState(context);
+}
+
+-(void)drawPieChartInContext:(CGContextRef)context At:(CGPoint)center WithSize:(double)radius
+{
+    [self drawPieChartSegmentsInContext:context At:center WithSize:radius];
+    [self drawPieChartLabelsInContext:context At:center WithSize:radius];
+
 }
 
 -(void) drawChartPortraitInContext:(CGContextRef)context withBounds:(CGRect) bounds

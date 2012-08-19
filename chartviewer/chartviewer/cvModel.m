@@ -63,11 +63,11 @@ const cvGraphChartDataPoint kSampleGraph2[] = {-3,-3, -2,-1, 0,0};
      Other          13
      */
     cvPieChartDataPoint *dataSymbian = [[cvPieChartDataPoint alloc] initWithLabel:@"Symbian" WithWeight:27];
-    cvPieChartDataPoint *dataiOS = [[cvPieChartDataPoint alloc] initWithLabel:@"Symbian" WithWeight:23];
-    cvPieChartDataPoint *dataAndroid = [[cvPieChartDataPoint alloc] initWithLabel:@"Symbian" WithWeight:23];
-    cvPieChartDataPoint *dataBlackBerry = [[cvPieChartDataPoint alloc] initWithLabel:@"Symbian" WithWeight:8];
-    cvPieChartDataPoint *dataSamsung = [[cvPieChartDataPoint alloc] initWithLabel:@"Symbian" WithWeight:6];
-    cvPieChartDataPoint *dataOther = [[cvPieChartDataPoint alloc] initWithLabel:@"Symbian" WithWeight:13];
+    cvPieChartDataPoint *dataiOS = [[cvPieChartDataPoint alloc] initWithLabel:@"iOS" WithWeight:23];
+    cvPieChartDataPoint *dataAndroid = [[cvPieChartDataPoint alloc] initWithLabel:@"Android" WithWeight:23];
+    cvPieChartDataPoint *dataBlackBerry = [[cvPieChartDataPoint alloc] initWithLabel:@"BlackBerry" WithWeight:8];
+    cvPieChartDataPoint *dataSamsung = [[cvPieChartDataPoint alloc] initWithLabel:@"Samsung" WithWeight:6];
+    cvPieChartDataPoint *dataOther = [[cvPieChartDataPoint alloc] initWithLabel:@"Other" WithWeight:13];
 
     cvPieChart *pieChartMobileOS = [[cvPieChart alloc] initWithData:[NSMutableArray arrayWithObjects:dataSymbian, dataiOS, dataAndroid, dataBlackBerry, dataSamsung, dataOther, nil] WithTitle:@"Mobile OS Market Share "];
 
