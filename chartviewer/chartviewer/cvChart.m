@@ -46,14 +46,22 @@
     CGContextSetFillColorWithColor(context, [UIColor blackColor].CGColor);
     CGContextTranslateCTM(context, from.x, from.y);
     CGContextMoveToPoint(context, 0, 0);
+    
+    /* Dummy write to assess the length of text */
+    CGPoint startingPosition = CGContextGetTextPosition(context);
+    CGContextSetTextDrawingMode(context, kCGTextInvisible);
+    CGContextShowText (context, text.UTF8String, strlen(text.UTF8String));
+    CGPoint actualEndPoint = CGContextGetTextPosition(context);
+    double widthOfText = actualEndPoint.x - startingPosition.x;
+    CGContextMoveToPoint(context, 0, 0);
+    CGContextSetTextDrawingMode (context, kCGTextFillStroke);
+
     CGContextRotateCTM(context, direction);
     CGContextScaleCTM(context, 1, -1); //for text system, to avoid mirror-effect writing
     CGContextSetTextDrawingMode (context, kCGTextFillStroke);
-    CGPoint startingPosition = CGContextGetTextPosition(context);
     CGContextShowTextAtPoint (context, 0, 0, text.UTF8String, strlen(text.UTF8String));
-    CGPoint endPosition = CGContextGetTextPosition(context);
     CGContextRestoreGState(context);
-    return endPosition.x - startingPosition.x;
+    return widthOfText;
 }
 
 -(double) drawLabelWithContext:(CGContextRef)context

@@ -66,7 +66,8 @@
         [data setSliceAnglesStarting:lastAngleOfSlice Ending:newAngleForSlice];
         double labelAngle = lastAngleOfSlice + 0.5 * angle;
         [data setLabelAngle:labelAngle];
-        UIColor *color = [UIColor colorWithHue: labelAngle/(2*PI) saturation: 1 brightness: 1 alpha: 1];
+        double randomHue = ((double)arc4random() / ARC4RANDOM_MAX);
+        UIColor *color = [UIColor colorWithHue: randomHue saturation: 1 brightness: 1 alpha: 1];
         [data setColor:color];
         lastAngleOfSlice = newAngleForSlice;
     }
@@ -151,7 +152,10 @@
     CGContextScaleCTM(context, 1, -1);
     CGContextMoveToPoint(context, 0, 0);
     
-    CGRect extentToDrawTable = {0, 0, dataTableArea.size.width, dataTableArea.size.height};
+    CGRect extentToDrawTable = {
+        0, dataTableArea.size.height - cvChartDataTableYPace * (1+[_pieChartData count]),
+        dataTableArea.size.width, cvChartDataTableYPace * (1+[_pieChartData count])
+    };
     CGContextBeginPath(context);
     CGContextAddRect(context, extentToDrawTable);
     CGContextStrokePath(context);

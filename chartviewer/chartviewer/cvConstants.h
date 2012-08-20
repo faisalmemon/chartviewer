@@ -11,6 +11,8 @@
 
 
 #define PI 3.14159265358979323846
+#define ARC4RANDOM_MAX      0x100000000
+
 
 enum cvConstants_t {
     /* Derived from cvGraphSelectionViewController.xib */
@@ -35,7 +37,7 @@ enum cvConstants_t {
     cvScrollAreaY = 960,  // ...or too tall
     
     /* For pie charts */
-    cvPieChartDataTableXOffset  = 150,
+    cvPieChartDataTableXOffset  = 210,
     cvPieChartDataTableYOffset  = 80,
     cvPieChartDataTableXGutter  = 40,
     cvPieChartDataTableYGutter  = 40,

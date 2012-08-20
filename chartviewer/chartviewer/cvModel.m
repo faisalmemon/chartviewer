@@ -53,25 +53,25 @@ const cvGraphChartDataPoint kSampleGraph2[] = {-3,-3, -2,-1, 0,0};
     graphCharts = [NSArray arrayWithObjects:graph1, graph2, nil ];
     
     /*
-     Pie Chart: Market share data Jul 2011 - Jul 2012
+     Pie Chart: Smartphone sales 2012Q2
 
-     SymbianOS      27
-     iOS            23
-     Android        23
-     BlackBerry OS	8
-     Samsung        6
-     Other          13
+     SymbianOS      9800
+     iOS            30000
+     Android        100000
+     BlackBerry OS	9000
+     SamsungBa      5000
+     Windows        4000
      */
-    cvPieChartDataPoint *dataSymbian = [[cvPieChartDataPoint alloc] initWithLabel:@"Symbian" WithWeight:27];
-    cvPieChartDataPoint *dataiOS = [[cvPieChartDataPoint alloc] initWithLabel:@"iOS" WithWeight:23];
-    cvPieChartDataPoint *dataAndroid = [[cvPieChartDataPoint alloc] initWithLabel:@"Android" WithWeight:23];
-    cvPieChartDataPoint *dataBlackBerry = [[cvPieChartDataPoint alloc] initWithLabel:@"BlackBerry" WithWeight:8];
-    cvPieChartDataPoint *dataSamsung = [[cvPieChartDataPoint alloc] initWithLabel:@"Samsung" WithWeight:6];
-    cvPieChartDataPoint *dataOther = [[cvPieChartDataPoint alloc] initWithLabel:@"Other" WithWeight:13];
+    cvPieChartDataPoint *dataSymbian = [[cvPieChartDataPoint alloc] initWithLabel:@"Symbian" WithWeight:9800];
+    cvPieChartDataPoint *dataiOS = [[cvPieChartDataPoint alloc] initWithLabel:@"iOS" WithWeight:30000];
+    cvPieChartDataPoint *dataAndroid = [[cvPieChartDataPoint alloc] initWithLabel:@"Android" WithWeight:100000];
+    cvPieChartDataPoint *dataBlackBerry = [[cvPieChartDataPoint alloc] initWithLabel:@"BlackBerry" WithWeight:9000];
+    cvPieChartDataPoint *dataSamsung = [[cvPieChartDataPoint alloc] initWithLabel:@"Bada" WithWeight:5000];
+    cvPieChartDataPoint *dataOther = [[cvPieChartDataPoint alloc] initWithLabel:@"Windows" WithWeight:4000];
 
-    NSString *formatUnits = @"%3.0f %%";
+    NSString *formatUnits = @"%6.0f units";
 
-    cvPieChart *pieChartMobileOS = [[cvPieChart alloc] initWithData:[NSMutableArray arrayWithObjects:dataSymbian, dataiOS, dataAndroid, dataBlackBerry, dataSamsung, dataOther, nil] InFormatUnits:formatUnits WithTitle:@"Mobile OS Market Share "];
+    cvPieChart *pieChartMobileOS = [[cvPieChart alloc] initWithData:[NSMutableArray arrayWithObjects:dataSymbian, dataiOS, dataAndroid, dataBlackBerry, dataSamsung, dataOther, nil] InFormatUnits:formatUnits WithTitle:@"Smartphone sales 2012 Q2"];
 
     pieCharts = [NSArray arrayWithObjects:pieChartMobileOS, nil];
 
