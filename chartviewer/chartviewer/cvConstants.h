@@ -33,6 +33,12 @@ enum cvConstants_t {
     cvMaxMagnification = 6,
     cvScrollAreaX = 1280, // don't make it too wide otherwise scrolling is a long activity
     cvScrollAreaY = 960,  // ...or too tall
+    
+    /* For pie charts */
+    cvPieChartDataTableXOffset = 150,
+    cvPieChartDataTableYOffset = 80,
+    cvPieChartDataTableXGutter = 40,
+    cvPieChartDataTableYGutter = 40,
 };
 
 static inline double radians(double degrees) { return degrees * PI / 180; }

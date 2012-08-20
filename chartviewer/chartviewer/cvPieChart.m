@@ -122,6 +122,17 @@
     CGContextRestoreGState(context);
 }
 
+-(void)drawPieChartTableInContext:(CGContextRef)context WithinBounds:(CGRect)dataTableArea
+{
+    CGContextSaveGState(context);
+    CGContextTranslateCTM(context, dataTableArea.origin.x, dataTableArea.origin.y);
+    CGContextMoveToPoint(context, 0, 0);
+    CGRect extendToDrawTable = {0, 0, dataTableArea.size.width, dataTableArea.size.height};
+    CGContextAddRect(context, extendToDrawTable);
+    CGContextStrokePath(context);
+    CGContextRestoreGState(context);
+}
+
 -(void)drawPieChartInContext:(CGContextRef)context At:(CGPoint)center WithSize:(double)radius
 {
     [self drawPieChartSegmentsInContext:context At:center WithSize:radius];
@@ -131,16 +142,23 @@
 
 -(void) drawChartPortraitInContext:(CGContextRef)context withBounds:(CGRect) bounds
 {
-    CGPoint center = {bounds.size.width*0.5, bounds.size.width*0.5*0.75};
+    CGPoint center = {bounds.size.width*0.5, bounds.size.width*0.5};
     double radius = bounds.size.width*0.75*0.3;
     [self drawPieChartInContext:context At:(CGPoint)center WithSize:radius];
 }
 
 -(void) drawChartLandscapeInContext:(CGContextRef)context withBounds:(CGRect)bounds
 {
-    CGPoint center = {bounds.size.height*0.5, bounds.size.height*0.5*0.75};
-    double radius = bounds.size.height*0.75*0.3;
+    CGPoint center = {bounds.size.height*0.5, bounds.size.height*0.5};
+    double radius = bounds.size.height*0.5*0.3;
     [self drawPieChartInContext:context At:(CGPoint)center WithSize:radius];
+    CGRect dataTableArea;
+    dataTableArea.origin.x = center.x + radius + cvPieChartDataTableXOffset;
+    dataTableArea.origin.y = cvPieChartDataTableYOffset;
+    dataTableArea.size.width = bounds.size.width - dataTableArea.origin.x - cvPieChartDataTableXGutter;
+    dataTableArea.size.height = bounds.size.height - dataTableArea.origin.y - cvPieChartDataTableYGutter;
+    
+    [self drawPieChartTableInContext:context WithinBounds:dataTableArea];
 }
 
 -(void) drawChartBodyInContext:(CGContextRef)context withBounds:(CGRect)bounds
