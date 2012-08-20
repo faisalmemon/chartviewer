@@ -11,9 +11,16 @@
 
 @interface cvPieChart : cvChart {
     NSMutableArray *_pieChartData;
+    NSString *_units;
     double _totalWeight;
 }
 
--(id)initWithData:(NSMutableArray *)pieChartData WithTitle:(NSString*)title;
+@property(readonly) NSString* units;
+
+/*
+ Initialize with data.  InFormatUnits refers to the format string together with units.  For example
+        %3.0f %% means that data table entries will print like "Butter 35 %"
+ */
+-(id)initWithData:(NSMutableArray *)pieChartData InFormatUnits:(NSString*)units WithTitle:(NSString*)title;
 
 @end

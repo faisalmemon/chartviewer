@@ -69,7 +69,9 @@ const cvGraphChartDataPoint kSampleGraph2[] = {-3,-3, -2,-1, 0,0};
     cvPieChartDataPoint *dataSamsung = [[cvPieChartDataPoint alloc] initWithLabel:@"Samsung" WithWeight:6];
     cvPieChartDataPoint *dataOther = [[cvPieChartDataPoint alloc] initWithLabel:@"Other" WithWeight:13];
 
-    cvPieChart *pieChartMobileOS = [[cvPieChart alloc] initWithData:[NSMutableArray arrayWithObjects:dataSymbian, dataiOS, dataAndroid, dataBlackBerry, dataSamsung, dataOther, nil] WithTitle:@"Mobile OS Market Share "];
+    NSString *formatUnits = @"%3.0f %%";
+
+    cvPieChart *pieChartMobileOS = [[cvPieChart alloc] initWithData:[NSMutableArray arrayWithObjects:dataSymbian, dataiOS, dataAndroid, dataBlackBerry, dataSamsung, dataOther, nil] InFormatUnits:formatUnits WithTitle:@"Mobile OS Market Share "];
 
     pieCharts = [NSArray arrayWithObjects:pieChartMobileOS, nil];
 

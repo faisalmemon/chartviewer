@@ -35,10 +35,12 @@ enum cvConstants_t {
     cvScrollAreaY = 960,  // ...or too tall
     
     /* For pie charts */
-    cvPieChartDataTableXOffset = 150,
-    cvPieChartDataTableYOffset = 80,
-    cvPieChartDataTableXGutter = 40,
-    cvPieChartDataTableYGutter = 40,
+    cvPieChartDataTableXOffset  = 150,
+    cvPieChartDataTableYOffset  = 80,
+    cvPieChartDataTableXGutter  = 40,
+    cvPieChartDataTableYGutter  = 40,
+    cvChartDataTableYPace       = 30,
+    cvChartKeyBoxSize           = 15,
 };
 
 static inline double radians(double degrees) { return degrees * PI / 180; }

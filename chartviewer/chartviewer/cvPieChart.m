@@ -10,14 +10,16 @@
 #import "cvConstants.h"
 
 @implementation cvPieChart
+@synthesize units=_units;
 
--(id)initWithData:(NSMutableArray *)pieChartData WithTitle:(NSString*)title {
-    if (pieChartData == nil || title == nil) {
+-(id)initWithData:(NSMutableArray *)pieChartData InFormatUnits:(NSString*)units  WithTitle:(NSString*)title {
+    if (pieChartData == nil || title == nil || units == nil) {
         return nil;
     }
     self = [super initWithTitle:title];
     if (self) {
         self->_pieChartData = pieChartData;
+        self->_units = units;
         BOOL result = [self calculateDerivedData];
         if (!result)
             return nil;
@@ -125,14 +127,85 @@
     CGContextRestoreGState(context);
 }
 
+-(void)drawKeyBoxInContext:(CGContextRef)context
+                       Red:(CGFloat)red
+                     Green:(CGFloat)green
+                      Blue:(CGFloat)blue
+                     Alpha:(CGFloat)alpha
+                WithExtent:(CGRect)extent
+{
+    CGContextSaveGState(context);
+    CGContextBeginPath(context);
+    CGContextSetRGBFillColor(context, red, green, blue, alpha);
+    CGContextAddRect(context, extent);
+    CGContextDrawPath(context, kCGPathFillStroke);
+    CGContextRestoreGState(context);
+}
+
 -(void)drawPieChartTableInContext:(CGContextRef)context WithinBounds:(CGRect)dataTableArea
 {
     CGContextSaveGState(context);
-    CGContextTranslateCTM(context, dataTableArea.origin.x, dataTableArea.origin.y);
+    
+    /* Switch to cartesian co-ords based on the bottom left of key table area */
+    CGContextTranslateCTM(context, dataTableArea.origin.x, dataTableArea.origin.y + dataTableArea.size.height);
+    CGContextScaleCTM(context, 1, -1);
     CGContextMoveToPoint(context, 0, 0);
-    CGRect extendToDrawTable = {0, 0, dataTableArea.size.width, dataTableArea.size.height};
-    CGContextAddRect(context, extendToDrawTable);
+    
+    CGRect extentToDrawTable = {0, 0, dataTableArea.size.width, dataTableArea.size.height};
+    CGContextBeginPath(context);
+    CGContextAddRect(context, extentToDrawTable);
     CGContextStrokePath(context);
+    
+    double iteration = 1;
+    double widthLongestLabel = 0;
+    for (cvPieChartDataPoint *data in _pieChartData) {
+        
+        CGRect keyBox = {
+            cvChartInsetToAllowGraphLabels,
+            dataTableArea.size.height - iteration*cvChartDataTableYPace,
+            cvChartKeyBoxSize,
+            cvChartKeyBoxSize
+        };
+        [self drawKeyBoxInContext:context
+                              Red:[data red]
+                            Green:[data green]
+                             Blue:[data blue]
+                            Alpha:[data alpha]
+                       WithExtent:keyBox];
+        CGPoint startPoint = {
+            cvChartInsetToAllowGraphLabels + cvChartKeyBoxSize*2,
+            keyBox.origin.y
+        };
+        double lengthOfLabel =
+        [self drawLabelWithContext:context
+                          WithText:[data label]
+                      WithFontName:cvChartIntervalLabelFont
+                      WithFontSize:cvChartIntervalLabelFontSize
+              WithCharacterSpacing:cvChartIntervalLabelFontSpacing
+                         FromPoint:startPoint
+                       InDirection:0];
+        NSLog(@"Label %@ has length %f", [data label], lengthOfLabel);
+        if (lengthOfLabel > widthLongestLabel) {
+            widthLongestLabel = lengthOfLabel;
+        }
+        iteration++;
+    }
+    iteration = 1;
+    for (cvPieChartDataPoint *data in _pieChartData) {
+        CGPoint startPoint = {
+            cvChartInsetToAllowGraphLabels + cvChartKeyBoxSize*2 + widthLongestLabel + cvChartInsetToAllowGraphLabels,
+            dataTableArea.size.height - iteration*cvChartDataTableYPace
+        };
+        [self drawLabelWithContext:context
+                          WithText:[NSString stringWithFormat:[self units], [data weight]]
+                      WithFontName:cvChartIntervalLabelFont
+                      WithFontSize:cvChartIntervalLabelFontSize
+              WithCharacterSpacing:cvChartIntervalLabelFontSpacing
+                         FromPoint:startPoint
+                       InDirection:0];
+        iteration++;
+    }
+ 
     CGContextRestoreGState(context);
 }
 
