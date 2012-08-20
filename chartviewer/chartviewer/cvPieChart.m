@@ -18,11 +18,19 @@
     self = [super initWithTitle:title];
     if (self) {
         self->_pieChartData = pieChartData;
-        BOOL result = [self calculateTotal];
+        BOOL result = [self calculateDerivedData];
         if (!result)
             return nil;
     }
     return self;
+}
+
+-(BOOL)calculateDerivedData
+{
+    BOOL result = [self calculateTotal];
+    if (!result) return NO;
+    [self calculatePresentationData];
+    return YES;
 }
 
 -(BOOL)calculateTotal
@@ -45,6 +53,20 @@
     result = weight / _totalWeight; // _totalWeight cannot be zero due to init which checks this
     result *= 2 * PI;
     return result;
+}
+
+-(void)calculatePresentationData {
+    double lastAngleOfSlice = 0;
+    double newAngleForSlice = 0;
+    for (cvPieChartDataPoint *data in _pieChartData) {
+        double angle = [self angleFromWeight:[data weight]];
+        newAngleForSlice = lastAngleOfSlice + angle;
+        [data setSliceAnglesStarting:lastAngleOfSlice Ending:newAngleForSlice];
+        double labelAngle = lastAngleOfSlice + 0.5 * angle;
+        [data setLabelAngle:labelAngle];
+        UIColor *color = [UIColor colorWithHue: labelAngle/(2*PI) saturation: 1 brightness: 1 alpha: 1];
+        [data setColor:color];
+    }
 }
 
 -(void)updateFillColorInContext:(CGContextRef)context ForPieAtSliceAngle:(double)angle

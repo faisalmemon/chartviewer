@@ -42,6 +42,16 @@ enum cvConstants_t {
 };
 
 static inline double radians(double degrees) { return degrees * PI / 180; }
+static inline int   radiansWithinRange(double radians) { return (radians > 0) && (radians < 2 * PI); }
+static inline double clampRadiansWithinRange(double radians) {
+    if (radians < 0)
+        return 0;
+    else if (radians > 2*PI)
+        return 2*PI;
+    else
+        return radians;
+};
+
 extern const char * cvChartLabelFont;
 extern const double cvChartLabelFontSize;
 extern const double cvChartLabelFontSpacing;
