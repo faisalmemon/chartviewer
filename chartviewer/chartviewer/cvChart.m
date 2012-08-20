@@ -29,7 +29,7 @@
     return self;
 }
 
--(void) drawLabelWithContext:(CGContextRef)context
+-(double) drawLabelWithContext:(CGContextRef)context
                     WithText:(NSString*)text
                 WithFontName:(const char *)font_name
                 WithFontSize:(CGFloat)font_size
@@ -49,11 +49,14 @@
     CGContextRotateCTM(context, direction);
     CGContextScaleCTM(context, 1, -1); //for text system, to avoid mirror-effect writing
     CGContextSetTextDrawingMode (context, kCGTextFillStroke);
+    CGPoint startingPosition = CGContextGetTextPosition(context);
     CGContextShowTextAtPoint (context, 0, 0, text.UTF8String, strlen(text.UTF8String));
+    CGPoint endPosition = CGContextGetTextPosition(context);
     CGContextRestoreGState(context);
+    return endPosition.x - startingPosition.x;
 }
 
--(void) drawLabelWithContext:(CGContextRef)context
+-(double) drawLabelWithContext:(CGContextRef)context
                     WithText:(NSString*)text
                 WithFontName:(const char *)font_name
                 WithFontSize:(CGFloat)font_size
@@ -85,7 +88,7 @@
     CGContextSetTextDrawingMode(context, kCGTextInvisible);
     CGContextShowText (context, text.UTF8String, strlen(text.UTF8String));
     CGPoint actualEndPoint = CGContextGetTextPosition(context);
-    CGFloat widthOfText = actualEndPoint.x - desiredEndPoint.x;
+    double widthOfText = actualEndPoint.x - desiredEndPoint.x;
     CGContextMoveToPoint(context, 0, 0);
     
     CGContextRotateCTM(context, direction);
@@ -96,6 +99,8 @@
     CGContextShowTextAtPoint (context, 0, 0, text.UTF8String, strlen(text.UTF8String));
     
     CGContextRestoreGState(context);
+    
+    return widthOfText;
 }
 
 -(void) drawTitleInContext:(CGContextRef)context withBounds:(CGRect*)bounds updatingBounds:(BOOL)updateBounds updatingContext:(BOOL)updateContext
