@@ -10,7 +10,8 @@
 #import "cvConstants.h"
 
 @implementation cvPieChartDataPoint
-@synthesize label=_label, weight=_weight, red=_red, green=_green, blue=_blue;
+@synthesize label=_label, weight=_weight, red=_red, green=_green, blue=_blue, alpha=_alpha, labelAngle=_labelAngle,
+    startingAngle=_startingAngleOfSlice, endingAngle=_endingAngleOfSlice;
 
 -(id) initWithLabel:(NSString*)label WithWeight:(double)weight {
     if (nil == label || weight < 0)

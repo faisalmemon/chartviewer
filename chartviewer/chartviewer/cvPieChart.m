@@ -66,19 +66,8 @@
         [data setLabelAngle:labelAngle];
         UIColor *color = [UIColor colorWithHue: labelAngle/(2*PI) saturation: 1 brightness: 1 alpha: 1];
         [data setColor:color];
+        lastAngleOfSlice = newAngleForSlice;
     }
-}
-
--(void)updateFillColorInContext:(CGContextRef)context ForPieAtSliceAngle:(double)angle
-{
-    if (angle > 2*PI || angle < 0) {
-        NSLog(@"Angle out of range [0,2*PI] so ignoring");
-        return;
-    }
-    UIColor *color = [UIColor colorWithHue: angle/(2*PI) saturation: 1 brightness: 1 alpha: 1];
-    CGFloat red, green, blue, alpha;
-    [color getRed: &red green: &green blue: &blue alpha: &alpha];
-    CGContextSetRGBFillColor(context, red, green, blue, alpha);
 }
 
 -(void)drawPieChartSegmentsInContext:(CGContextRef)context At:(CGPoint)center WithSize:(double)radius
@@ -89,17 +78,13 @@
     CGContextTranslateCTM(context, center.x, center.y);
     CGContextScaleCTM(context, 1, -1);
     
-    double lastAngleOfSlice = 0;
     for (cvPieChartDataPoint *data in _pieChartData) {
         CGContextBeginPath(context);
-        
         CGContextMoveToPoint(context, 0, 0);
-        double newAngleForSlice = lastAngleOfSlice + [self angleFromWeight:[data weight]];
-        [self updateFillColorInContext:context ForPieAtSliceAngle:newAngleForSlice];
-        CGContextAddArc(context, 0, 0, radius, lastAngleOfSlice, newAngleForSlice, 0);
+        CGContextSetRGBFillColor(context, [data red], [data green], [data blue], [data alpha]);
+        CGContextAddArc(context, 0, 0, radius, [data startingAngle], [data endingAngle], 0);
         CGContextClosePath(context);
         CGContextDrawPath(context, kCGPathFillStroke);
-        lastAngleOfSlice = newAngleForSlice;
     }
     
     CGContextRestoreGState(context);
@@ -112,17 +97,14 @@
     /* Change to cartesian co-ords centered on the center of the pie chart, y goes up, x goes right */
     CGContextTranslateCTM(context, center.x, center.y);
     CGContextScaleCTM(context, 1, -1);
-    double lastAngleOfSlice = 0;
     for (cvPieChartDataPoint *data in _pieChartData) {
-        double newAngleForSlice = lastAngleOfSlice + [self angleFromWeight:[data weight]];
-        double midAngle = 0.5 * [self angleFromWeight:[data weight]] + lastAngleOfSlice;
         CGPoint justOutsideCircle = {
-            cos(midAngle) * labelDistance,
-            sin(midAngle) * labelDistance
+            cos([data labelAngle]) * labelDistance,
+            sin([data labelAngle]) * labelDistance
         };
         NSString *labelWithPercent = [NSString stringWithFormat:@"%@ %3.0f %%", [data label], 100 * [data weight]/_totalWeight];
         /* Put right side segment labels rightwards, and left side segments shifted leftwards; FromPoint vs EndPoint */
-        if (midAngle > PI * 0.5 && midAngle < PI * 1.5) {
+        if (radiansInLeftSemicircle([data labelAngle])) {
             [self drawLabelWithContext:context
                               WithText:labelWithPercent
                           WithFontName:cvChartIntervalLabelFont
@@ -139,7 +121,6 @@
                              FromPoint:justOutsideCircle
                            InDirection:0];
         }
-        lastAngleOfSlice = newAngleForSlice;
     }
     CGContextRestoreGState(context);
 }

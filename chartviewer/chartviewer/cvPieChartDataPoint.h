@@ -25,6 +25,11 @@
 @property (readonly)CGFloat red;
 @property (readonly)CGFloat green;
 @property (readonly)CGFloat blue;
+@property (readonly)CGFloat alpha;
+@property (readonly)double labelAngle;
+@property (readonly)double startingAngle;
+@property (readonly)double endingAngle;
+
 
 
 -(id) initWithLabel:(NSString*)label WithWeight:(double)weight;

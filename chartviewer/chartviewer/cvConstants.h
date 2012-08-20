@@ -51,6 +51,9 @@ static inline double clampRadiansWithinRange(double radians) {
     else
         return radians;
 };
+static inline int radiansInLeftSemicircle(double radians) {
+    return radians > PI * 0.5 && radians < PI * 1.5;
+}
 
 extern const char * cvChartLabelFont;
 extern const double cvChartLabelFontSize;
