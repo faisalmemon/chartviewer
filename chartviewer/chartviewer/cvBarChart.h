@@ -10,13 +10,13 @@
 #import "cvBarChartDataPoint.h"
 
 @interface cvBarChart : cvChart {
-    const cvBarChartDataPoint* _data;
-    size_t _dataSize;
+    NSMutableArray *_data;
     NSString* _xAxisLabel;
     NSString* _yAxisLabel;
 }
 
 -(id)initWithTitle:(NSString *)string;
--(void)addDataSet:(const cvBarChartDataPoint[]) data withSize:(size_t) size;
+-(void)addDataSet:(NSMutableArray*)data;
 -(void)addLabelAlongAxis:(enum cvAxis)axis WithText:(NSString*)text;
+
 @end

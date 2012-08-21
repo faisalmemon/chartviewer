@@ -6,10 +6,13 @@
 //  Copyright (c) 2012 Faisal Memon. All rights reserved.
 //
 
-struct cvBarChartDataPoint_struct {
-    char *_xLabel;
-    double _y;
-};
+#import <Foundation/Foundation.h>
 
-typedef struct cvBarChartDataPoint_struct cvBarChartDataPoint;
+@interface cvBarChartDataPoint : NSObject {
+    double _yValue;
+    NSString *_xLabel;
+}
 
+-(id) initWithLabel:(NSString*)label WithValue:(double)value;
+
+@end

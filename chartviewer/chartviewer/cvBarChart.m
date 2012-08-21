@@ -19,10 +19,9 @@
     return self;
 }
 
--(void)addDataSet:(const cvBarChartDataPoint[]) data withSize:(size_t) size
+-(void)addDataSet:(NSMutableArray*)data
 {
     self->_data = data;
-    self->_dataSize = size;
 }
 
 -(void)addLabelAlongAxis:(enum cvAxis)axis WithText:(NSString*)text

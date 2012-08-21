@@ -8,4 +8,19 @@
 
 #import "cvBarChartDataPoint.h"
 
-// Empty file
+@implementation cvBarChartDataPoint
+
+-(id) initWithLabel:(NSString*)label WithValue:(double)value
+{
+    if (nil == label) {
+        return nil;
+    }
+    self = [super init];
+    if (self) {
+        self->_xLabel = label;
+        self->_yValue = value;
+    }
+    return self;
+}
+@end
+
