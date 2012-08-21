@@ -188,7 +188,6 @@
               WithCharacterSpacing:cvChartIntervalLabelFontSpacing
                          FromPoint:startPoint
                        InDirection:0];
-        NSLog(@"Label %@ has length %f", [data label], lengthOfLabel);
         if (lengthOfLabel > widthLongestLabel) {
             widthLongestLabel = lengthOfLabel;
         }

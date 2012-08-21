@@ -16,6 +16,7 @@
 
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControlHandle;
 - (IBAction)selectedGraphType:(id)sender;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withChartSelectionHandler:(id<cvChartSelectionProtocol>)target;

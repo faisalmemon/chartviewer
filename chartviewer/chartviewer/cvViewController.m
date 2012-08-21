@@ -126,6 +126,7 @@
     self->chart = item;
     if ([self.popoverController isPopoverVisible]) {
         [self.popoverController dismissPopoverAnimated:YES];
+        self.popoverController = nil;
     }
     [chartViewHandle setNeedsDisplay];
 }

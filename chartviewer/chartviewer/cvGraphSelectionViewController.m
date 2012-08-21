@@ -15,6 +15,7 @@
 
 @implementation cvGraphSelectionViewController
 @synthesize tableView;
+@synthesize segmentedControlHandle;
 @synthesize selectedChartType;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withChartSelectionHandler:(id<cvChartSelectionProtocol>)target
@@ -30,13 +31,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.selectedChartType = cvSegmentedControlGraphChart;
+    [segmentedControlHandle setSelectedSegmentIndex:[self->chartSelectionHandler cvSelectedChartType]];
     self->model = [cvModel sharedInstance];
 }
 
 - (void)viewDidUnload
 {
     [self setTableView:nil];
+    [self setSegmentedControlHandle:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -86,12 +88,15 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)table_view cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *MyIdentifier = @"MyIdentifier";
+    static NSString *MyIdentifier = @"cvChartViewerChartList";
     UITableViewCell *cell = [table_view dequeueReusableCellWithIdentifier:MyIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:MyIdentifier] ;
     }
-    cvChart *chart = [[model getChartsWithType:[chartSelectionHandler cvSelectedChartType]] objectAtIndex:indexPath.row];    
+    int row = indexPath.row;
+    int chartType = [chartSelectionHandler cvSelectedChartType];
+    cvChart *chart = [[model getChartsWithType:chartType] objectAtIndex:row];
+    //NSLog(@"Table View Cell title %@ came from row %d type %d cvChart %@", [chart title], row, chartType, chart);
     cell.textLabel.text = [chart title];
     return cell;
 }
