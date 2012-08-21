@@ -15,11 +15,6 @@ struct graphChartDataLimits_struct {
 };
 typedef struct graphChartDataLimits_struct graphChartDataLimits;
 
-enum cvAxis {
-    cvAlongX,
-    cvAlongY,
-};
-
 typedef enum cvAxis cvAxis;
 
 @interface cvGraphChart : cvChart {
@@ -49,7 +44,7 @@ typedef enum cvAxis cvAxis;
 
 
 -(id)initWithTitle:(NSString *)string;
--(void)setGraphChartWithData:(const cvGraphChartDataPoint[]) data containingDataPoints:(size_t) size;
+-(void)addDataSet:(const cvGraphChartDataPoint[]) data withSize:(size_t) size;
 -(void)addLabelAt:(CGPoint)point InDirection:(double)direction WithText:(NSString*)text;
 -(void)addIntervalsEvery:(double)periodicity AlongAxis:(cvAxis)axis WithFormat:(NSString*)format_string;
 

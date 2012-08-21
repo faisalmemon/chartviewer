@@ -34,7 +34,7 @@ const cvGraphChartDataPoint kSampleGraph2[] = {-3,-3, -2,-1, 0,0};
     // Add hardcoded data since we have no UI or web service for adding new graphs
     
     cvGraphChart *graph1 = [[cvGraphChart alloc] initWithTitle:@"My first graph" ];
-    [graph1 setGraphChartWithData:kSampleGraph1 containingDataPoints:sizeof(kSampleGraph1) / sizeof(cvGraphChartDataPoint)];
+    [graph1 addDataSet:kSampleGraph1 withSize:sizeof(kSampleGraph1) / sizeof(cvGraphChartDataPoint)];
     [graph1 addIntervalsEvery:1 AlongAxis:cvAlongX WithFormat:@"%2.2f"];
     [graph1 addIntervalsEvery:1 AlongAxis:cvAlongY WithFormat:@"%2.2f"];
     CGPoint graph1xLabelAt = { -2, -1 };
@@ -43,7 +43,7 @@ const cvGraphChartDataPoint kSampleGraph2[] = {-3,-3, -2,-1, 0,0};
     [graph1 addLabelAt:graph1yLabelAt InDirection:radians(90) WithText:@"Y axis"];
 
     cvGraphChart *graph2 = [[cvGraphChart alloc] initWithTitle:@"Bottom left" ];
-    [graph2 setGraphChartWithData:kSampleGraph2 containingDataPoints:sizeof(kSampleGraph2) / sizeof(cvGraphChartDataPoint)];
+    [graph2 addDataSet:kSampleGraph2 withSize:sizeof(kSampleGraph2) / sizeof(cvGraphChartDataPoint)];
     [graph2 addIntervalsEvery:1 AlongAxis:cvAlongX WithFormat:@"%2.2f"];
     [graph2 addIntervalsEvery:1 AlongAxis:cvAlongY WithFormat:@"%2.2f"];
     CGPoint graph2xLabelAt = { -1.75, -0.25 };
@@ -59,7 +59,7 @@ const cvGraphChartDataPoint kSampleGraph2[] = {-3,-3, -2,-1, 0,0};
      iOS            30000
      Android        100000
      BlackBerry OS	9000
-     SamsungBa      5000
+     Bada           5000
      Windows        4000
      */
     cvPieChartDataPoint *dataSymbian = [[cvPieChartDataPoint alloc] initWithLabel:@"Symbian" WithWeight:9800];
@@ -70,6 +70,21 @@ const cvGraphChartDataPoint kSampleGraph2[] = {-3,-3, -2,-1, 0,0};
     cvPieChartDataPoint *dataOther = [[cvPieChartDataPoint alloc] initWithLabel:@"Windows" WithWeight:4000];
 
     NSString *formatUnits = @"%6.0f units";
+
+	/*
+Average Inflation in USA per decade
+1913-1919	9.8
+1920-1029	-0.09
+1930-1939	-2.08
+1940-1949	5.52
+1950-1959	2.04
+1960-1969	2.32
+1970-1979	7.06
+1980-1989	5.51
+1990-1999	3.00
+2000-2009	2.56
+	*/
+
 
     cvPieChart *pieChartMobileOS = [[cvPieChart alloc] initWithData:[NSMutableArray arrayWithObjects:dataSymbian, dataiOS, dataAndroid, dataBlackBerry, dataSamsung, dataOther, nil] InFormatUnits:formatUnits WithTitle:@"Smartphone sales 2012 Q2"];
 

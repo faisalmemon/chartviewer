@@ -26,6 +26,8 @@
 		3AA779BD15E1063F002A6FD5 /* cvPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA779BC15E1063F002A6FD5 /* cvPieChart.m */; };
 		3AA779C015E106FE002A6FD5 /* cvPieChartDataPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AA779BF15E106FD002A6FD5 /* cvPieChartDataPoint.m */; };
 		3AA779C215E18639002A6FD5 /* cvConstants.c in Sources */ = {isa = PBXBuildFile; fileRef = 3AA779C115E18639002A6FD5 /* cvConstants.c */; };
+		3AD6A3F215E3D8B200F0161A /* cvBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD6A3F115E3D8B200F0161A /* cvBarChart.m */; };
+		3AD6A3F615E3D95000F0161A /* cvBarChartDataPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD6A3F515E3D95000F0161A /* cvBarChartDataPoint.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +66,10 @@
 		3AA779BE15E106FD002A6FD5 /* cvPieChartDataPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cvPieChartDataPoint.h; sourceTree = "<group>"; };
 		3AA779BF15E106FD002A6FD5 /* cvPieChartDataPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cvPieChartDataPoint.m; sourceTree = "<group>"; };
 		3AA779C115E18639002A6FD5 /* cvConstants.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = cvConstants.c; sourceTree = "<group>"; };
+		3AD6A3F015E3D8B200F0161A /* cvBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cvBarChart.h; sourceTree = "<group>"; };
+		3AD6A3F115E3D8B200F0161A /* cvBarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cvBarChart.m; sourceTree = "<group>"; };
+		3AD6A3F415E3D95000F0161A /* cvBarChartDataPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cvBarChartDataPoint.h; sourceTree = "<group>"; };
+		3AD6A3F515E3D95000F0161A /* cvBarChartDataPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cvBarChartDataPoint.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +116,8 @@
 		3A3DEF9F15D6A7C0001F7077 /* chartviewer */ = {
 			isa = PBXGroup;
 			children = (
+				3AD6A3F015E3D8B200F0161A /* cvBarChart.h */,
+				3AD6A3F115E3D8B200F0161A /* cvBarChart.m */,
 				3A3DEFA815D6A7C0001F7077 /* cvAppDelegate.h */,
 				3A3DEFA915D6A7C0001F7077 /* cvAppDelegate.m */,
 				3AA779AE15DBF7CB002A6FD5 /* cvModel.h */,
@@ -138,6 +146,8 @@
 				3AA779B915DFD9D1002A6FD5 /* cvGraphChartLabel.m */,
 				3A3DF03715DAA2B7001F7077 /* cvGraphChartDataPoint.h */,
 				3A3DF01115DAA0D5001F7077 /* cvGraphChartDataPoint.m */,
+				3AD6A3F415E3D95000F0161A /* cvBarChartDataPoint.h */,
+				3AD6A3F515E3D95000F0161A /* cvBarChartDataPoint.m */,
 			);
 			path = chartviewer;
 			sourceTree = "<group>";
@@ -231,6 +241,8 @@
 				3AA779BD15E1063F002A6FD5 /* cvPieChart.m in Sources */,
 				3AA779C015E106FE002A6FD5 /* cvPieChartDataPoint.m in Sources */,
 				3AA779C215E18639002A6FD5 /* cvConstants.c in Sources */,
+				3AD6A3F215E3D8B200F0161A /* cvBarChart.m in Sources */,
+				3AD6A3F615E3D95000F0161A /* cvBarChartDataPoint.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

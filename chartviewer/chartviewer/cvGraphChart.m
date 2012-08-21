@@ -49,7 +49,7 @@
     }
 }
 
--(void)setGraphChartWithData:(const cvGraphChartDataPoint[]) data containingDataPoints:(size_t) size
+-(void)addDataSet:(const cvGraphChartDataPoint[]) data withSize:(size_t) size
 {
     _graphDataPoints = data;
     _nDataPoints = size;
