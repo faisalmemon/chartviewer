@@ -15,8 +15,7 @@
     NSString* _yAxisLabel;
 }
 
--(id)initWithTitle:(NSString *)string;
--(void)addDataSet:(NSMutableArray*)data;
+-(id)initWithTitle:(NSString *)string WithDataSet:(NSMutableArray*)data;
 -(void)addLabelAlongAxis:(enum cvAxis)axis WithText:(NSString*)text;
 
 @end

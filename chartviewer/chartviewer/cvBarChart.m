@@ -10,18 +10,12 @@
 
 @implementation cvBarChart
 
--(id)initWithTitle:(NSString *)string {
-    self = [super init];
+-(id)initWithTitle:(NSString *)string WithDataSet:(NSMutableArray*)data {
+    self = [super initWithTitle:string];
     if (self) {
-        self.title = string;
-               
+        _data = data;       
     }
     return self;
-}
-
--(void)addDataSet:(NSMutableArray*)data
-{
-    self->_data = data;
 }
 
 -(void)addLabelAlongAxis:(enum cvAxis)axis WithText:(NSString*)text
