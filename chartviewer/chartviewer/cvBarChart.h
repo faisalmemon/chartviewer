@@ -7,6 +7,7 @@
 //
 
 #import "cvChart.h"
+#import "cvConstants.h"
 #import "cvBarChartDataPoint.h"
 
 @interface cvBarChart : cvChart {
@@ -17,5 +18,6 @@
 
 -(id)initWithTitle:(NSString *)string WithDataSet:(NSMutableArray*)data;
 -(void)addLabelAlongAxis:(enum cvAxis)axis WithText:(NSString*)text;
+-(void)addYIntervalsEvery:(double)periodicity WithFormat:(NSString*)format_string;
 
 @end

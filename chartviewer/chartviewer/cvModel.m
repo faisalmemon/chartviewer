@@ -50,7 +50,7 @@ const cvGraphChartDataPoint kSampleGraph2[] = {-3,-3, -2,-1, 0,0};
     CGPoint graph2yLabelAt = { -0.5, -2 };
     [graph2 addLabelAt:graph2xLabelAt InDirection:0 WithText:@"X axis"];
     [graph2 addLabelAt:graph2yLabelAt InDirection:radians(90) WithText:@"Y axis"];
-    graphCharts = [NSArray arrayWithObjects:graph1, graph2, nil ];
+    _graphCharts = [NSArray arrayWithObjects:graph1, graph2, nil ];
     
     /*
      Pie Chart: Smartphone sales 2012Q2
@@ -71,33 +71,51 @@ const cvGraphChartDataPoint kSampleGraph2[] = {-3,-3, -2,-1, 0,0};
 
     NSString *formatUnits = @"%6.0f units";
 
-	/*
-Average Inflation in USA per decade
-1913-1919	9.8
-1920-1029	-0.09
-1930-1939	-2.08
-1940-1949	5.52
-1950-1959	2.04
-1960-1969	2.32
-1970-1979	7.06
-1980-1989	5.51
-1990-1999	3.00
-2000-2009	2.56
-	*/
-
-
     cvPieChart *pieChartMobileOS = [[cvPieChart alloc] initWithData:[NSMutableArray arrayWithObjects:dataSymbian, dataiOS, dataAndroid, dataBlackBerry, dataSamsung, dataOther, nil] InFormatUnits:formatUnits WithTitle:@"Smartphone sales 2012 Q2"];
 
-    pieCharts = [NSArray arrayWithObjects:pieChartMobileOS, nil];
+    _pieCharts = [NSArray arrayWithObjects:pieChartMobileOS, nil];
+    
+    /*
+     Average Inflation in USA per decade
+     1913-1919	9.8
+     1920-1929	-0.09
+     1930-1939	-2.08
+     1940-1949	5.52
+     1950-1959	2.04
+     1960-1969	2.32
+     1970-1979	7.06
+     1980-1989	5.51
+     1990-1999	3.00
+     2000-2009	2.56
+     */
+    cvBarChartDataPoint *data1913 = [[cvBarChartDataPoint alloc] initWithLabel:@"1913-1919" WithValue:9.8];
+    cvBarChartDataPoint *data1920 = [[cvBarChartDataPoint alloc] initWithLabel:@"1920-1929" WithValue:-0.09];
+    cvBarChartDataPoint *data1930 = [[cvBarChartDataPoint alloc] initWithLabel:@"1930-1939" WithValue:-2.08];
+    cvBarChartDataPoint *data1940 = [[cvBarChartDataPoint alloc] initWithLabel:@"1940-1949" WithValue:5.52];
+    cvBarChartDataPoint *data1950 = [[cvBarChartDataPoint alloc] initWithLabel:@"1950-1959" WithValue:2.04];
+    cvBarChartDataPoint *data1960 = [[cvBarChartDataPoint alloc] initWithLabel:@"1960-1969" WithValue:2.32];
+    cvBarChartDataPoint *data1970 = [[cvBarChartDataPoint alloc] initWithLabel:@"1970-1979" WithValue:7.06];
+    cvBarChartDataPoint *data1980 = [[cvBarChartDataPoint alloc] initWithLabel:@"1980-1989" WithValue:5.51];
+    cvBarChartDataPoint *data1990 = [[cvBarChartDataPoint alloc] initWithLabel:@"1990-1999" WithValue:3.0];
+    cvBarChartDataPoint *data2000 = [[cvBarChartDataPoint alloc] initWithLabel:@"2000-2009" WithValue:2.56];
 
+    NSMutableArray* inflationData = [NSMutableArray arrayWithObjects:
+                                     data1913, data1920, data1930, data1940, data1950, data1960,
+                                     data1970, data1980, data1990, data2000, nil];
+    cvBarChart *barChartInflation = [[cvBarChart alloc] initWithTitle:@"Average USA Inflation" WithDataSet:inflationData];
+    
+    _barCharts = [NSArray arrayWithObjects:barChartInflation, nil];
+    
 }
 
 -(int)getNumberOfChartsWithType:(int)chartType
 {
     if (chartType == cvSegmentedControlGraphChart) {
-        return [graphCharts count];
+        return [_graphCharts count];
     } else if (chartType == cvSegmentedControlPieChart) {
-        return [pieCharts count];
+        return [_pieCharts count];
+    } else if (chartType == cvSegmentedControlBarChart) {
+        return [_barCharts count];
     }
     return 0;
 }
@@ -105,9 +123,11 @@ Average Inflation in USA per decade
 -(NSArray *)getChartsWithType:(int)chartType
 {
     if (chartType == cvSegmentedControlGraphChart) {
-        return graphCharts;
+        return _graphCharts;
     } else if (chartType == cvSegmentedControlPieChart) {
-        return pieCharts;
+        return _pieCharts;
+    } else if (chartType == cvSegmentedControlBarChart) {
+        return _barCharts;
     }
     return nil;
 }

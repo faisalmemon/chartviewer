@@ -43,6 +43,11 @@ enum cvConstants_t {
     cvPieChartDataTableYGutter  = 40,
     cvChartDataTableYPace       = 30,
     cvChartKeyBoxSize           = 15,
+    
+    /* For bar charts */
+    cvBarChartBarXInset         = 5,
+    cvBarLeastWidth             = 15, // needs to be wider than the x label font height
+    cvBarChartLabelOffset       = 15,
 };
 
 static inline double radians(double degrees) { return degrees * PI / 180; }

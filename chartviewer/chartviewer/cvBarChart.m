@@ -10,12 +10,19 @@
 
 @implementation cvBarChart
 
--(id)initWithTitle:(NSString *)string WithDataSet:(NSMutableArray*)data {
+-(id)initWithTitle:(NSString *)string WithDataSet:(NSMutableArray*)data
+{
     self = [super initWithTitle:string];
     if (self) {
         _data = data;       
     }
     return self;
+}
+
+-(void) drawChartBodyInContext:(CGContextRef)context
+                    withBounds:(CGRect)bounds
+{
+    
 }
 
 -(void)addLabelAlongAxis:(enum cvAxis)axis WithText:(NSString*)text
@@ -27,10 +34,9 @@
     }
 }
 
--(void) drawChartBodyInContext:(CGContextRef)context
-                    withBounds:(CGRect)bounds
+-(void)addYIntervalsEvery:(double)periodicity WithFormat:(NSString*)format_string
 {
-    
+
 }
 
 @end
