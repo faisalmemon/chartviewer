@@ -103,7 +103,8 @@ const cvGraphChartDataPoint kSampleGraph2[] = {-3,-3, -2,-1, 0,0};
                                      data1913, data1920, data1930, data1940, data1950, data1960,
                                      data1970, data1980, data1990, data2000, nil];
     cvBarChart *barChartInflation = [[cvBarChart alloc] initWithTitle:@"Average USA Inflation" WithDataSet:inflationData];
-    
+    [barChartInflation addLabelAlongAxis:cvAlongY WithText:@"Average inflation in decade"];
+
     _barCharts = [NSArray arrayWithObjects:barChartInflation, nil];
     
 }

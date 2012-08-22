@@ -29,13 +29,37 @@
     return self;
 }
 
++(double) labelLengthInContext:(CGContextRef)context
+                      WithText:(NSString*)text
+                  WithFontName:(const char *)font_name
+                  WithFontSize:(CGFloat)font_size
+          WithCharacterSpacing:(CGFloat)char_spacing
+{
+    CGContextSaveGState(context);
+    CGContextSelectFont (context,
+                         font_name,
+                         font_size,
+                         kCGEncodingMacRoman);
+    CGContextSetCharacterSpacing (context, char_spacing);
+    CGContextMoveToPoint(context, 0, 0);
+    
+    /* Dummy write to assess the length of text */
+    CGPoint startingPosition = CGContextGetTextPosition(context);
+    CGContextSetTextDrawingMode(context, kCGTextInvisible);
+    CGContextShowText (context, text.UTF8String, strlen(text.UTF8String));
+    CGPoint actualEndPoint = CGContextGetTextPosition(context);
+    double widthOfText = actualEndPoint.x - startingPosition.x;
+    CGContextRestoreGState(context);
+    return widthOfText;
+}
+
 -(double) drawLabelWithContext:(CGContextRef)context
-                    WithText:(NSString*)text
-                WithFontName:(const char *)font_name
-                WithFontSize:(CGFloat)font_size
-        WithCharacterSpacing:(CGFloat) char_spacing
-                   FromPoint:(CGPoint)from                  /* where to start writing from on screen */
-                 InDirection:(CGFloat)direction
+                      WithText:(NSString*)text
+                  WithFontName:(const char *)font_name
+                  WithFontSize:(CGFloat)font_size
+          WithCharacterSpacing:(CGFloat) char_spacing
+                     FromPoint:(CGPoint)from                  /* where to start writing from on screen */
+                   InDirection:(CGFloat)direction
 {
     CGContextSaveGState(context);
     CGContextSelectFont (context,
@@ -65,12 +89,12 @@
 }
 
 -(double) drawLabelWithContext:(CGContextRef)context
-                    WithText:(NSString*)text
-                WithFontName:(const char *)font_name
-                WithFontSize:(CGFloat)font_size
-        WithCharacterSpacing:(CGFloat) char_spacing
-                    EndPoint:(CGPoint)end_point             /* where to finish writing to on screen */
-                 InDirection:(CGFloat)direction
+                      WithText:(NSString*)text
+                  WithFontName:(const char *)font_name
+                  WithFontSize:(CGFloat)font_size
+          WithCharacterSpacing:(CGFloat) char_spacing
+                      EndPoint:(CGPoint)end_point             /* where to finish writing to on screen */
+                   InDirection:(CGFloat)direction
 {
     CGContextSaveGState(context);
     CGContextSelectFont (context,

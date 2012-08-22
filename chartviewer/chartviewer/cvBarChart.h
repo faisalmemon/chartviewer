@@ -14,6 +14,16 @@
     NSMutableArray *_data;
     NSString* _xAxisLabel;
     NSString* _yAxisLabel;
+    
+    BOOL _yIntervalsDefined;
+    NSString* _yIntervalFormat;
+    double _yIntervalPeriodicity;
+    
+    double _minYvalue;
+    double _maxYvalue;
+    double _maxLabelLengthX; // from *data we find the longest text length on-screen
+    double _maxLabelLengthY; // from _yIntervalFormat/Periodicity we find the longest text length on-screen
+    double _yAxisLabelLength; // on-screen length of the y axis label, if set
 }
 
 -(id)initWithTitle:(NSString *)string WithDataSet:(NSMutableArray*)data;

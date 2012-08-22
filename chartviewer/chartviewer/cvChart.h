@@ -47,4 +47,10 @@ enum cvAxis {
                     EndPoint:(CGPoint)end_point         /* where to finish writing to on screen */
                  InDirection:(CGFloat)direction;
 
++(double) labelLengthInContext:(CGContextRef)context
+                      WithText:(NSString*)text
+                  WithFontName:(const char *)font_name
+                  WithFontSize:(CGFloat)font_size
+          WithCharacterSpacing:(CGFloat)char_spacing;
+
 @end

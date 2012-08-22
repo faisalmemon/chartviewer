@@ -7,8 +7,10 @@
 //
 
 #import "cvBarChartDataPoint.h"
+#import "cvChart.h"
 
 @implementation cvBarChartDataPoint
+@synthesize xLabel=_xLabel, yValue=_yValue;
 
 -(id) initWithLabel:(NSString*)label WithValue:(double)value
 {
