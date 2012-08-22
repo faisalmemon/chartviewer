@@ -141,8 +141,9 @@
     if (!update) {
         CGContextSaveGState(context);
     }
-    CGContextTranslateCTM(context, _maxLabelLengthX + cvBarChartIntervalMarker, 0);
-    shrunkBounds.size.width -= _maxLabelLengthX + cvBarChartIntervalMarker;
+    CGContextTranslateCTM(context, _maxLabelLengthY + cvBarChartIntervalMarker, _maxLabelLengthX + cvBarChartIntervalMarker);
+    shrunkBounds.size.width -= _maxLabelLengthY + cvBarChartIntervalMarker;
+    shrunkBounds.size.height -= _maxLabelLengthX + cvBarChartIntervalMarker;
     [self calculateScalingForContext:context InBounds:shrunkBounds];
     
     CGContextTranslateCTM(context, 0, _minYvalue * -1 * _scaleY);
@@ -159,6 +160,16 @@
     }
 }
 
+-(void) drawYaxisIntervalMarkerInContext:(CGContextRef)context WithBounds:(CGRect)bounds AtYaxis:(double)yaxisPosition
+{
+    CGContextSaveGState(context);
+    CGContextBeginPath(context);
+    CGContextMoveToPoint(context, 0, yaxisPosition * _scaleY);
+    CGContextAddLineToPoint(context, -cvBarChartIntervalMarker, yaxisPosition * _scaleY);
+    CGContextStrokePath(context);
+    CGContextRestoreGState(context);
+}
+
 -(void) drawYaxisLabelsInContext:(CGContextRef)context WithBounds:(CGRect)bounds
 {
     if (_yIntervalPeriodicity == 0) {
@@ -166,12 +177,13 @@
     }
         
     CGContextSaveGState(context);
-    for (double interval = -_yIntervalPeriodicity; interval >= _minYvalue; interval -= _yIntervalPeriodicity) {
+    for (double interval = 0; interval >= _minYvalue; interval -= _yIntervalPeriodicity) {
         NSString *labelOnYaxis = [NSString
                                   stringWithFormat:_yIntervalFormat,
                                   interval];
         CGPoint endp = {-cvBarChartIntervalMarker, interval*_scaleY};
         [self drawLabelWithContext:context WithText:labelOnYaxis WithFontName:cvChartIntervalLabelFont WithFontSize:cvChartIntervalLabelFontSize WithCharacterSpacing:cvChartIntervalLabelFontSpacing EndPoint:endp InDirection:0];
+        [self drawYaxisIntervalMarkerInContext:context WithBounds:bounds AtYaxis:interval];
         
     }
     for (double interval = _yIntervalPeriodicity; interval <= _maxYvalue; interval += _yIntervalPeriodicity) {
@@ -180,7 +192,7 @@
                                   interval];
         CGPoint endp = {-cvBarChartIntervalMarker, interval*_scaleY};
         [self drawLabelWithContext:context WithText:labelOnYaxis WithFontName:cvChartIntervalLabelFont WithFontSize:cvChartIntervalLabelFontSize WithCharacterSpacing:cvChartIntervalLabelFontSpacing EndPoint:endp InDirection:0];
-        
+        [self drawYaxisIntervalMarkerInContext:context WithBounds:bounds AtYaxis:interval];
     }
 
     CGContextRestoreGState(context);

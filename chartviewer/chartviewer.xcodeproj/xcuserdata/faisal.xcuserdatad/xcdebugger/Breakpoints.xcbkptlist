@@ -294,12 +294,25 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "chartviewer/cvBarChart.m"
-         timestampString = "367344256.370127"
+         timestampString = "367364977.373589"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "195"
-         endingLineNumber = "195"
+         startingLineNumber = "207"
+         endingLineNumber = "207"
          landmarkName = "-drawChartBodyInContext:withBounds:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "chartviewer/cvBarChart.m"
+         timestampString = "367364977.373589"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "144"
+         endingLineNumber = "144"
+         landmarkName = "-drawYaxisInContext:WithBounds:AllowContextAndBoundsUpdate:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
