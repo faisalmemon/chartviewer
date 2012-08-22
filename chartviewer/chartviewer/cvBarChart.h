@@ -24,6 +24,9 @@
     double _maxLabelLengthX; // from *data we find the longest text length on-screen
     double _maxLabelLengthY; // from _yIntervalFormat/Periodicity we find the longest text length on-screen
     double _yAxisLabelLength; // on-screen length of the y axis label, if set
+    
+    double _scaleX;
+    double _scaleY;
 }
 
 -(id)initWithTitle:(NSString *)string WithDataSet:(NSMutableArray*)data;

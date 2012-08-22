@@ -52,7 +52,6 @@
     _minYvalue = MIN(0, minYval);
     _maxYvalue = MAX(0, maxYval);
     
-    
     /*
      If the user has specified interval labels on the y axis, calculate the widest on-screen label.
      */
@@ -91,6 +90,22 @@
     return;
 }
 
+-(void)calculateScalingForContext:(CGContextRef)context InBounds:(CGRect)bounds
+{
+    double yValueRange = _maxYvalue - _minYvalue;
+    if (yValueRange != 0) {
+        _scaleY =bounds.size.height / yValueRange;
+    } else {
+        _scaleY = 0;
+    }
+    int numberOfXitems = [_data count];
+    if (numberOfXitems < 1) {
+        _scaleX = 0;
+    } else {
+        _scaleX = bounds.size.width / numberOfXitems;
+    }
+}
+
 /*
  Draw the Y axis label.  If update is YES, the co-ords are y flipped and re-origined to the bottom left, and then shifted to the right to allow the space reserved for a Y axis label, and the bounds shrunk on the right by the same amount.  If there is no Y axis label, the reserved space for it is left blank.
  */
@@ -117,11 +132,67 @@
     }
 }
 
+/*
+ Draw the Y axis.  Assumes supplied context and bounds has origin bottom left, x rightward, y upward.  If update is YES, updates the context to have the origin at the baseline of the x axis of the bar chart, shifted rightwards so as to allow y interval markers and y interval labels to be draw to its left (in negative x co-ords), and adjusting bounds to shrink the width accordingly.
+ */
+-(void) drawYaxisInContext:(CGContextRef)context WithBounds:(CGRect*)bounds AllowContextAndBoundsUpdate:(BOOL)update
+{
+    CGRect shrunkBounds = *bounds;
+    if (!update) {
+        CGContextSaveGState(context);
+    }
+    CGContextTranslateCTM(context, _maxLabelLengthX + cvBarChartIntervalMarker, 0);
+    shrunkBounds.size.width -= _maxLabelLengthX + cvBarChartIntervalMarker;
+    [self calculateScalingForContext:context InBounds:shrunkBounds];
+    
+    CGContextTranslateCTM(context, 0, _minYvalue * -1 * _scaleY);
+    CGContextBeginPath(context);
+    CGContextMoveToPoint(context, 0, _maxYvalue*_scaleY);
+    CGContextAddLineToPoint(context, 0, _minYvalue*_scaleY);
+    CGContextStrokePath(context);
+    
+    if (update) {
+        *bounds = shrunkBounds;
+    }
+    if (!update) {
+        CGContextRestoreGState(context);
+    }
+}
+
+-(void) drawYaxisLabelsInContext:(CGContextRef)context WithBounds:(CGRect)bounds
+{
+    if (_yIntervalPeriodicity == 0) {
+        return;
+    }
+        
+    CGContextSaveGState(context);
+    for (double interval = -_yIntervalPeriodicity; interval >= _minYvalue; interval -= _yIntervalPeriodicity) {
+        NSString *labelOnYaxis = [NSString
+                                  stringWithFormat:_yIntervalFormat,
+                                  interval];
+        CGPoint endp = {-cvBarChartIntervalMarker, interval*_scaleY};
+        [self drawLabelWithContext:context WithText:labelOnYaxis WithFontName:cvChartIntervalLabelFont WithFontSize:cvChartIntervalLabelFontSize WithCharacterSpacing:cvChartIntervalLabelFontSpacing EndPoint:endp InDirection:0];
+        
+    }
+    for (double interval = _yIntervalPeriodicity; interval <= _maxYvalue; interval += _yIntervalPeriodicity) {
+        NSString *labelOnYaxis = [NSString
+                                  stringWithFormat:_yIntervalFormat,
+                                  interval];
+        CGPoint endp = {-cvBarChartIntervalMarker, interval*_scaleY};
+        [self drawLabelWithContext:context WithText:labelOnYaxis WithFontName:cvChartIntervalLabelFont WithFontSize:cvChartIntervalLabelFontSize WithCharacterSpacing:cvChartIntervalLabelFontSpacing EndPoint:endp InDirection:0];
+        
+    }
+
+    CGContextRestoreGState(context);
+}
+
 -(void) drawChartBodyInContext:(CGContextRef)context
                     withBounds:(CGRect)bounds
 {
     [self calculateDerivedDataForContext:context];
     [self drawYaxisLabelInContext:context WithBounds:&bounds AllowContextAndBoundsUpdate:YES];
+    [self drawYaxisInContext:context WithBounds:&bounds AllowContextAndBoundsUpdate:YES];
+    [self drawYaxisLabelsInContext:context WithBounds:bounds];
 }
 
 -(void)addLabelAlongAxis:(enum cvAxis)axis WithText:(NSString*)text

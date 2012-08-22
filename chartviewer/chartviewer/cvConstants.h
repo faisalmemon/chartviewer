@@ -48,6 +48,7 @@ enum cvConstants_t {
     cvBarChartBarXInset         = 5,
     cvBarLeastWidth             = 15, // needs to be wider than the x label font height
     cvBarChartLabelOffset       = 30,
+    cvBarChartIntervalMarker    = 5,
 };
 
 static inline double radians(double degrees) { return degrees * PI / 180; }
