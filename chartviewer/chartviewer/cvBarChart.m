@@ -197,7 +197,11 @@
                     withBounds:(CGRect)bounds
 {
     [self calculateDerivedDataForContext:context];
-    [self updateYCoordGeometryInContext:context WithBounds:bounds];
+    // update context to get to standard mathematical co-ords
+    [self updateYCoordGeometryInContext:context
+                             WithBounds:bounds];
+    // update context to get to re-origined coords in the domain space excluding *scaling*
+    // since we always need to draw screen furniture non-scaled, but the domain data scaled
     [self drawYaxisInContext:context WithBounds:&bounds AllowContextAndBoundsUpdate:YES];
     [self drawYaxisLabelInContext:context WithBounds:bounds];
     [self drawYaxisLabelsInContext:context WithBounds:bounds];
