@@ -54,11 +54,11 @@
     CGPoint actualEndPoint = CGContextGetTextPosition(context);
     double widthOfText = actualEndPoint.x - startingPosition.x;
     CGContextMoveToPoint(context, 0, 0);
-    CGContextSetTextDrawingMode (context, kCGTextFillStroke);
+    CGContextSetTextDrawingMode (context, kCGTextFill);
 
     CGContextRotateCTM(context, direction);
     CGContextScaleCTM(context, 1, -1); //for text system, to avoid mirror-effect writing
-    CGContextSetTextDrawingMode (context, kCGTextFillStroke);
+    CGContextSetTextDrawingMode (context, kCGTextFill);
     CGContextShowTextAtPoint (context, 0, 0, text.UTF8String, strlen(text.UTF8String));
     CGContextRestoreGState(context);
     return widthOfText;
@@ -103,7 +103,7 @@
     CGContextTranslateCTM(context, -widthOfText, 0);
     CGContextScaleCTM(context, 1, -1); // for text system, to avoid mirror-effect writing
     
-    CGContextSetTextDrawingMode (context, kCGTextFillStroke);
+    CGContextSetTextDrawingMode (context, kCGTextFill);
     CGContextShowTextAtPoint (context, 0, 0, text.UTF8String, strlen(text.UTF8String));
     
     CGContextRestoreGState(context);
