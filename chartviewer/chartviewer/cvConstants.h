@@ -49,6 +49,7 @@ enum cvConstants_t {
     cvBarLeastWidth             = 15, // needs to be wider than the x label font height
     cvBarChartLabelOffset       = 30,
     cvBarChartIntervalMarker    = 5,
+    cvBarChartLabelDrop         = 5, // the amount letters like g drop below the baseline for Label text
 };
 
 static inline double radians(double degrees) { return degrees * PI / 180; }

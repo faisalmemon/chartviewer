@@ -106,34 +106,27 @@
     }
 }
 
+-(void) updateYCoordGeometryInContext:(CGContextRef)contextToUpdate WithBounds:(CGRect)bounds
+{
+    CGContextTranslateCTM(contextToUpdate, 0, bounds.size.height);
+    CGContextScaleCTM(contextToUpdate, 1, -1); // so we can print text without y axis mirror
+}
+
+
 /*
- Draw the Y axis label.  If update is YES, the co-ords are y flipped and re-origined to the bottom left, and then shifted to the right to allow the space reserved for a Y axis label, and the bounds shrunk on the right by the same amount.  If there is no Y axis label, the reserved space for it is left blank.
+ Draw the Y axis label.
  */
 -(void) drawYaxisLabelInContext:(CGContextRef)context
-                     WithBounds:(CGRect*)bounds
-    AllowContextAndBoundsUpdate:(BOOL)update
+                     WithBounds:(CGRect)bounds
 {
-    if (!update) {
-        CGContextSaveGState(context);
-    }
-    CGContextTranslateCTM(context, 0, bounds->size.height);
-    CGContextScaleCTM(context, 1, -1); // so we can print text without y axis mirror
-    if (nil != _yAxisLabel) {
-        CGPoint start = {cvBarChartLabelOffset, bounds->size.height*0.5 - _yAxisLabelLength*0.5};
+    if (_yAxisLabel) {
+        CGPoint start = {-_maxLabelLengthY - cvBarChartIntervalMarker - cvBarChartLabelDrop, _scaleY * (_minYvalue + _maxYvalue)/2.0 - 0.5*_yAxisLabelLength};
         [self drawLabelWithContext:context WithText:_yAxisLabel WithFontName:cvChartLabelFont WithFontSize:cvChartLabelFontSize WithCharacterSpacing:cvChartLabelFontSpacing FromPoint:start InDirection:radians(90)];
-    }
-    CGContextTranslateCTM(context, cvBarChartLabelOffset, 0);
-    if (update) {
-        bounds->size.width -= cvBarChartLabelOffset;
-    }
-    
-    if (!update) {
-        CGContextRestoreGState(context);
     }
 }
 
 /*
- Draw the Y axis.  Assumes supplied context and bounds has origin bottom left, x rightward, y upward.  If update is YES, updates the context to have the origin at the baseline of the x axis of the bar chart, shifted rightwards so as to allow y interval markers and y interval labels to be draw to its left (in negative x co-ords), and adjusting bounds to shrink the width accordingly.
+ Draw the Y axis.  Assumes supplied context and bounds has origin bottom left, x rightward, y upward.  If update is YES, updates the context to have the origin at the baseline of the x axis of the bar chart, shifted rightwards so as to allow y title, interval markers and y interval labels to be draw to its left (in negative x co-ords), and adjusting bounds to shrink the width accordingly.
  */
 -(void) drawYaxisInContext:(CGContextRef)context WithBounds:(CGRect*)bounds AllowContextAndBoundsUpdate:(BOOL)update
 {
@@ -141,12 +134,14 @@
     if (!update) {
         CGContextSaveGState(context);
     }
-    CGContextTranslateCTM(context, _maxLabelLengthY + cvBarChartIntervalMarker, _maxLabelLengthX + cvBarChartIntervalMarker);
-    shrunkBounds.size.width -= _maxLabelLengthY + cvBarChartIntervalMarker;
+    CGContextTranslateCTM(context, _maxLabelLengthY + cvBarChartLabelOffset + cvBarChartIntervalMarker, _maxLabelLengthX + cvBarChartIntervalMarker);
+    shrunkBounds.size.width -= _maxLabelLengthY + cvBarChartLabelOffset + cvBarChartIntervalMarker;
     shrunkBounds.size.height -= _maxLabelLengthX + cvBarChartIntervalMarker;
     [self calculateScalingForContext:context InBounds:shrunkBounds];
     
     CGContextTranslateCTM(context, 0, _minYvalue * -1 * _scaleY);
+    
+    
     CGContextBeginPath(context);
     CGContextMoveToPoint(context, 0, _maxYvalue*_scaleY);
     CGContextAddLineToPoint(context, 0, _minYvalue*_scaleY);
@@ -202,8 +197,9 @@
                     withBounds:(CGRect)bounds
 {
     [self calculateDerivedDataForContext:context];
-    [self drawYaxisLabelInContext:context WithBounds:&bounds AllowContextAndBoundsUpdate:YES];
+    [self updateYCoordGeometryInContext:context WithBounds:bounds];
     [self drawYaxisInContext:context WithBounds:&bounds AllowContextAndBoundsUpdate:YES];
+    [self drawYaxisLabelInContext:context WithBounds:bounds];
     [self drawYaxisLabelsInContext:context WithBounds:bounds];
 }
 
