@@ -207,7 +207,11 @@
     int item = 0;
     
     CGContextSaveGState(context);
-    CGContextSetFillColorWithColor(context, [UIColor blueColor].CGColor);
+    CGContextSetRGBFillColor(context,
+                             cvBarChartBarRed / 255.0,
+                             cvBarChartBarGreen / 255.0,
+                             cvBarChartBarBlue / 255.0,
+                             cvBarChartBarAlpha / 255.0);
 
     CGContextMoveToPoint(context, 0, 0);
     

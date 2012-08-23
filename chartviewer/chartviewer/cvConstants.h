@@ -50,6 +50,10 @@ enum cvConstants_t {
     cvBarChartLabelOffset       = 30,
     cvBarChartIntervalMarker    = 5,
     cvBarChartLabelDrop         = 5, // the amount letters like g drop below the baseline for Label text
+    cvBarChartBarRed            = 0x9d, // RGBA 8 bit components
+    cvBarChartBarGreen          = 0x76,
+    cvBarChartBarBlue           = 0xee,
+    cvBarChartBarAlpha          = 0xff,
 };
 
 static inline double radians(double degrees) { return degrees * PI / 180; }
