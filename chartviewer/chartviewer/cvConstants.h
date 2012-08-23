@@ -77,5 +77,14 @@ extern const char * cvChartIntervalLabelFont;
 extern const double cvChartIntervalLabelFontSize;
 extern const double cvChartIntervalLabelFontSpacing;
 
+struct cv_rgba_t {
+    unsigned char r;
+    unsigned char g;
+    unsigned char b;
+    unsigned char a;
+};
+
+extern struct cv_rgba_t cvGetContrastingColor(int paletteIndex);
+
 
 #endif

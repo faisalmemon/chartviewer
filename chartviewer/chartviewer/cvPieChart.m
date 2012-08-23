@@ -60,16 +60,23 @@
 -(void)calculatePresentationData {
     double lastAngleOfSlice = 0;
     double newAngleForSlice = 0;
+    int item = 0;
     for (cvPieChartDataPoint *data in _pieChartData) {
         double angle = [self angleFromWeight:[data weight]];
         newAngleForSlice = lastAngleOfSlice + angle;
         [data setSliceAnglesStarting:lastAngleOfSlice Ending:newAngleForSlice];
         double labelAngle = lastAngleOfSlice + 0.5 * angle;
         [data setLabelAngle:labelAngle];
-        double randomHue = ((double)arc4random() / ARC4RANDOM_MAX);
-        UIColor *color = [UIColor colorWithHue: randomHue saturation: 1 brightness: 1 alpha: 1];
+        struct cv_rgba_t c = cvGetContrastingColor(item);
+        CGFloat r,g,b,a;
+        r = c.r/255.0;
+        g = c.g/255.0;
+        b = c.b/255.0;
+        a = c.a/255.0;
+        UIColor *color = [UIColor colorWithRed:r green:g blue:b alpha:a];
         [data setColor:color];
         lastAngleOfSlice = newAngleForSlice;
+        item++;
     }
 }
 

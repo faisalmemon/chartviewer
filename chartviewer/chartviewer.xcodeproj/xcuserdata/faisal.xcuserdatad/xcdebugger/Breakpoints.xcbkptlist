@@ -190,11 +190,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "chartviewer/cvPieChart.m"
-         timestampString = "367172843.933553"
+         timestampString = "367412044.713459"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "161"
-         endingLineNumber = "161"
+         startingLineNumber = "168"
+         endingLineNumber = "168"
          landmarkName = "-drawPieChartTableInContext:WithinBounds:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -203,11 +203,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "chartviewer/cvPieChart.m"
-         timestampString = "367249428.515085"
+         timestampString = "367412044.713459"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "211"
-         endingLineNumber = "211"
+         startingLineNumber = "218"
+         endingLineNumber = "218"
          landmarkName = "-drawPieChartTableInContext:WithinBounds:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -216,7 +216,20 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "chartviewer/cvPieChart.m"
-         timestampString = "367249428.515085"
+         timestampString = "367412044.713459"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "206"
+         endingLineNumber = "206"
+         landmarkName = "-drawPieChartTableInContext:WithinBounds:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "chartviewer/cvPieChart.m"
+         timestampString = "367412044.713459"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "199"
@@ -229,24 +242,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "chartviewer/cvPieChart.m"
-         timestampString = "367249428.515085"
+         timestampString = "367412044.713459"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "192"
-         endingLineNumber = "192"
-         landmarkName = "-drawPieChartTableInContext:WithinBounds:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "chartviewer/cvPieChart.m"
-         timestampString = "367172189.711963"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "70"
-         endingLineNumber = "70"
+         startingLineNumber = "76"
+         endingLineNumber = "76"
          landmarkName = "-calculatePresentationData"
          landmarkType = "5">
       </FileBreakpoint>
@@ -313,6 +313,19 @@
          startingLineNumber = "137"
          endingLineNumber = "137"
          landmarkName = "-drawYaxisInContext:WithBounds:AllowContextAndBoundsUpdate:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "chartviewer/cvPieChart.m"
+         timestampString = "367412044.713459"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "70"
+         endingLineNumber = "70"
+         landmarkName = "-calculatePresentationData"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
