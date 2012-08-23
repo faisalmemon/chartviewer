@@ -45,7 +45,7 @@ enum cvConstants_t {
     cvChartKeyBoxSize           = 15,
     
     /* For bar charts */
-    cvBarChartBarXInset         = 5,
+    cvBarChartBarXLabelOffs     = 5,
     cvBarLeastWidth             = 15, // needs to be wider than the x label font height
     cvBarChartLabelOffset       = 30,
     cvBarChartIntervalMarker    = 5,

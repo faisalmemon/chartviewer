@@ -231,6 +231,21 @@
     CGContextRestoreGState(context);
 }
 
+-(void) drawBarLabelsInContext:(CGContextRef)context WithBounds:(CGRect)bounds
+{
+    double item = 0;
+  
+    for (cvBarChartDataPoint *d in _data) {
+        double barCenterX = (item + 0.5) * _scaleX;
+        //double labelBelowGraphyYPos = - cvBarChartLabelOffset - cvBarChartIntervalMarker;
+        double labelBelowGraphyYPos = _minYvalue * _scaleY;
+        CGPoint endp = {barCenterX, labelBelowGraphyYPos};
+
+        [self drawLabelWithContext:context WithText:[d xLabel] WithFontName:cvChartIntervalLabelFont WithFontSize:cvChartIntervalLabelFontSize WithCharacterSpacing:cvChartIntervalLabelFontSpacing EndPoint:endp InDirection:radians(90)];
+        item++;
+    }
+}
+
 -(void) drawChartBodyInContext:(CGContextRef)context
                     withBounds:(CGRect)bounds
 {
@@ -245,6 +260,8 @@
     [self drawYaxisLabelsInContext:context WithBounds:bounds];
     [self drawXaxisInContext:context WithBounds:bounds];
     [self drawBarsInContext:context WithBounds:bounds];
+    [self drawBarLabelsInContext:context WithBounds:bounds];
+
 }
 
 -(void)addLabelAlongAxis:(enum cvAxis)axis WithText:(NSString*)text
