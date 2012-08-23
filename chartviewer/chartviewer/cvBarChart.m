@@ -202,6 +202,31 @@
     CGContextRestoreGState(context);
 }
 
+-(void) drawBarsInContext:(CGContextRef)context WithBounds:(CGRect)bounds
+{
+    int item = 0;
+    
+    CGContextSaveGState(context);
+    CGContextSetFillColorWithColor(context, [UIColor blueColor].CGColor);
+
+    CGContextMoveToPoint(context, 0, 0);
+    
+    for (cvBarChartDataPoint *d in _data) {
+        double barLhs = item*_scaleX;
+        double barRhs = (item+1)*_scaleX;
+        double barWidth = barRhs-barLhs;
+        if (barWidth < cvBarLeastWidth) {
+            NSLog(@"Too many bars to show cleanly");
+        }
+        double barInsetMargin = barWidth / 10;
+        CGRect bar = { barLhs + barInsetMargin, 0, barWidth - 2* barInsetMargin, [d yValue] * _scaleY};
+        CGContextAddRect(context, bar);
+        item++;
+    }
+    CGContextDrawPath(context, kCGPathFillStroke);
+    CGContextRestoreGState(context);
+}
+
 -(void) drawChartBodyInContext:(CGContextRef)context
                     withBounds:(CGRect)bounds
 {
@@ -215,6 +240,7 @@
     [self drawYaxisLabelInContext:context WithBounds:bounds];
     [self drawYaxisLabelsInContext:context WithBounds:bounds];
     [self drawXaxisInContext:context WithBounds:bounds];
+    [self drawBarsInContext:context WithBounds:bounds];
 }
 
 -(void)addLabelAlongAxis:(enum cvAxis)axis WithText:(NSString*)text

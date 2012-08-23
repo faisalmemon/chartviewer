@@ -294,11 +294,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "chartviewer/cvBarChart.m"
-         timestampString = "367404879.224192"
+         timestampString = "367406694.774099"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "216"
-         endingLineNumber = "216"
+         startingLineNumber = "241"
+         endingLineNumber = "241"
          landmarkName = "-drawChartBodyInContext:withBounds:"
          landmarkType = "5">
       </FileBreakpoint>
