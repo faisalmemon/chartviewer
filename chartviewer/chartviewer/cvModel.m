@@ -73,7 +73,30 @@ const cvGraphChartDataPoint kSampleGraph2[] = {-3,-3, -2,-1, 0,0};
 
     cvPieChart *pieChartMobileOS = [[cvPieChart alloc] initWithData:[NSMutableArray arrayWithObjects:dataSymbian, dataiOS, dataAndroid, dataBlackBerry, dataSamsung, dataOther, nil] InFormatUnits:formatUnits WithTitle:@"Smartphone sales 2012 Q2"];
 
-    _pieCharts = [NSArray arrayWithObjects:pieChartMobileOS, nil];
+	/*
+     Favorite Snacks
+     Pancakes 15
+     Muffins 15
+     Snickers bars 15
+     Ben & Jerry's 24
+     Raisin bread 30
+     Oreo Cookies 30
+     Chunky Cookies 60
+     Cake 111
+     */
+    
+    cvPieChartDataPoint *dataPancakes = [[cvPieChartDataPoint alloc] initWithLabel:@"Pancakes" WithWeight:15];
+    cvPieChartDataPoint *dataMuffins = [[cvPieChartDataPoint alloc] initWithLabel:@"Muffins" WithWeight:15];
+    cvPieChartDataPoint *dataSnickers = [[cvPieChartDataPoint alloc] initWithLabel:@"Snickers bars" WithWeight:15];
+    cvPieChartDataPoint *dataBen = [[cvPieChartDataPoint alloc] initWithLabel:@"Ben & Jerry's" WithWeight:24];
+    cvPieChartDataPoint *dataRaisin = [[cvPieChartDataPoint alloc] initWithLabel:@"Raisin bread" WithWeight:30];
+    cvPieChartDataPoint *dataOreo = [[cvPieChartDataPoint alloc] initWithLabel:@"Oreo Cookies" WithWeight:30];
+    cvPieChartDataPoint *dataChunky = [[cvPieChartDataPoint alloc] initWithLabel:@"Chunky Cookies" WithWeight:60];
+    cvPieChartDataPoint *dataCake = [[cvPieChartDataPoint alloc] initWithLabel:@"Cake" WithWeight:111];
+    NSString *formatSnack = @"%2.0f votes";
+    cvPieChart *pieChartSnacks = [[cvPieChart alloc] initWithData:[NSMutableArray arrayWithObjects:dataPancakes,dataMuffins, dataSnickers, dataBen, dataRaisin, dataOreo, dataChunky, dataCake, nil] InFormatUnits:formatSnack WithTitle:@"Favorite snacks in Virginia"];
+    
+    _pieCharts = [NSArray arrayWithObjects:pieChartMobileOS, pieChartSnacks, nil];
     
     /*
      Average Inflation in USA per decade

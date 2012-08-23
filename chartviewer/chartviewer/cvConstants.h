@@ -43,6 +43,7 @@ enum cvConstants_t {
     cvPieChartDataTableYGutter  = 40,
     cvChartDataTableYPace       = 30,
     cvChartKeyBoxSize           = 15,
+    cvPieChartRadialDistance    = 15,
     
     /* For bar charts */
     cvBarChartBarXLabelOffs     = 5,

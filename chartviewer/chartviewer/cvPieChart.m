@@ -103,7 +103,7 @@
 -(void)drawPieChartLabelsInContext:(CGContextRef)context At:(CGPoint)center WithSize:(double)radius
 {
     CGContextSaveGState(context);
-    const double labelDistance = radius + cvChartInsetToAllowGraphLabels;
+    const double labelDistance = radius + cvPieChartRadialDistance;
     /* Change to cartesian co-ords centered on the center of the pie chart, y goes up, x goes right */
     CGContextTranslateCTM(context, center.x, center.y);
     CGContextScaleCTM(context, 1, -1);
@@ -229,7 +229,7 @@
 -(void) drawChartPortraitInContext:(CGContextRef)context withBounds:(CGRect) bounds
 {
     CGPoint center = {bounds.size.width*0.5, bounds.size.width*0.5};
-    double radius = bounds.size.width*0.75*0.3;
+    double radius = bounds.size.width*0.2;
     [self drawPieChartInContext:context At:(CGPoint)center WithSize:radius];
 }
 
