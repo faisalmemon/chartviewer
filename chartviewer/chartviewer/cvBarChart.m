@@ -193,6 +193,15 @@
     CGContextRestoreGState(context);
 }
 
+-(void) drawXaxisInContext:(CGContextRef)context WithBounds:(CGRect)bounds
+{
+    CGContextSaveGState(context);
+    CGContextMoveToPoint(context, 0, 0);
+    CGContextAddLineToPoint(context, bounds.size.width, 0);
+    CGContextStrokePath(context);
+    CGContextRestoreGState(context);
+}
+
 -(void) drawChartBodyInContext:(CGContextRef)context
                     withBounds:(CGRect)bounds
 {
@@ -205,6 +214,7 @@
     [self drawYaxisInContext:context WithBounds:&bounds AllowContextAndBoundsUpdate:YES];
     [self drawYaxisLabelInContext:context WithBounds:bounds];
     [self drawYaxisLabelsInContext:context WithBounds:bounds];
+    [self drawXaxisInContext:context WithBounds:bounds];
 }
 
 -(void)addLabelAlongAxis:(enum cvAxis)axis WithText:(NSString*)text
