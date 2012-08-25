@@ -89,6 +89,14 @@
     if (nil != _yAxisLabel) {
         _yAxisLabelLength = [cvChart labelLengthInContext:context WithText:_yAxisLabel WithFontName:cvChartLabelFont WithFontSize:cvChartLabelFontSize WithCharacterSpacing:cvChartLabelFontSpacing];
     }
+    
+    /*
+     STEP 5: If there is an x axis label, account for its length and height
+     */
+    if (nil != _xAxisLabel) {
+        _xAxisLabelHeight = cvChartInsetToAllowGraphLabels;
+        _xAxisLabelLength = [cvChart labelLengthInContext:context WithText:_xAxisLabel WithFontName:cvChartLabelFont WithFontSize:cvChartLabelFontSize WithCharacterSpacing:cvChartLabelFontSpacing];
+    }
     return;
 }
 
@@ -122,9 +130,27 @@
                      WithBounds:(CGRect)bounds
 {
     if (_yAxisLabel) {
-        CGPoint start = {-_maxLabelLengthY - cvBarChartIntervalMarker - cvBarChartLabelDrop, _scaleY * (_minYvalue + _maxYvalue)/2.0 - 0.5*_yAxisLabelLength};
+        CGPoint start = {
+            -_maxLabelLengthY - cvBarChartIntervalMarker - cvBarChartLabelDrop,
+            _scaleY * (_minYvalue + _maxYvalue)/2.0 - 0.5*_yAxisLabelLength};
         [self drawLabelWithContext:context WithText:_yAxisLabel WithFontName:cvChartLabelFont WithFontSize:cvChartLabelFontSize WithCharacterSpacing:cvChartLabelFontSpacing FromPoint:start InDirection:radians(90)];
     }
+}
+
+/*
+ Draw the X axis label.
+ */
+-(void) drawXaxisLabelInContext:(CGContextRef)context
+                     WithBounds:(CGRect)bounds
+{
+    if (_xAxisLabel) {
+        CGPoint start = {
+            bounds.size.width * 0.5 - _xAxisLabelLength * 0.5,
+            -_maxLabelLengthX - cvBarChartIntervalMarker - _xAxisLabelHeight + cvBarChartLabelDrop};
+        
+        [self drawLabelWithContext:context WithText:_xAxisLabel WithFontName:cvChartLabelFont WithFontSize:cvChartLabelFontSize WithCharacterSpacing:cvChartLabelFontSpacing FromPoint:start InDirection:0];
+    }
+
 }
 
 /*
@@ -136,9 +162,15 @@
     if (!update) {
         CGContextSaveGState(context);
     }
-    CGContextTranslateCTM(context, _maxLabelLengthY + cvBarChartLabelOffset + cvBarChartIntervalMarker, _maxLabelLengthX + cvBarChartIntervalMarker);
-    shrunkBounds.size.width -= _maxLabelLengthY + cvBarChartLabelOffset + cvBarChartIntervalMarker;
-    shrunkBounds.size.height -= _maxLabelLengthX + cvBarChartIntervalMarker;
+    
+    CGPoint offset = {
+        _maxLabelLengthY + cvBarChartLabelOffset + cvBarChartIntervalMarker,
+        _maxLabelLengthX + cvBarChartIntervalMarker + _xAxisLabelHeight
+    };
+    
+    CGContextTranslateCTM(context, offset.x, offset.y);
+    shrunkBounds.size.width -= offset.x;
+    shrunkBounds.size.height -= offset.y;
     [self calculateScalingForContext:context InBounds:shrunkBounds];
     
     CGContextTranslateCTM(context, 0, _minYvalue * -1 * _scaleY);
@@ -259,6 +291,7 @@
     // since we always need to draw screen furniture non-scaled, but the domain data scaled
     [self drawYaxisInContext:context WithBounds:&bounds AllowContextAndBoundsUpdate:YES];
     [self drawYaxisLabelInContext:context WithBounds:bounds];
+    [self drawXaxisLabelInContext:context WithBounds:bounds];
     [self drawYaxisLabelsInContext:context WithBounds:bounds];
     [self drawXaxisInContext:context WithBounds:bounds];
     [self drawBarsInContext:context WithBounds:bounds];

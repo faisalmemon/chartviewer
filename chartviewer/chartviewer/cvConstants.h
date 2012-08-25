@@ -50,7 +50,7 @@ enum cvConstants_t {
     cvBarLeastWidth             = 15, // needs to be wider than the x label font height
     cvBarChartLabelOffset       = 30,
     cvBarChartIntervalMarker    = 5,
-    cvBarChartLabelDrop         = 5, // the amount letters like g drop below the baseline for Label text
+    cvBarChartLabelDrop         = 6, // the amount letters like g drop below the baseline for Label text
     cvBarChartBarRed            = 0x9d, // RGBA 8 bit components
     cvBarChartBarGreen          = 0x76,
     cvBarChartBarBlue           = 0xee,

@@ -129,7 +129,24 @@ const cvGraphChartDataPoint kSampleGraph2[] = {-3,-3, -2,-1, 0,0};
     [barChartInflation addLabelAlongAxis:cvAlongY WithText:@"Average inflation in decade"];
     [barChartInflation addYIntervalsEvery:0.5 WithFormat:@"%2.2f %%"];
 
-    _barCharts = [NSArray arrayWithObjects:barChartInflation, nil];
+    cvBarChartDataPoint *diUS = [[cvBarChartDataPoint alloc] initWithLabel:@"United States" WithValue:23776];
+    cvBarChartDataPoint *diCH = [[cvBarChartDataPoint alloc] initWithLabel:@"Switzerland" WithValue:17330];
+    cvBarChartDataPoint *diGER = [[cvBarChartDataPoint alloc] initWithLabel:@"Germany" WithValue:17069];
+    cvBarChartDataPoint *diGB = [[cvBarChartDataPoint alloc] initWithLabel:@"United Kingdom" WithValue:16710];
+    cvBarChartDataPoint *diAU = [[cvBarChartDataPoint alloc] initWithLabel:@"Austria" WithValue:14909];
+    cvBarChartDataPoint *diFR = [[cvBarChartDataPoint alloc] initWithLabel:@"France" WithValue:14490];
+    cvBarChartDataPoint *diHO = [[cvBarChartDataPoint alloc] initWithLabel:@"Netherlands" WithValue:14393];
+    cvBarChartDataPoint *diSW = [[cvBarChartDataPoint alloc] initWithLabel:@"Sweden" WithValue:13746];
+    cvBarChartDataPoint *diAUS = [[cvBarChartDataPoint alloc] initWithLabel:@"Australia" WithValue:13296];
+
+    NSMutableArray* diData = [NSMutableArray arrayWithObjects:
+                              diUS, diCH, diGER, diGB, diAU, diFR, diHO, diSW, diAUS, nil];
+    cvBarChart *barChartDi = [[cvBarChart alloc] initWithTitle:@"Disposable Income 2004" WithDataSet:diData];
+    [barChartDi addLabelAlongAxis:cvAlongX WithText:@"Country"];
+    [barChartDi addLabelAlongAxis:cvAlongY WithText:@"Disposable Income per capita"];
+    [barChartDi addYIntervalsEvery:1000 WithFormat:@"%5.0f$"];
+
+    _barCharts = [NSArray arrayWithObjects:barChartInflation, barChartDi, nil];
     
 }
 
