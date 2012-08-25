@@ -14,6 +14,7 @@ enum cvAxis {
 };
 
 @interface cvChart : NSObject {
+    /* User-supplied data */
     NSString *_title;
 }
 

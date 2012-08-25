@@ -30,8 +30,6 @@
 @property (readonly)double startingAngle;
 @property (readonly)double endingAngle;
 
-
-
 -(id) initWithLabel:(NSString*)label WithWeight:(double)weight;
 -(void) setSliceAnglesStarting:(double)start_angle Ending:(double)end_angle;
 -(void) setLabelAngle:(double)label_angle;

@@ -9,10 +9,6 @@
 #import "cvGraphSelectionViewController.h"
 #import "cvConstants.h"
 
-@interface cvGraphSelectionViewController ()
-
-@end
-
 @implementation cvGraphSelectionViewController
 @synthesize tableView;
 @synthesize segmentedControlHandle;
@@ -86,7 +82,6 @@
     return nil;
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)table_view cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *MyIdentifier = @"cvChartViewerChartList";
     UITableViewCell *cell = [table_view dequeueReusableCellWithIdentifier:MyIdentifier];
@@ -107,6 +102,5 @@
 
     [chartSelectionHandler cvChartWasSelected:chart];
 }
-
 
 @end

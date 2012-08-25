@@ -226,6 +226,9 @@
 
 }
 
+/*
+ Draw the pie chart in portrait orientation.  In this orientation, we show a large pie chart, without a key table.
+ */
 -(void) drawChartPortraitInContext:(CGContextRef)context withBounds:(CGRect) bounds
 {
     CGPoint center = {bounds.size.width*0.5, bounds.size.width*0.5};
@@ -233,6 +236,9 @@
     [self drawPieChartInContext:context At:(CGPoint)center WithSize:radius];
 }
 
+/*
+ Draw the pie chart in landscape orientation.  In this orientation we show a smaller pie chart, so we can fit a table next to it.
+ */
 -(void) drawChartLandscapeInContext:(CGContextRef)context withBounds:(CGRect)bounds
 {
     CGPoint center = {bounds.size.height*0.5, bounds.size.height*0.5};

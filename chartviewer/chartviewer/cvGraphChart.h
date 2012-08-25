@@ -18,19 +18,22 @@ typedef struct graphChartDataLimits_struct graphChartDataLimits;
 typedef enum cvAxis cvAxis;
 
 @interface cvGraphChart : cvChart {
+    /*
+     User-supplied data
+     */
     NSString *_xIntervalFormat;
     NSString *_yIntervalFormat;
     const cvGraphChartDataPoint *_graphDataPoints;
     int _nDataPoints;
-    BOOL readyToDraw;
     double _stepper_x;
     double _stepper_y;
     NSMutableArray *labels;
     
-    /* Derived values from data points */
+    /*
+     Derived data
+     */
+    BOOL readyToDraw;
     graphChartDataLimits _limits;
-
-    /* Derived values for when a graph is presented on the screen */
     double _scale_x;
     double _scale_y;
 }

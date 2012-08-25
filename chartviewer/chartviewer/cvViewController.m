@@ -10,10 +10,6 @@
 #import "cvGraphSelectionViewController.h"
 #import "cvConstants.h"
 
-@interface cvViewController ()
-
-@end
-
 @implementation cvViewController
 @synthesize popoverController;
 @synthesize chartViewHandle;
@@ -35,8 +31,6 @@
         scrollView.contentSize = CGSizeMake(cvScrollAreaX, cvScrollAreaY);
         self.scrollView.delegate=self;
     }
-
-
 }
 
 - (void)viewDidUnload

@@ -163,7 +163,7 @@
 }
 -(void) drawChartBodyInContext:(CGContextRef)context withBounds:(CGRect)bounds
 {
-    NSLog(@"cvChart cannot draw the chart body because it is established in subclasses of cvChart");
+    NSLog(@"cvChart does not draw the chart body because it is established in subclasses of cvChart");
     return;
 }
 

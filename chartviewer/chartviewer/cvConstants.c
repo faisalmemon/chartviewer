@@ -17,7 +17,6 @@ const double cvChartLabelFontSpacing            = 0.2;
 const double cvChartIntervalLabelFontSize       = 0.5;
 const double cvChartIntervalLabelFontSpacing    = 0.1;
 
-
 /*
  Try a generate a contrasting set of colors when shown in sequence.
  We do this by choosing in turn the maximum in the axis r,g,b.  When

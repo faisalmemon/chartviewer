@@ -10,8 +10,15 @@
 #import "cvPieChartDataPoint.h"
 
 @interface cvPieChart : cvChart {
+    /*
+     User-supplied data
+     */
     NSMutableArray *_pieChartData;
     NSString *_units;
+    
+    /*
+     Derived data
+     */
     double _totalWeight;
 }
 

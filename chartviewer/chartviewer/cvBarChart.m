@@ -27,7 +27,7 @@
     double length;
     
     /*
-     Calculate the longest label on the x axis
+     STEP 1: Calculate the longest label on the x axis
      */
     
     for (cvBarChartDataPoint *dp in _data) {
@@ -46,15 +46,16 @@
 
     
     /*
-     Calculate the extreme values of y and adjust to ensure the origin always is present
+     STEP 2: Calculate the extreme values of y and adjust to ensure the origin always is present
      */
     
     _minYvalue = MIN(0, minYval);
     _maxYvalue = MAX(0, maxYval);
     
     /*
-     If the user has specified interval labels on the y axis, calculate the widest on-screen label.
+     STEP 3: If the user has specified interval labels on the y axis, calculate the widest on-screen label.
      */
+    
     if (_yIntervalsDefined) {
         
         double longestWidthYLabel = 0;
@@ -82,8 +83,9 @@
     }
     
     /*
-     If there is a y axis label, calculate its length.
+     STEP 4: If there is a y axis label, calculate its length.
      */
+    
     if (nil != _yAxisLabel) {
         _yAxisLabelLength = [cvChart labelLengthInContext:context WithText:_yAxisLabel WithFontName:cvChartLabelFont WithFontSize:cvChartLabelFontSize WithCharacterSpacing:cvChartLabelFontSpacing];
     }

@@ -33,8 +33,8 @@ enum cvConstants_t {
     /* For pinch and zoom */
     cvMinMagnification = 1, // cannot zoom out more than the normal graph because it just gives white space
     cvMaxMagnification = 6,
-    cvScrollAreaX = 1280, // don't make it too wide otherwise scrolling is a long activity
-    cvScrollAreaY = 960,  // ...or too tall
+    cvScrollAreaX = 1280,
+    cvScrollAreaY = 960,
     
     /* For pie charts */
     cvPieChartDataTableXOffset  = 210,
@@ -86,6 +86,5 @@ struct cv_rgba_t {
 };
 
 extern struct cv_rgba_t cvGetContrastingColor(int paletteIndex);
-
 
 #endif
